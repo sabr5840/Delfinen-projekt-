@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -7,73 +8,78 @@ import java.util.Scanner;
 
 public class UserInterface {
         Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
+        Controller controller = new Controller();
+        int userChoice;
 
         public void menu() {
 
             int userChoice;
             do {
                 boolean isRunning;
-                System.out.println("HÅLLLÅÅÅÅ");
-
                 System.out.println("Delfinen Swimming Club\n");
                 System.out.println("Menu");
-                System.out.println("1) Register new member\n" + "9) Exit system");
+                System.out.println("1) Registration of new member\n" + "2) Save data\n" + "9) Exit system");
 
-                //
                 userChoice = scanner.nextInt();
                 scanner.nextLine();
 
                 try {
-
                     if (userChoice == 1) {
-
 
                         System.out.println("Register new member here:\n");
 
-                        System.out.println("Type full name:");
+                        System.out.println("Type in full name:");
                         String name = scanner.nextLine();
 
-                        System.out.println("Type birth year:");
+                        System.out.println("Type in birth year:");
                         int birthYear = scanner.nextInt();
                         scanner.nextLine();
 
-                        System.out.println("Type address:");
+                        System.out.println("Type in address:");
                         String address = scanner.nextLine();
 
-                        System.out.println("Type zipcode:");
+                        System.out.println("Type in zipcode:");
                         int zipCode = scanner.nextInt();
                         scanner.nextLine();
 
-                        System.out.println("Type city:");
+                        System.out.println("Type in city:");
                         String city = scanner.nextLine();
 
-                        System.out.println("Type number:");
+                        System.out.println("Type in phonenumber:");
                         int number = scanner.nextInt();
                         scanner.nextLine();
 
-                        System.out.println("Type e-Mail:");
+                        System.out.println("Type in Mail-adress:");
                         String email = scanner.nextLine();
 
-                        System.out.println("Active or passive member:");
+                        System.out.println("Type in active or passive member status:");
                         boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
-                        System.out.println("Junior(under 18) or senior(above 18) - member:");
+                        System.out.println("Type in junior (under 18) or senior (above 18) member status:");
                         boolean juniorOrSeniorMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
-                        System.out.println("Competition swimmer or exerciser?");
+                        System.out.println("Type in competition swimmer or exerciser member status:");
                         boolean competitionSwimmerOrExerciser = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
+                        System.out.println("In order to save, load and see your members, follow the main menu");
 
-                    } else {
-
+                    } else if (userChoice == 6) {
+                        controller.saveData();
+                        System.out.println("Data saved");
 
                     }
+
+
+
+                    //skal arbejdes videre på
                     isRunning = false;
                 } catch (InputMismatchException e) {
                     System.out.println("Unknown input - try again");
                     isRunning = true;
                     scanner.nextInt();
                     scanner.nextLine();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
             }  while (userChoice == 9);
         }

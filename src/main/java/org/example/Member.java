@@ -1,7 +1,7 @@
 package org.example;
 
-public class Member {
-    public class Members {
+
+    public class Member {
         //Fields of attributes
         private String name;
         private int birthYear;
@@ -15,7 +15,7 @@ public class Member {
         private boolean competitionOrExcercise;
 
         //Constructor for attributes
-        public Members (String name, int birthYear, String address, int zipCode,
+        public Member (String name, int birthYear, String address, int zipCode,
                         String city, int number, String eMail, boolean passiveOrActiveMember, boolean juniorOrSenior,
                         boolean competitionOrExcercise) {
             this.name = name;
@@ -72,7 +72,6 @@ public class Member {
             this.birthYear = birthYear;
         }
 
-
         public void setAddress(String address) {
             this.address = address;
         }
@@ -108,4 +107,4 @@ public class Member {
 
 
     }
-}
+
