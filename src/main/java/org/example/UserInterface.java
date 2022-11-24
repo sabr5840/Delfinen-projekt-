@@ -9,9 +9,8 @@ import java.util.Scanner;
 public class UserInterface {
         Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
         Controller controller = new Controller();
-        int userChoice;
 
-        public void menu() {
+        public void menu() throws FileNotFoundException {
 
             int userChoice;
             do {
@@ -24,8 +23,8 @@ public class UserInterface {
                 scanner.nextLine();
 
                 try {
-                    if (userChoice == 1) {
 
+                    if (userChoice == 1) {
                         System.out.println("Register new member here:\n");
 
                         System.out.println("Type in full name:");
@@ -69,18 +68,15 @@ public class UserInterface {
 
                     }
 
-
-
-                    //skal arbejdes videre på
-                    isRunning = false;
-                } catch (InputMismatchException e) {
-                    System.out.println("Unknown input - try again");
+                isRunning = false;
+                }catch (InputMismatchException e){
+                    System.out.println("Unkown input, try again");
                     isRunning = true;
                     scanner.nextInt();
                     scanner.nextLine();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
                 }
+
+
             }  while (userChoice == 9);
         }
     }
