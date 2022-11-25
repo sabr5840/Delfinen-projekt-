@@ -22,4 +22,8 @@ public class Controller {
         isChanged = true;
     }
 
+    public void (){
+
+    }
+
 }
