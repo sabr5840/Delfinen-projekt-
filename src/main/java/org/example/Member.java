@@ -28,8 +28,12 @@ package org.example;
             this.passiveOrActiveMember = passiveOrActiveMember;
             this.juniorOrSenior = juniorOrSenior;
             this.competitionOrExcercise = competitionOrExcercise;
-
         }
+
+        public Member() {
+        }
+
+
         //Getter
         public String getName() {
             return name;
@@ -102,6 +106,24 @@ package org.example;
 
         public void setCompetitionOrExcercise(boolean competitionOrExcercise) {
             this.competitionOrExcercise = competitionOrExcercise;
+        }
+
+        //Ternary operator for boolean human
+        public String getHumanternaryPA() {
+            String getHumanternaryPA  = (passiveOrActiveMember) ? "active" : "passive";
+            return getHumanternaryPA;
+        }
+
+        //Ternary operator for boolean human
+        public String getHumanternaryJS() {
+            String getHumanternaryJS  = (juniorOrSenior) ? "junior" : "senior";
+            return getHumanternaryJS;
+        }
+
+        //Ternary operator for boolean human
+        public String getHumanternaryCE() {
+            String getHumanternaryCE  = (competitionOrExcercise) ? "competition" : "excercise";
+            return getHumanternaryCE;
         }
 
 

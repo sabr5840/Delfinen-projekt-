@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -16,10 +17,34 @@ public class Controller {
         isChanged = true;
     }
 
-    public void saveData() throws FileNotFoundException {
+    public void saveData(ArrayList<Member> members) throws FileNotFoundException {
         Filehandler filehandler = new Filehandler();
-        filehandler.saveData(database.Registration());
+        filehandler.saveData(members);
         isChanged = true;
+
+    }
+
+    public void loadData() throws FileNotFoundException {
+        Filehandler filehandler = new Filehandler();
+        ArrayList<Member> members = filehandler.loadData();
+        database.updateMemberList(members);
+        isChanged = true;
+    }
+
+    public ArrayList<Member> viewMembers() {
+        return database.viewMembers();
+    }
+
+    public void editData(){
+        isChanged = true;
+
+    }
+
+    public void searchMember(){
+        String searchTerm = scanner.nextLine();
+
+
+
     }
 
 }
