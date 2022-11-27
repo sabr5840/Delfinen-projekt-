@@ -12,8 +12,8 @@ public class Controller {
     static boolean isChanged = false;
 
     public void saveData(String name, int birthYear, String address, int zipCode, String city, int number, String eMail,
-                                    boolean passiveOrActiveMember, boolean juniorOrSenior, boolean competitionOrExcercise) {
-        database.Registration(name,birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
+                         boolean passiveOrActiveMember, boolean juniorOrSenior, boolean competitionOrExcercise) {
+        database.Registration(name, birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
         isChanged = true;
     }
 
@@ -35,17 +35,17 @@ public class Controller {
         return database.viewMembers();
     }
 
-    public void editData(){
+    public void editData() {
         isChanged = true;
 
     }
 
-    public void searchMember(){
+    public void searchMember() {
         String searchTerm = scanner.nextLine();
 
     }
 
-    public void MathildeTEST(){
+    public void MathildeTEST() {
 
     }
 

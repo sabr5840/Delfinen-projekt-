@@ -8,12 +8,12 @@ public class Database {
     private ArrayList<Member> members = new ArrayList<>();
 
     //Getter for arraylist
-    public ArrayList<Member> getMembers(){
+    public ArrayList<Member> getMembers() {
         return members;
     }
 
     public void Registration(String name, int birthYear, String address, int zipCode, String city, int number, String eMail,
-                          boolean passiveOrActiveMember, boolean juniorOrSenior, boolean competitionOrExcercise){
+                             boolean passiveOrActiveMember, boolean juniorOrSenior, boolean competitionOrExcercise) {
 
         Member member = new Member(name, birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
         members.add(member);
@@ -26,6 +26,7 @@ public class Database {
     public ArrayList<Member> viewMembers() {
         return members;
     }
+
     public void updateMemberList(ArrayList<Member> members) {
         members = members;
     }

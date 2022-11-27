@@ -27,61 +27,80 @@ public class UserInterface {
     }
 
     private void trainerMenu() throws FileNotFoundException {
-        int TrainerChoicee;
-        do{
+        int trainerChoice;
+        do {
             boolean isRunning;
             boolean writingError;
             System.out.println("Menu");
-            System.out.println("1) View payment status for all members\n" +
-                    "2) View payment status by membership-type\n" + //TODO membership type = passive or active members
-                    "3) View members who are past due"+
-                    "4) Update payment status\n" +
-                    "5) back to main menu");
-            TrainerChoicee = scanner.nextInt();
+            System.out.println("1) view excercise teams\n" +
+                    "2) view competition teams\n" +
+                    "3) View statistics\n" +
+                    "4) back to main menu\n" +
+                    "5) quit program");
+            trainerChoice = scanner.nextInt();
 
-            if (TrainerChoicee ==1){
-                //TODO paymentstatus for all members
-            } else  if (TrainerChoicee == 2){
-                //TODO paymentstatus by membership-type
-            }else  if (TrainerChoicee == 3){
-                //TODO view past-due members
-            }else  if (TrainerChoicee == 4){
-                //TODO update payment status
-            }else  if (TrainerChoicee == 5){
+            if (trainerChoice == 1) {
+                System.out.println("choose between junior or senior swimmers");
+                System.out.println("type back if you wish to go back to last menu" +
+                        "type Q if you wish to quit the program");
+
+                String trainerInput = scanner.nextLine();
+                scanner.nextLine();
+                switch (trainerInput) {
+                    case "Jr", "junior", "Junior", "jr":
+                        System.out.println("TEST");
+                        //TODO members list of junior swimmers sorted by last name
+                        break;
+                    case "Sr", "senior", "Senior", "sr":
+                        System.out.println("TEST");
+                        //TODO members list of senior swimmers by last name
+                    case "back", "Back":
+                        trainerMenu();
+                    case "Q", "quit", "q":
+                        System.exit(0);
+                }
+
+
+            } else if (trainerChoice == 2) {
+                //TODO competition teams
+                // switch case for type of disciplin
+            } else if (trainerChoice == 3) {
+                //TODO statistics
+            } else if (trainerChoice == 4) {
                 startMenu();
             }
-            isRunning=false;
-        } while (TrainerChoicee!=6);
+        } while (trainerChoice == 5);
         System.exit(0);
     }
 
     private void cashierMenu() throws FileNotFoundException {
         int cashierChoice;
-        do{
+        do {
             boolean isRunning;
             boolean writingError;
             System.out.println("Menu");
             System.out.println("1) View payment status for all members\n" +
                     "2) View payment status by membership-type\n" + //TODO membership type = passive or active members
-                    "3) View members who are past due"+
+                    "3) View members who are past due" +
                     "4) Update payment status\n" +
-                    "5) back to main menu");
+                    "5) back to main men\n" +
+                    "6) quit program");
             cashierChoice = scanner.nextInt();
 
-            if (cashierChoice ==1){
+            if (cashierChoice == 1) {
                 //TODO paymentstatus for all members
-            } else  if (cashierChoice == 2){
+            } else if (cashierChoice == 2) {
                 //TODO paymentstatus by membership-type
-            }else  if (cashierChoice == 3){
+            } else if (cashierChoice == 3) {
                 //TODO view past-due members
-            }else  if (cashierChoice == 4){
+            } else if (cashierChoice == 4) {
                 //TODO update payment status
-            }else  if (cashierChoice == 5){
+            } else if (cashierChoice == 5) {
                 startMenu();
             }
-            isRunning=false;
-        } while (cashierChoice!=6);
-            System.exit(0);
+            isRunning = false;
+        } while (cashierChoice != 6);
+        System.exit(0);
     }
 
     //ChairmanMenu
@@ -187,4 +206,5 @@ public class UserInterface {
             isRunning = false;
         } while (chairmanChoice != 9);
         System.exit(0);
-    }}
+    }
+}

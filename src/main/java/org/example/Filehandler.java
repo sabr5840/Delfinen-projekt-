@@ -12,9 +12,9 @@ public class Filehandler {
 
     public ArrayList<Member> loadData() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(path));
-        ArrayList<Member>members = new ArrayList<>();
+        ArrayList<Member> members = new ArrayList<>();
 
-        while (scanner.hasNextLine()){
+        while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Member memberObject = splitLines(line);
 
@@ -23,10 +23,10 @@ public class Filehandler {
         return members;
     }
 
-    public void saveData(ArrayList <Member> members) throws FileNotFoundException {
+    public void saveData(ArrayList<Member> members) throws FileNotFoundException {
         PrintStream output = new PrintStream(new File(path));
 
-        for (Member member : members){
+        for (Member member : members) {
             output.print(member.getName());
             output.print(";");
             output.print(member.getBirthYear());
