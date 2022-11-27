@@ -52,8 +52,8 @@ public class Filehandler {
         }
     }
 
-    private Member splitLines(String linje) {
-        String[] splits = linje.split(";");
+    private Member splitLines(String line) {
+        String[] splits = line.split(";");
 
         Member memberData = new Member();
 

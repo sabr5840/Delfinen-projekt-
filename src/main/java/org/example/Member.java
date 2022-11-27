@@ -109,21 +109,21 @@ package org.example;
         }
 
         //Ternary operator for boolean human
-        public String getHumanternaryPA() {
-            String getHumanternaryPA  = (passiveOrActiveMember) ? "active" : "passive";
-            return getHumanternaryPA;
+        public String getTernaryPA() {
+            String getTernaryPA  = (passiveOrActiveMember) ? "active" : "passive";
+            return getTernaryPA;
+        }
+
+        //Ternary operator for membershiptype
+        public String getTernaryJS() {
+            String getTernaryJS  = (juniorOrSenior) ? "junior" : "senior";
+            return getTernaryJS;
         }
 
         //Ternary operator for boolean human
-        public String getHumanternaryJS() {
-            String getHumanternaryJS  = (juniorOrSenior) ? "junior" : "senior";
-            return getHumanternaryJS;
-        }
-
-        //Ternary operator for boolean human
-        public String getHumanternaryCE() {
-            String getHumanternaryCE  = (competitionOrExcercise) ? "competition" : "excercise";
-            return getHumanternaryCE;
+        public String getTernaryCE() {
+            String getTernaryCE  = (competitionOrExcercise) ? "competition" : "excercise";
+            return getTernaryCE;
         }
 
 
