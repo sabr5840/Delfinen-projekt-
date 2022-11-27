@@ -43,8 +43,6 @@ public class Controller {
     public void searchMember(){
         String searchTerm = scanner.nextLine();
 
-
-
     }
 
     public void (){
