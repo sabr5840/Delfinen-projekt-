@@ -45,7 +45,6 @@ public class UserInterface {
                         "type Q if you wish to quit the program");
 
                 String trainerInput = scanner.nextLine();
-                scanner.nextLine();
                 switch (trainerInput) {
                     case "Jr", "junior", "Junior", "jr":
                         System.out.println("TEST");
