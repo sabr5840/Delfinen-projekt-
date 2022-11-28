@@ -43,8 +43,8 @@ public class UserInterface {
                 System.out.println("choose between junior or senior swimmers");
                 System.out.println("type back if you wish to go back to last menu" +
                         "type Q if you wish to quit the program");
-
-                String trainerInput = scanner.nextLine();
+                Scanner input = new Scanner(System.in);
+                String trainerInput = input.nextLine().toLowerCase();
                 switch (trainerInput) {
                     case "Jr", "junior", "Junior", "jr":
                         System.out.println("TEST");
@@ -53,16 +53,52 @@ public class UserInterface {
                     case "Sr", "senior", "Senior", "sr":
                         System.out.println("TEST");
                         //TODO members list of senior swimmers by last name
+                        break;
                     case "back", "Back":
                         trainerMenu();
+                        break;
                     case "Q", "quit", "q":
+                        System.out.println("exiting program");
                         System.exit(0);
+                        break;
+                    default:
+                        System.out.println("try again");
                 }
 
-
             } else if (trainerChoice == 2) {
-                //TODO competition teams
-                // switch case for type of disciplin
+                System.out.println("Choose which team you would like to see" +
+                        "Crawl, butterfly, backcrawl or breaststroke");
+                System.out.println("type back if you wish to go back to last menu" +
+                        "type Q if you wish to quit the program");
+                Scanner input = new Scanner(System.in);
+                String teamInput = input.nextLine().toLowerCase();
+                switch (teamInput) {
+                    case "crawl", "Crawl":
+                        System.out.println("TEST");
+                        //TODO teamlist
+                        break;
+                    case "butterfly", "Butterfly":
+                        System.out.println("TEST");
+                        //TODO teamlist
+                        break;
+                    case "backcrawl", "Backcrawl":
+                        System.out.println("TEST");
+                        //TODO teamlist
+                        break;
+                    case "breaststroke", "Breaststroke":
+                        System.out.println("TEST");
+                        //TODO teamlist
+                        break;
+                    case "back", "Back":
+                        trainerMenu();
+                        break;
+                    case "Q", "quit", "q":
+                        System.out.println("exiting program");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Wrong input - please try again");
+                }
             } else if (trainerChoice == 3) {
                 //TODO statistics
             } else if (trainerChoice == 4) {
@@ -99,6 +135,7 @@ public class UserInterface {
             }
             isRunning = false;
         } while (cashierChoice != 6);
+        System.out.println("exiting program");
         System.exit(0);
     }
 
@@ -182,7 +219,6 @@ public class UserInterface {
 
                 System.out.println("In order to save, load and see your members, follow the main menu");
 
-
                 db.Registration(name, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, juniorOrSeniorMember, competitionOrExercise);
 
             } else if (chairmanChoice == 2) {
@@ -204,6 +240,7 @@ public class UserInterface {
 
             isRunning = false;
         } while (chairmanChoice != 9);
+        System.out.println("exiting program");
         System.exit(0);
     }
 }
