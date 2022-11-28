@@ -191,17 +191,17 @@ public class UserInterface {
                 System.out.println("Register new member here");
 
                 System.out.println("First name:");
-                String firstname = scanner.nextLine();
+                String firstname = scanner.next();
 
                 System.out.println("Last name:");
-                String lastname = scanner.nextLine();
+                String lastname = scanner.next();
 
                 System.out.println("Type birthyear for the new member:");
                 int birthYear = scanner.nextInt();
 
 
                 System.out.println("Type in address:");
-                String address = scanner.nextLine();
+                String address = scanner.next();
                 scanner.nextLine();
 
                 int zipCode;
