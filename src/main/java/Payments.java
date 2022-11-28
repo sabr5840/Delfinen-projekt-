@@ -4,9 +4,6 @@ public class Payments {
     private int passiveMember = 500;
     private double totalPayments;
 
-
-
-    
     public int getSeniorMember(){
     return seniorMember;
     }

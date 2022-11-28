@@ -1,15 +1,9 @@
 package org.example;
 
 import java.io.FileNotFoundException;
-import java.text.DateFormat;
-import java.text.Format;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -17,7 +11,7 @@ public class UserInterface {
     Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     Controller controller = new Controller();
     Member member = new Member();
-    Database db = new Database();
+
 
     public void startMenu() throws FileNotFoundException {
         System.out.println("Welcome to The Dolphins administrative system");
@@ -200,7 +194,7 @@ public class UserInterface {
                 registerMember();
 
              if (chairmanChoice == 2) {
-                controller.saveData(db.getMembers());
+                controller.saveData();
                 System.out.println("Data saved");
 
             } else if (chairmanChoice == 3) {
@@ -258,7 +252,7 @@ public class UserInterface {
                 System.out.println("Type in zipcode:");
                 zipCode = Integer.parseInt(scanner.nextLine());
                 if (zipCode > 0) {
-                    member.setZipCode((zipCode));
+                    member.setPostalCode((zipCode));
                 }
                 writingError = false;
             } catch (NumberFormatException e) {
@@ -273,6 +267,7 @@ public class UserInterface {
         System.out.println("Type in phonenumber:");
         int number = scanner.nextInt();
         scanner.nextLine();
+        //TODO skal laves ligesom ovenover i zipcode
 
         System.out.println("Type in Mail-adress:");
         String email = scanner.nextLine();
@@ -285,10 +280,12 @@ public class UserInterface {
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        db.Registration(firstname, lastname, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, true, competitionOrExercise);
+        controller.addMember(firstname, lastname, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, true, competitionOrExercise);
 
         System.out.println(toString());
 
     }
+
+
 
 }

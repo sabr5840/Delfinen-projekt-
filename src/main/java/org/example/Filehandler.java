@@ -35,7 +35,7 @@ public class Filehandler {
             output.print(";");
             output.print(member.getAddress());
             output.print(";");
-            output.print(member.getZipCode());
+            output.print(member.getPostalCode());
             output.print(";");
             output.print(member.getCity());
             output.print(";");
@@ -43,11 +43,11 @@ public class Filehandler {
             output.print(";");
             output.print(member.geteMail());
             output.print(";");
-            output.print(member.isPassiveOrActiveMember());
+            output.print(member.isPasstive());
             output.print(";");
-            output.print(member.isJuniorOrSenior());
+            output.print(member.isJunoir());
             output.print(";");
-            output.print(member.isCompetitionOrExcercise());
+            output.print(member.isExcerise());
             output.print(";");
 
 

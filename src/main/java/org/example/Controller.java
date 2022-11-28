@@ -11,15 +11,15 @@ public class Controller {
     private static final Database database = new Database();
     static boolean isChanged = false;
 
-    public void saveData(String firstname, String lastname, int birthYear, String address, int zipCode, String city, int number, String eMail,
+    public void addMember(String firstname, String lastname, int birthYear, String address, int zipCode, String city, int number, String eMail,
                          boolean passiveOrActiveMember, boolean juniorOrSenior, boolean competitionOrExcercise) {
-        database.Registration(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
+        database.addMember(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
         isChanged = true;
     }
 
-    public void saveData(ArrayList<Member> members) throws FileNotFoundException {
+    public void saveData() throws FileNotFoundException {
         Filehandler filehandler = new Filehandler();
-        filehandler.saveData(members);
+        filehandler.saveData(database.members());
         isChanged = true;
 
     }

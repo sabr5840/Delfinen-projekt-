@@ -7,13 +7,13 @@ public class Member {
     private String lastname;
     private int birthYear;
     private String address;
-    private int zipCode;
+    private int postalCode;
     private String city;
     private int number;
     private String eMail;
-    private boolean passiveOrActiveMember;
-    private boolean juniorOrSenior;
-    private boolean competitionOrExcercise;
+    private boolean passtive;
+    private boolean Junoir;
+    private boolean excerise;
 
     //Constructor for attributes
     public Member(String firstname, String lastname, int birthYear, String address, int zipCode,
@@ -23,13 +23,13 @@ public class Member {
         this.lastname = lastname;
         this.birthYear = birthYear;
         this.address = address;
-        this.zipCode = zipCode;
+        this.postalCode = zipCode;
         this.city = city;
         this.number = number;
         this.eMail = eMail;
-        this.passiveOrActiveMember = passiveOrActiveMember;
-        this.juniorOrSenior = juniorOrSenior;
-        this.competitionOrExcercise = competitionOrExcercise;
+        this.passtive = passiveOrActiveMember;
+        this.Junoir = juniorOrSenior;
+        this.excerise = competitionOrExcercise;
     }
 
     public Member() {
@@ -52,8 +52,8 @@ public class Member {
         return address;
     }
 
-    public int getZipCode() {
-        return zipCode;
+    public int getPostalCode() {
+        return postalCode;
     }
 
     public String getCity() {
@@ -68,16 +68,16 @@ public class Member {
         return eMail;
     }
 
-    public boolean isPassiveOrActiveMember() {
-        return passiveOrActiveMember;
+    public boolean isPasstive() {
+        return passtive;
     }
 
-    public boolean isJuniorOrSenior() {
-        return juniorOrSenior;
+    public boolean isJunoir() {
+        return Junoir;
     }
 
-    public boolean isCompetitionOrExcercise() {
-        return competitionOrExcercise;
+    public boolean isExcerise() {
+        return excerise;
     }
 
     //Setter
@@ -99,8 +99,8 @@ public class Member {
         this.address = address;
     }
 
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
     }
 
     public void setCity(String city) {
@@ -115,48 +115,20 @@ public class Member {
         this.eMail = eMail;
     }
 
-    public void setPassiveOrActiveMember(boolean passiveOrActiveMember) {
-        this.passiveOrActiveMember = passiveOrActiveMember;
-    }
 
-    public void setJuniorOrSenior(boolean juniorOrSenior) {
-        this.juniorOrSenior = juniorOrSenior;
-    }
-
-    public void setCompetitionOrExcercise(boolean competitionOrExcercise) {
-        this.competitionOrExcercise = competitionOrExcercise;
-    }
-
-    //Ternary operator for boolean human
-    public String getTernaryPA() {
-        String getTernaryPA = (passiveOrActiveMember) ? "active" : "passive";
-        return getTernaryPA;
-    }
-
-    //Ternary operator for membershiptype
-    public String getTernaryJS() {
-        String getTernaryJS = (juniorOrSenior) ? "junior" : "senior";
-        return getTernaryJS;
-    }
-
-    //Ternary operator for boolean human
-    public String getTernaryCE() {
-        String getTernaryCE = (competitionOrExcercise) ? "competition" : "excercise";
-        return getTernaryCE;
-    }
     public String toString() {
         return "Member{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", birthYear=" + birthYear +
                 ", address='" + address + '\'' +
-                ", zipCode=" + zipCode +
+                ", zipCode=" + postalCode +
                 ", city='" + city + '\'' +
                 ", number=" + number +
                 ", eMail='" + eMail + '\'' +
-                ", passiveOrActiveMember=" + passiveOrActiveMember +
-                ", juniorOrSenior=" + juniorOrSenior +
-                ", competitionOrExcercise=" + competitionOrExcercise +
+                ", passiveOrActiveMember=" + passtive +
+                ", juniorOrSenior=" + Junoir +
+                ", competitionOrExcercise=" + excerise +
                 '}';
     }
 }
