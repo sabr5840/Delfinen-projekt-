@@ -195,6 +195,7 @@ public class UserInterface {
                             "9) Quit programme");
 
             chairmanChoice = scanner.nextInt();
+            scanner.nextLine();
             if (chairmanChoice == 1) {
                 registerMember();
 
@@ -229,10 +230,10 @@ public class UserInterface {
         System.out.println("Register new member here");
 
         System.out.println("First name:");
-        String firstname = scanner.next();
+        String firstname = scanner.nextLine();
 
         System.out.println("Last name:");
-        String lastname = scanner.next();
+        String lastname = scanner.nextLine();
 
         System.out.println("Date of birth ('dd/MM/yyyy')");
         String DOB = scanner.nextLine();
