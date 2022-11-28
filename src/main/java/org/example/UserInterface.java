@@ -1,12 +1,19 @@
 package org.example;
 
 import java.io.FileNotFoundException;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
-
     Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     Controller controller = new Controller();
     Member member = new Member();
@@ -172,12 +179,13 @@ public class UserInterface {
     //ChairmanMenu
     public void ChairmanMenu() throws FileNotFoundException {
         int chairmanChoice;
+
         do {
             boolean isRunning;
             boolean writingError;
             System.out.println("Menu");
             System.out.println(
-                            "1) Registration of new member\n" +
+                    "1) Registration of new member\n" +
                             "2) Save data\n" +
                             "3) load data\n" +
                             "4) Edit member information\n" +
@@ -188,64 +196,9 @@ public class UserInterface {
 
             chairmanChoice = scanner.nextInt();
             if (chairmanChoice == 1) {
-                System.out.println("Register new member here");
+                registerMember();
 
-                System.out.println("First name:");
-                String firstname = scanner.next();
-
-                System.out.println("Last name:");
-                String lastname = scanner.next();
-
-                System.out.println("Type birthyear for the new member:");
-                int birthYear = scanner.nextInt();
-
-
-                System.out.println("Type in address:");
-                String address = scanner.next();
-                scanner.nextLine();
-
-                int zipCode;
-                do {
-                    zipCode = 0;
-                    try {
-                        System.out.println("Type in zipcode:");
-                        zipCode = Integer.parseInt(scanner.nextLine());
-                        if (zipCode > 0) {
-                            member.setZipCode((zipCode));
-                        }
-                        writingError = false;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Error ocurred - try again");
-                        writingError = true;
-                    }
-                } while (writingError == true);
-
-                System.out.println("Type in city:");
-                String city = scanner.nextLine();
-
-                System.out.println("Type in phonenumber:");
-                int number = scanner.nextInt();
-                scanner.nextLine();
-
-                System.out.println("Type in Mail-adress:");
-                String email = scanner.nextLine();
-
-                System.out.println("Type in active or passive member status:");
-                boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
-
-                System.out.println("Type in junior (under 18) or senior (above 18) member status:");
-                boolean juniorOrSeniorMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
-
-                System.out.println("Type in competition swimmer or exerciser member status:");
-                boolean competitionOrExercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
-
-                System.out.println("In order to save, load and see your members, follow the main menu");
-
-                db.Registration(firstname, lastname, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, juniorOrSeniorMember, competitionOrExercise);
-
-                System.out.println(toString());
-
-            } else if (chairmanChoice == 2) {
+             if (chairmanChoice == 2) {
                 controller.saveData(db.getMembers());
                 System.out.println("Data saved");
 
@@ -265,8 +218,76 @@ public class UserInterface {
                 startMenu();
             }
             isRunning = false;
-        } while (chairmanChoice != 9);
+        }
+    }while (chairmanChoice != 9);
         System.out.println("exiting program");
         System.exit(0);
     }
+    public void registerMember(){
+        boolean isRunning;
+        boolean writingError;
+        System.out.println("Register new member here");
+
+        System.out.println("First name:");
+        String firstname = scanner.next();
+
+        System.out.println("Last name:");
+        String lastname = scanner.next();
+
+        System.out.println("Date of birth ('dd/MM/yyyy')");
+        String DOB = scanner.nextLine();
+
+        int calculation = LocalDateTime.now().getYear();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        int birthYear = LocalDate.parse(DOB, formatter).getYear();
+
+        if (calculation - birthYear < 18)
+            System.out.println("member is registered as junior");
+        else if (calculation - birthYear > 18)
+            System.out.println("member is registered as senior");
+
+        System.out.println("Type in address:");
+        String address = scanner.next();
+        scanner.nextLine();
+
+        int zipCode;
+        do {
+            zipCode = 0;
+            try {
+                System.out.println("Type in zipcode:");
+                zipCode = Integer.parseInt(scanner.nextLine());
+                if (zipCode > 0) {
+                    member.setZipCode((zipCode));
+                }
+                writingError = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Error ocurred - try again");
+                writingError = true;
+            }
+        } while (writingError == true);
+
+        System.out.println("Type in city:");
+        String city = scanner.nextLine();
+
+        System.out.println("Type in phonenumber:");
+        int number = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Type in Mail-adress:");
+        String email = scanner.nextLine();
+
+        System.out.println("Type in active or passive member status:");
+        boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+
+        System.out.println("Type in competition swimmer or exerciser member status:");
+        boolean competitionOrExercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+
+        System.out.println("In order to save, load and see your members, follow the main menu");
+
+        db.Registration(firstname, lastname, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, true, competitionOrExercise);
+
+        System.out.println(toString());
+
+    }
+
 }
