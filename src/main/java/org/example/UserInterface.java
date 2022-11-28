@@ -41,7 +41,7 @@ public class UserInterface {
 
             if (trainerChoice == 1) {
                 System.out.println("choose between junior or senior swimmers");
-                System.out.println("type back if you wish to go back to last menu" +
+                System.out.println("type 'return' if you wish to return to last menu" +
                         "type Q if you wish to quit the program");
                 Scanner input = new Scanner(System.in);
                 String trainerInput = input.nextLine().toLowerCase();
@@ -54,7 +54,7 @@ public class UserInterface {
                         System.out.println("TEST");
                         //TODO members list of senior swimmers by last name
                         break;
-                    case "back", "Back":
+                    case "back", "Back", "return", "Return":
                         trainerMenu();
                         break;
                     case "Q", "quit", "q":
@@ -68,7 +68,7 @@ public class UserInterface {
             } else if (trainerChoice == 2) {
                 System.out.println("Choose which team you would like to see" +
                         "Crawl, butterfly, backcrawl or breaststroke");
-                System.out.println("type back if you wish to go back to last menu" +
+                System.out.println("type return if you wish to go back to last menu" +
                         "type Q if you wish to quit the program");
                 Scanner input = new Scanner(System.in);
                 String teamInput = input.nextLine().toLowerCase();
@@ -89,7 +89,7 @@ public class UserInterface {
                         System.out.println("TEST");
                         //TODO teamlist
                         break;
-                    case "back", "Back":
+                    case "back", "Back", "return", "Return":
                         trainerMenu();
                         break;
                     case "Q", "quit", "q":
@@ -100,7 +100,37 @@ public class UserInterface {
                         System.out.println("Wrong input - please try again");
                 }
             } else if (trainerChoice == 3) {
-                //TODO statistics
+                System.out.println("Choose how you would like to see the statistics" +
+                        "1) by team member\n" +
+                        "2) by dicipline\n" +
+                        "3) by best times\n" +
+                        "4) Return to previous menu\n" +
+                        "5) Quit programme");
+                Scanner input = new Scanner(System.in);
+                int statsInput = input.nextInt();
+                switch (statsInput) {
+                    case 1:
+                        System.out.println("TEST");
+                        //TODO teamlist
+                        break;
+                    case 2:
+                        System.out.println("TEST");
+                        //TODO teamlist
+                        break;
+                    case 3:
+                        System.out.println("TEST");
+                        //TODO teamlist
+                        break;
+                    case 4:
+                        trainerMenu();
+                        break;
+                    case 5:
+                        System.out.println("exiting program");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Wrong input - please try again");
+                }
             } else if (trainerChoice == 4) {
                 startMenu();
             }
@@ -118,8 +148,8 @@ public class UserInterface {
                     "2) View payment status by membership-type\n" + //TODO membership type = passive or active members
                     "3) View members who are past due" +
                     "4) Update payment status\n" +
-                    "5) back to main men\n" +
-                    "6) quit program");
+                    "5) Return to main men\n" +
+                    "6) Quit program");
             cashierChoice = scanner.nextInt();
 
             if (cashierChoice == 1) {
@@ -146,15 +176,17 @@ public class UserInterface {
             boolean isRunning;
             boolean writingError;
             System.out.println("Menu");
-            System.out.println("1) Registration of new member\n" +
+            System.out.println(
+                    "1) Registration of new member\n" +
                     "2) Save data\n" +
                     "3) load data\n" +
                     "4) Edit member information\n" +
                     "5) Search for member\n" +
                     "6) View members\n" +
-                    "9) Back to main menu");
-            chairmanChoice = scanner.nextInt();
+                    "7) Return to main menu\n" +
+                    "9) Quit programme");
 
+            chairmanChoice = scanner.nextInt();
             if (chairmanChoice == 1) {
                 System.out.println("Register new member here:\n");
 
@@ -236,7 +268,11 @@ public class UserInterface {
                 System.out.println("Search for specific member by name");
                 controller.viewMembers();
                 System.out.println("Members:");
+
+            } else if (chairmanChoice == 7) {
+                startMenu();
             }
+
 
             isRunning = false;
         } while (chairmanChoice != 9);
