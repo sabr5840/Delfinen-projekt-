@@ -177,38 +177,28 @@ public class UserInterface {
             boolean writingError;
             System.out.println("Menu");
             System.out.println(
-                    "1) Registration of new member\n" +
-                    "2) Save data\n" +
-                    "3) load data\n" +
-                    "4) Edit member information\n" +
-                    "5) Search for member\n" +
-                    "6) View members\n" +
-                    "7) Return to main menu\n" +
-                    "9) Quit programme");
+                            "1) Registration of new member\n" +
+                            "2) Save data\n" +
+                            "3) load data\n" +
+                            "4) Edit member information\n" +
+                            "5) Search for member\n" +
+                            "6) View members\n" +
+                            "7) Return to main menu\n" +
+                            "9) Quit programme");
 
             chairmanChoice = scanner.nextInt();
             if (chairmanChoice == 1) {
-                System.out.println("Register new member here:\n");
+                System.out.println("Register new member here");
 
-                System.out.println("Type in full name:");
-                String name = scanner.nextLine();
+                System.out.println("First name:");
+                String firstname = scanner.nextLine();
 
-                int birthYear = 0;
-                do {
-                    try {
-                        System.out.println("Type birthyear for the new member:");
-                        birthYear = scanner.nextInt();
-                        if (birthYear > 0) {
-                            member.setBirthYear((birthYear));
-                        }
-                        writingError = false;
+                System.out.println("Last name:");
+                String lastname = scanner.nextLine();
 
-                    } catch (NumberFormatException e) {
-                        System.out.println("Error occurred - try again.");
-                        writingError = true;
-                    }
+                System.out.println("Type birthyear for the new member:");
+                int birthYear = scanner.nextInt();
 
-                } while (writingError == true);
 
                 System.out.println("Type in address:");
                 String address = scanner.nextLine();
@@ -251,7 +241,9 @@ public class UserInterface {
 
                 System.out.println("In order to save, load and see your members, follow the main menu");
 
-                db.Registration(name, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, juniorOrSeniorMember, competitionOrExercise);
+                db.Registration(firstname, lastname, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, juniorOrSeniorMember, competitionOrExercise);
+
+                System.out.println(toString());
 
             } else if (chairmanChoice == 2) {
                 controller.saveData(db.getMembers());
@@ -272,8 +264,6 @@ public class UserInterface {
             } else if (chairmanChoice == 7) {
                 startMenu();
             }
-
-
             isRunning = false;
         } while (chairmanChoice != 9);
         System.out.println("exiting program");

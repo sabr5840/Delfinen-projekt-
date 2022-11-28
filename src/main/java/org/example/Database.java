@@ -12,10 +12,10 @@ public class Database {
         return members;
     }
 
-    public void Registration(String name, int birthYear, String address, int zipCode, String city, int number, String eMail,
+    public void Registration(String firstname, String lastname, int birthYear, String address, int zipCode, String city, int number, String eMail,
                              boolean passiveOrActiveMember, boolean juniorOrSenior, boolean competitionOrExcercise) {
 
-        Member member = new Member(name, birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
+        Member member = new Member(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
         members.add(member);
     }
 
@@ -30,9 +30,6 @@ public class Database {
     public void updateMemberList(ArrayList<Member> members) {
         members = members;
     }
-
-    //hekllo
-
 }
 
 

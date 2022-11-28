@@ -3,7 +3,8 @@ package org.example;
 
 public class Member {
     //Fields of attributes
-    private String name;
+    private String firstname;
+    private String lastname;
     private int birthYear;
     private String address;
     private int zipCode;
@@ -15,10 +16,11 @@ public class Member {
     private boolean competitionOrExcercise;
 
     //Constructor for attributes
-    public Member(String name, int birthYear, String address, int zipCode,
+    public Member(String firstname, String lastname, int birthYear, String address, int zipCode,
                   String city, int number, String eMail, boolean passiveOrActiveMember, boolean juniorOrSenior,
                   boolean competitionOrExcercise) {
-        this.name = name;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.birthYear = birthYear;
         this.address = address;
         this.zipCode = zipCode;
@@ -35,8 +37,11 @@ public class Member {
 
 
     //Getter
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
+    }
+    public String getLastname(){
+        return lastname;
     }
 
     public int getBirthYear() {
@@ -76,8 +81,14 @@ public class Member {
     }
 
     //Setter
-    public void setName(String name) {
-        this.name = name;
+
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public void setBirthYear(int birthYear) {
@@ -133,7 +144,20 @@ public class Member {
         String getTernaryCE = (competitionOrExcercise) ? "competition" : "excercise";
         return getTernaryCE;
     }
-
-
+    public String toString() {
+        return "Member{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthYear=" + birthYear +
+                ", address='" + address + '\'' +
+                ", zipCode=" + zipCode +
+                ", city='" + city + '\'' +
+                ", number=" + number +
+                ", eMail='" + eMail + '\'' +
+                ", passiveOrActiveMember=" + passiveOrActiveMember +
+                ", juniorOrSenior=" + juniorOrSenior +
+                ", competitionOrExcercise=" + competitionOrExcercise +
+                '}';
+    }
 }
 

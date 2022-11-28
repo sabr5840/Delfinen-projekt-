@@ -27,7 +27,9 @@ public class Filehandler {
         PrintStream output = new PrintStream(new File(path));
 
         for (Member member : members) {
-            output.print(member.getName());
+            output.print(member.getFirstname());
+            output.print(";");
+            output.print(member.getLastname());
             output.print(";");
             output.print(member.getBirthYear());
             output.print(";");
@@ -58,18 +60,19 @@ public class Filehandler {
         Member memberData = new Member();
 
         //Takes wrong information when creating member - Tutor
-        memberData.setName(splits[0]);
-        int birtYear = Integer.parseInt(splits[1]);
-        memberData.setAddress(splits[2]);
-        int zipCode = Integer.parseInt(splits[3]);
-        memberData.setCity(splits[4]);
-        int number = Integer.parseInt(splits[5]);
-        memberData.seteMail(splits[6]);
-        boolean PassiveOrActiveMember = Boolean.parseBoolean(splits[7]);
+        memberData.setFirstname(splits[0]);
+        memberData.setLastname(splits[1]);
+        int birtYear = Integer.parseInt(splits[2]);
+        memberData.setAddress(splits[3]);
+        int zipCode = Integer.parseInt(splits[4]);
+        memberData.setCity(splits[5]);
+        int number = Integer.parseInt(splits[6]);
+        memberData.seteMail(splits[7]);
+        boolean PassiveOrActiveMember = Boolean.parseBoolean(splits[8]);
         memberData.setCompetitionOrExcercise(PassiveOrActiveMember);
-        boolean JuniorOrSenior = Boolean.parseBoolean(splits[8]);
+        boolean JuniorOrSenior = Boolean.parseBoolean(splits[9]);
         memberData.setJuniorOrSenior(JuniorOrSenior);
-        boolean CompetitionOrExcercise = Boolean.parseBoolean(splits[9]);
+        boolean CompetitionOrExcercise = Boolean.parseBoolean(splits[10]);
         memberData.setCompetitionOrExcercise(CompetitionOrExcercise);
 
         return memberData;
