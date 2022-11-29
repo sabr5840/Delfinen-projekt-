@@ -12,124 +12,114 @@ public class Member {
     private int number;
     private String eMail;
     private boolean passtive;
-    private boolean Junoir;
+    private boolean Junior;
     private boolean excerise;
 
-    //Constructor for attributes
-    public Member(String firstname, String lastname, int birthYear, String address, int zipCode,
-                  String city, int number, String eMail, boolean passiveOrActiveMember, boolean juniorOrSenior,
-                  boolean competitionOrExcercise) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.birthYear = birthYear;
-        this.address = address;
-        this.postalCode = zipCode;
-        this.city = city;
-        this.number = number;
-        this.eMail = eMail;
-        this.passtive = passiveOrActiveMember;
-        this.Junoir = juniorOrSenior;
-        this.excerise = competitionOrExcercise;
-    }
-
-    public Member() {
-    }
-
-
-    //Getter
     public String getFirstname() {
         return firstname;
     }
-    public String getLastname(){
-        return lastname;
-    }
-
-    public int getBirthYear() {
-        return birthYear;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public int getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public String geteMail() {
-        return eMail;
-    }
-
-    public boolean isPasstive() {
-        return passtive;
-    }
-
-    public boolean isJunoir() {
-        return Junoir;
-    }
-
-    public boolean isExcerise() {
-        return excerise;
-    }
-
-    //Setter
-
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
     }
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
+    public int getBirthYear() {
+        return birthYear;
+    }
+
     public void setBirthYear(int birthYear) {
         this.birthYear = birthYear;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public int getPostalCode() {
+        return postalCode;
+    }
+
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String geteMail() {
+        return eMail;
     }
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
 
+    public boolean isPasstive() {
+        return passtive;
+    }
 
+    public void setPasstive(boolean passtive) {
+        this.passtive = passtive;
+    }
+
+    public boolean isJunior() {
+        return Junior;
+    }
+
+    public void setJunior(boolean junior) {
+        Junior = junior;
+    }
+
+    public boolean isExcerise() {
+        return excerise;
+    }
+
+    public void setExcerise(boolean excerise) {
+        this.excerise = excerise;
+    }
+
+    @Override
     public String toString() {
         return "Member{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", birthYear=" + birthYear +
                 ", address='" + address + '\'' +
-                ", zipCode=" + postalCode +
+                ", postalCode=" + postalCode +
                 ", city='" + city + '\'' +
                 ", number=" + number +
                 ", eMail='" + eMail + '\'' +
-                ", passiveOrActiveMember=" + passtive +
-                ", juniorOrSenior=" + Junoir +
-                ", competitionOrExcercise=" + excerise +
+                ", passtive=" + passtive +
+                ", Junior=" + Junior +
+                ", excerise=" + excerise +
                 '}';
     }
 }
+
+
 
