@@ -32,7 +32,7 @@ public class Controller {
     }
 
     public ArrayList<Member> viewMembers() {
-        return database.viewMembers();
+        return database.getMembers();
     }
 
     public void editData() {

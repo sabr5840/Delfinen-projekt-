@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
+
     Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     Controller controller = new Controller();
     Member member = new Member();
