@@ -221,7 +221,7 @@ public class UserInterface {
 
     public void registerMember() {
         boolean isRunning;
-        boolean writingError;
+        boolean writingError = false;
         System.out.println("Register new member here");
 
         System.out.println("First name:");
@@ -230,17 +230,28 @@ public class UserInterface {
         System.out.println("Last name:");
         String lastname = scanner.nextLine();
 
-        System.out.println("Date of birth ('dd/MM/yyyy')");
-        String DOB = scanner.nextLine();
 
-        int calculation = LocalDateTime.now().getYear();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        int birthYear = LocalDate.parse(DOB, formatter).getYear();
+        do {
+            try {
+                System.out.println("Date of birth ('dd/MM/yyyy')");
 
-        if (calculation - birthYear < 18)
-            System.out.println("member is registered as junior");
-        else if (calculation - birthYear > 18)
-            System.out.println("member is registered as senior");
+                int calculation = LocalDateTime.now().getYear();
+                String DOB = scanner.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                int birthYear = LocalDate.parse(DOB, formatter).getYear();
+
+                if (calculation - birthYear < 18) {
+                    System.out.println("");
+                    System.out.println("member is registered as junior");
+                } else if (calculation - birthYear > 18)
+                    System.out.println("");
+                System.out.println("member is registered as senior");
+
+            } catch (NumberFormatException e) {
+                System.out.println("Error ocurred - try again");
+                writingError = true;
+            }
+        } while (writingError == true);
 
         System.out.println("Type in address:");
         String address = scanner.next();
@@ -283,21 +294,19 @@ public class UserInterface {
 
 
         System.out.println("Type in Mail-adress:");
-    String email = scanner.nextLine();
+        String email = scanner.nextLine();
 
         System.out.println("Type in active or passive member status:");
-    boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("Type in competition swimmer or exerciser member status:");
-    boolean competitionOrExercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        boolean competitionOrExercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        controller.addMember(firstname,lastname,birthYear,address,zipCode,city,number,email,passiveOrActiveMember,true,competitionOrExercise);
+        controller.addMember();
 
-        System.out.println(
+        System.out.println(toString());
 
-    toString());
-
-}
+    }
 }

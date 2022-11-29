@@ -103,6 +103,23 @@ public class Member {
     public void setExcercise(boolean excercise) {
         this.excercise = excercise;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthYear=" + birthYear +
+                ", address='" + address + '\'' +
+                ", postalCode=" + postalCode +
+                ", city='" + city + '\'' +
+                ", number=" + number +
+                ", eMail='" + eMail + '\'' +
+                ", passive=" + passive +
+                ", junior=" + junior +
+                ", excercise=" + excercise +
+                '}';
+    }
 }
 
 
