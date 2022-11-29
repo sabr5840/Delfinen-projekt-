@@ -19,7 +19,7 @@ public class UserInterface {
         System.out.println("Please input your employee number");
         int employeeNumber = scanner.nextInt();
 
-        if (employeeNumber < 10) {
+        if ((employeeNumber < 10) && (employeeNumber > 1 )) {
             ChairmanMenu();
         } else if ((employeeNumber > 11) && (employeeNumber < 20)) {
             cashierMenu();
