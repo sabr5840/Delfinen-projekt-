@@ -13,7 +13,7 @@ public class Database {
     }
 
     public void addMember(String firstname, String lastname, int birthYear, String address, int zipCode, String city, int number, String eMail,
-                             boolean passive, boolean junior, boolean excercise, boolean hasPaid) {
+                             boolean passive, boolean junior, boolean excercise) {
 
         Member member = new Member(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, junior, excercise, hasPaid);
         members.add(member);
@@ -28,7 +28,10 @@ public class Database {
     }
 
     public void updateMemberList(ArrayList<Member> members) {
-        members = members;
+        this.members = members;
+    }
+
+    public void addMember() {
     }
 }
 
