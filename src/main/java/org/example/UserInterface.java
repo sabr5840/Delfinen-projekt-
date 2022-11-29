@@ -149,7 +149,7 @@ public class UserInterface {
             System.out.println("1) View payment status for all members\n" +
                     "2) View payment status by membership-type\n" + //TODO membership type = passive or active members
                     "3) View members who are past due" +
-                    "4) Update payment status\n" +
+                    "4) Edit payment status\n" +
                     "5) Return to main men\n" +
                     "6) Quit program");
             cashierChoice = scanner.nextInt();
@@ -165,7 +165,7 @@ public class UserInterface {
             } else if (cashierChoice == 3) {
                 //TODO view past-due members
             } else if (cashierChoice == 4) {
-                //TODO update payment status (edit)
+                //TODO edit payment status (edit)
             } else if (cashierChoice == 5) {
                 startMenu();
             }
@@ -254,7 +254,7 @@ public class UserInterface {
         do {
             zipCode = 0;
             try {
-                System.out.println("Type in zipcode:");
+                System.out.println("Type in postal code:");
                 zipCode = Integer.parseInt(scanner.nextLine());
                 if (zipCode > 0) {
                     member.setPostalCode((zipCode));
