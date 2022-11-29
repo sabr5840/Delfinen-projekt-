@@ -11,9 +11,10 @@ public class Member {
     private String city;
     private int number;
     private String eMail;
-    private boolean passtive;
-    private boolean Junior;
-    private boolean excerise;
+    private boolean passive;
+    private boolean junior;
+    private boolean excercise;
+
 
     public String getFirstname() {
         return firstname;
@@ -79,45 +80,28 @@ public class Member {
         this.eMail = eMail;
     }
 
-    public boolean isPasstive() {
-        return passtive;
+    public boolean isPassive() {
+        return passive;
     }
 
-    public void setPasstive(boolean passtive) {
-        this.passtive = passtive;
+    public void setPassive(boolean passive) {
+        this.passive = passive;
     }
 
     public boolean isJunior() {
-        return Junior;
+        return junior;
     }
 
     public void setJunior(boolean junior) {
-        Junior = junior;
+        this.junior = junior;
     }
 
-    public boolean isExcerise() {
-        return excerise;
+    public boolean isExcercise() {
+        return excercise;
     }
 
-    public void setExcerise(boolean excerise) {
-        this.excerise = excerise;
-    }
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", birthYear=" + birthYear +
-                ", address='" + address + '\'' +
-                ", postalCode=" + postalCode +
-                ", city='" + city + '\'' +
-                ", number=" + number +
-                ", eMail='" + eMail + '\'' +
-                ", passtive=" + passtive +
-                ", Junior=" + Junior +
-                ", excerise=" + excerise +
-                '}';
+    public void setExcercise(boolean excercise) {
+        this.excercise = excercise;
     }
 }
 
