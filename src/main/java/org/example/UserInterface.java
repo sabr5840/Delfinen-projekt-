@@ -17,13 +17,13 @@ public class UserInterface {
     public void startMenu() throws FileNotFoundException {
         System.out.println("Welcome to The Dolphins administrative system");
         System.out.println("Please input your employee phoneNo");
-        int employeephoneNo = scanner.nextInt();
+        int employeeNo = scanner.nextInt();
 
-        if (employeephoneNo < 10) {
+        if (employeeNo < 10) {
             chairmanMenu();
-        } else if ((employeephoneNo > 11) && (employeephoneNo < 20)) {
+        } else if ((employeeNo > 11) && (employeeNo < 20)) {
             cashierMenu();
-        } else if ((employeephoneNo > 20) && (employeephoneNo < 30)) {
+        } else if ((employeeNo > 20) && (employeeNo < 30)) {
             coachMenu();
         }
     }
