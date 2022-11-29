@@ -13,14 +13,14 @@ public class Member {
     private String eMail;
     private boolean passive;
     private boolean junior;
-    private boolean excerise;
+    private boolean exercise;
     private boolean hasPaid;
 
 
     //Constructor for attributes
     public Member(String firstname, String lastname, int birthYear, String address, int zipCode,
                   String city, int number, String eMail, boolean passive, boolean junior,
-                  boolean excercise, boolean hasPaid) {
+                  boolean exercise, boolean hasPaid) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthYear = birthYear;
@@ -31,14 +31,13 @@ public class Member {
         this.eMail = eMail;
         this.passive = passive;
         this.junior = junior;
-        this.excerise = excercise;
+        this.exercise = exercise;
         this.hasPaid = hasPaid;
 
     }
 
     public Member() {
     }
-
 
     //Getter
     public String getFirstname() {
@@ -80,8 +79,8 @@ public class Member {
         return junior;
     }
 
-    public boolean isExcerise() {
-        return excerise;
+    public boolean isExercise() {
+        return exercise;
     }
 
     public boolean isHasPaid(){
@@ -133,8 +132,8 @@ public class Member {
         this.junior = junior;
     }
 
-    public void setExcerise(boolean excerise) {
-        this.excerise = excerise;
+    public void setExercise(boolean exercise) {
+        this.exercise = exercise;
     }
 
     public String toString() {
@@ -149,7 +148,7 @@ public class Member {
                 ", eMail='" + eMail + '\'' +
                 ", passive=" + passive +
                 ", junior=" + junior +
-                ", excercise=" + excerise +
+                ", exercise=" + exercise +
                 ", hasPaid=" + hasPaid +
                 '}';
     }

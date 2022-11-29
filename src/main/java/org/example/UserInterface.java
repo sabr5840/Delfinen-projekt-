@@ -34,7 +34,7 @@ public class UserInterface {
             boolean isRunning;
             boolean writingError;
             System.out.println("Menu");
-            System.out.println("1) view excercise teams\n" +
+            System.out.println("1) view exercise teams\n" +
                     "2) view competition teams\n" +
                     "3) View statistics\n" +
                     "4) back to main menu\n" +
@@ -281,14 +281,14 @@ public class UserInterface {
         boolean passive = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("Type in competition swimmer or exerciser member status:");
-        boolean excercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        boolean exercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("Has paid the subscription:");
         boolean hasPaid = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        controller.addMember(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, true, excercise, hasPaid);
+        controller.addMember(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, true, exercise, hasPaid);
 
         System.out.println(toString());
 

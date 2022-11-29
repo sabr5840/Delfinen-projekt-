@@ -47,7 +47,7 @@ public class Filehandler {
             output.print(";");
             output.print(member.isJunoir());
             output.print(";");
-            output.print(member.isExcerise());
+            output.print(member.isExercise());
             output.print(";");
 
 
@@ -73,7 +73,7 @@ public class Filehandler {
         boolean junior = Boolean.parseBoolean(splits[9]);
         memberData.setJunior(junior);
         boolean excercise = Boolean.parseBoolean(splits[10]);
-        memberData.setExcerise(excercise);
+        memberData.setExercise(excercise);
 
 
         String firstName = splits[0];
