@@ -30,6 +30,9 @@ public class Database {
     public void updateMemberList(ArrayList<Member> members) {
         members = members;
     }
+
+    public void addMember() {
+    }
 }
 
 

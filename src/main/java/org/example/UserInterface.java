@@ -251,7 +251,7 @@ public class UserInterface {
                 System.out.println("Error ocurred - try again");
                 writingError = true;
             }
-        } while (writingError == true);
+        } while (writingError = true);
 
         System.out.println("Type in address:");
         String address = scanner.next();
@@ -271,7 +271,7 @@ public class UserInterface {
                 System.out.println("Error ocurred - try again");
                 writingError = true;
             }
-        } while (writingError == true);
+        } while (writingError = true);
 
         System.out.println("Type in city:");
         String city = scanner.nextLine();
@@ -290,7 +290,7 @@ public class UserInterface {
                 System.out.println("Error ocurred - try again");
                 writingError = true;
             }
-        } while (writingError == true);
+        } while (writingError = true);
 
 
         System.out.println("Type in Mail-adress:");
