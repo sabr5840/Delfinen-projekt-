@@ -193,32 +193,33 @@ public class UserInterface {
             if (chairmanChoice == 1) {
                 registerMember();
 
-             if (chairmanChoice == 2) {
-                controller.saveData();
-                System.out.println("Data saved");
+                if (chairmanChoice == 2) {
+                    controller.saveData();
+                    System.out.println("Data saved");
 
-            } else if (chairmanChoice == 3) {
-                controller.loadData();
-                System.out.println("Data loaded");
+                } else if (chairmanChoice == 3) {
+                    controller.loadData();
+                    System.out.println("Data loaded");
 
-            } else if (chairmanChoice == 4) {
-                controller.editData();
+                } else if (chairmanChoice == 4) {
+                    controller.editData();
 
-            } else if (chairmanChoice == 6) {
-                System.out.println("Search for specific member by name");
-                controller.viewMembers();
-                System.out.println("Members:");
+                } else if (chairmanChoice == 6) {
+                    System.out.println("Search for specific member by name");
+                    controller.viewMembers();
+                    System.out.println("Members:");
 
-            } else if (chairmanChoice == 7) {
-                startMenu();
+                } else if (chairmanChoice == 7) {
+                    startMenu();
+                }
+                isRunning = false;
             }
-            isRunning = false;
-        }
-    }while (chairmanChoice != 9);
+        } while (chairmanChoice != 9);
         System.out.println("exiting program");
         System.exit(0);
     }
-    public void registerMember(){
+
+    public void registerMember() {
         boolean isRunning;
         boolean writingError;
         System.out.println("Register new member here");
@@ -264,30 +265,39 @@ public class UserInterface {
         System.out.println("Type in city:");
         String city = scanner.nextLine();
 
-        System.out.println("Type in phonenumber:");
-        int number = scanner.nextInt();
-        scanner.nextLine();
-        //TODO skal laves ligesom ovenover i zipcode
+        int number;
+        do {
+            number = 0;
+            try {
+                System.out.println("Type in phonenumber:");
+                number = Integer.parseInt((scanner.nextLine()));
+                if (number > 0) {
+                    member.setNumber(number);
+                }
+                writingError = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Error ocurred - try again");
+                writingError = true;
+            }
+        } while (writingError == true);
+
 
         System.out.println("Type in Mail-adress:");
-        String email = scanner.nextLine();
+    String email = scanner.nextLine();
 
         System.out.println("Type in active or passive member status:");
-        boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+    boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("Type in competition swimmer or exerciser member status:");
-        boolean competitionOrExercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+    boolean competitionOrExercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        controller.addMember(firstname, lastname, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, true, competitionOrExercise);
+        controller.addMember(firstname,lastname,birthYear,address,zipCode,city,number,email,passiveOrActiveMember,true,competitionOrExercise);
 
-        System.out.println(toString());
+        System.out.println(
 
+    toString());
 
-
-    }
-
-
-
+}
 }

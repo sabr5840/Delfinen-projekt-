@@ -43,11 +43,11 @@ public class Filehandler {
             output.print(";");
             output.print(member.geteMail());
             output.print(";");
-            output.print(member.isPasstive());
+            output.print(member.isPassive());
             output.print(";");
-            output.print(member.isJunoir());
+            output.print(member.isJunior());
             output.print(";");
-            output.print(member.isExcerise());
+            output.print(member.isExcercise());
             output.print(";");
 
 
@@ -68,12 +68,12 @@ public class Filehandler {
         memberData.setCity(splits[5]);
         int number = Integer.parseInt(splits[6]);
         memberData.seteMail(splits[7]);
-        boolean PassiveOrActiveMember = Boolean.parseBoolean(splits[8]);
-        memberData.setCompetitionOrExcercise(PassiveOrActiveMember);
+        boolean Passive = Boolean.parseBoolean(splits[8]);
+        memberData.setPassive(Passive);
         boolean JuniorOrSenior = Boolean.parseBoolean(splits[9]);
-        memberData.setJuniorOrSenior(JuniorOrSenior);
+        memberData.setJunior(JuniorOrSenior);
         boolean CompetitionOrExcercise = Boolean.parseBoolean(splits[10]);
-        memberData.setCompetitionOrExcercise(CompetitionOrExcercise);
+        memberData.setExcercise(CompetitionOrExcercise);
 
         return memberData;
     }
