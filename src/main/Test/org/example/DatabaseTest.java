@@ -13,8 +13,6 @@ class DatabaseTest {
     @BeforeEach
     void setUp() {
         database = new Database();
-
-
     }
 
     @Test

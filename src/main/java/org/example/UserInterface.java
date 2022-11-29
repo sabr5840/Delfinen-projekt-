@@ -104,7 +104,7 @@ public class UserInterface {
             } else if (trainerChoice == 3) {
                 System.out.println("Choose how you would like to see the statistics" +
                         "1) by team member\n" +
-                        "2) by dicipline\n" +
+                        "2) by discipline\n" +
                         "3) by best times\n" +
                         "4) Return to previous menu\n" +
                         "5) Quit programme");
