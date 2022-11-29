@@ -101,6 +101,5 @@ public class Filehandler {
             e.printStackTrace();
         }
     }
-    //hejhj
 }
 
