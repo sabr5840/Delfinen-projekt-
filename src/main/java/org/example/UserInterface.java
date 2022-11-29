@@ -156,7 +156,7 @@ public class UserInterface {
 
             if (cashierChoice == 1) {
                 //TODO paymentstatus for all members
-                for (Member member : controller.viewMembers()){
+                for (Member member : controller.viewMembers()) {
                     System.out.println("Name: " + member.getFirstname() + "Lastname: " + member.getLastname() + "has paid the subscription" + member.isHasPaid());
                 }
 
@@ -197,8 +197,8 @@ public class UserInterface {
             scanner.nextLine();
             if (chairmanChoice == 1) {
                 registerMember();
-
-             if (chairmanChoice == 2) {
+            }
+            if (chairmanChoice == 2) {
                 controller.saveData();
                 System.out.println("Data saved");
 
@@ -218,12 +218,14 @@ public class UserInterface {
                 startMenu();
             }
             isRunning = false;
-        }
-    }while (chairmanChoice != 9);
+
+        } while (chairmanChoice != 9);
         System.out.println("exiting program");
         System.exit(0);
+
     }
-    public void registerMember(){
+
+    public void registerMember() {
         boolean isRunning;
         boolean writingError;
         System.out.println("Register new member here");
