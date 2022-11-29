@@ -43,7 +43,7 @@ public class Filehandler {
             output.print(";");
             output.print(member.geteMail());
             output.print(";");
-            output.print(member.isPasstive());
+            output.print(member.isPassive());
             output.print(";");
             output.print(member.isJunoir());
             output.print(";");
@@ -62,20 +62,44 @@ public class Filehandler {
         //Takes wrong information when creating member - Tutor
         memberData.setFirstname(splits[0]);
         memberData.setLastname(splits[1]);
-        int birtYear = Integer.parseInt(splits[2]);
+        int birthYear = Integer.parseInt(splits[2]);
         memberData.setAddress(splits[3]);
         int zipCode = Integer.parseInt(splits[4]);
         memberData.setCity(splits[5]);
         int number = Integer.parseInt(splits[6]);
         memberData.seteMail(splits[7]);
-        boolean PassiveOrActiveMember = Boolean.parseBoolean(splits[8]);
-        memberData.setCompetitionOrExcercise(PassiveOrActiveMember);
-        boolean JuniorOrSenior = Boolean.parseBoolean(splits[9]);
-        memberData.setJuniorOrSenior(JuniorOrSenior);
-        boolean CompetitionOrExcercise = Boolean.parseBoolean(splits[10]);
-        memberData.setCompetitionOrExcercise(CompetitionOrExcercise);
+        boolean passive = Boolean.parseBoolean(splits[8]);
+        memberData.setPassive(passive);
+        boolean junior = Boolean.parseBoolean(splits[9]);
+        memberData.setJunior(junior);
+        boolean excercise = Boolean.parseBoolean(splits[10]);
+        memberData.setExcerise(excercise);
 
-        return memberData;
+
+        String firstName = splits[0];
+        String lastName = splits[1];
+
+        String address = splits[3];
+        String city = splits[5];
+        String email = splits[7];
+
+        return new Member(firstName, lastName, birthYear, address, zipCode, city, number, email, passive, junior, excercise, true);
+
+        //return memberData;
+    }
+
+    public static void main(String[] args) {
+        Filehandler handler = new Filehandler();
+
+        try{
+            ArrayList<Member> members = handler.loadData();
+            for (Member member : members) {
+                System.out.println(member);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 

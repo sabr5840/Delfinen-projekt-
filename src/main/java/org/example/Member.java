@@ -11,14 +11,16 @@ public class Member {
     private String city;
     private int number;
     private String eMail;
-    private boolean passtive;
-    private boolean Junoir;
+    private boolean passive;
+    private boolean junior;
     private boolean excerise;
+    private boolean hasPaid;
+
 
     //Constructor for attributes
     public Member(String firstname, String lastname, int birthYear, String address, int zipCode,
-                  String city, int number, String eMail, boolean passiveOrActiveMember, boolean juniorOrSenior,
-                  boolean competitionOrExcercise) {
+                  String city, int number, String eMail, boolean passive, boolean junior,
+                  boolean excercise, boolean hasPaid) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthYear = birthYear;
@@ -27,9 +29,11 @@ public class Member {
         this.city = city;
         this.number = number;
         this.eMail = eMail;
-        this.passtive = passiveOrActiveMember;
-        this.Junoir = juniorOrSenior;
-        this.excerise = competitionOrExcercise;
+        this.passive = passive;
+        this.junior = junior;
+        this.excerise = excercise;
+        this.hasPaid = hasPaid;
+
     }
 
     public Member() {
@@ -68,21 +72,23 @@ public class Member {
         return eMail;
     }
 
-    public boolean isPasstive() {
-        return passtive;
+    public boolean isPassive() {
+        return passive;
     }
 
     public boolean isJunoir() {
-        return Junoir;
+        return junior;
     }
 
     public boolean isExcerise() {
         return excerise;
     }
 
+    public boolean isHasPaid(){
+        return hasPaid;
+    }
+
     //Setter
-
-
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -115,6 +121,21 @@ public class Member {
         this.eMail = eMail;
     }
 
+    public void setHasPaid(boolean hasPaid){
+        this.hasPaid = hasPaid;
+    }
+
+    public void setPassive(boolean passive) {
+        this.passive = passive;
+    }
+
+    public void setJunior(boolean junior) {
+        this.junior = junior;
+    }
+
+    public void setExcerise(boolean excerise) {
+        this.excerise = excerise;
+    }
 
     public String toString() {
         return "Member{" +
@@ -126,9 +147,10 @@ public class Member {
                 ", city='" + city + '\'' +
                 ", number=" + number +
                 ", eMail='" + eMail + '\'' +
-                ", passiveOrActiveMember=" + passtive +
-                ", juniorOrSenior=" + Junoir +
-                ", competitionOrExcercise=" + excerise +
+                ", passive=" + passive +
+                ", junior=" + junior +
+                ", excercise=" + excerise +
+                ", hasPaid=" + hasPaid +
                 '}';
     }
 }

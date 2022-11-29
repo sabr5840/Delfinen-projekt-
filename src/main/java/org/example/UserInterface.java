@@ -155,12 +155,16 @@ public class UserInterface {
 
             if (cashierChoice == 1) {
                 //TODO paymentstatus for all members
+                for (Member member : controller.viewMembers()){
+                    System.out.println("Name: " + member.getFirstname() + "Lastname: " + member.getLastname() + "has paid the subscription" + member.isHasPaid());
+                }
+
             } else if (cashierChoice == 2) {
                 //TODO paymentstatus by membership-type
             } else if (cashierChoice == 3) {
                 //TODO view past-due members
             } else if (cashierChoice == 4) {
-                //TODO update payment status
+                //TODO update payment status (edit)
             } else if (cashierChoice == 5) {
                 startMenu();
             }
@@ -237,9 +241,9 @@ public class UserInterface {
         int birthYear = LocalDate.parse(DOB, formatter).getYear();
 
         if (calculation - birthYear < 18)
-            System.out.println("member is registered as junior");
+            System.out.println("member is registered as junior \n");
         else if (calculation - birthYear > 18)
-            System.out.println("member is registered as senior");
+            System.out.println("member is registered as senior \n");
 
         System.out.println("Type in address:");
         String address = scanner.next();
@@ -270,17 +274,20 @@ public class UserInterface {
         //TODO skal laves ligesom ovenover i zipcode
 
         System.out.println("Type in Mail-adress:");
-        String email = scanner.nextLine();
+        String eMail = scanner.nextLine();
 
         System.out.println("Type in active or passive member status:");
-        boolean passiveOrActiveMember = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        boolean passive = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("Type in competition swimmer or exerciser member status:");
-        boolean competitionOrExercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        boolean excercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+
+        System.out.println("Has paid the subscription:");
+        boolean hasPaid = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        controller.addMember(firstname, lastname, birthYear, address, zipCode, city, number, email, passiveOrActiveMember, true, competitionOrExercise);
+        controller.addMember(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, true, excercise, hasPaid);
 
         System.out.println(toString());
 

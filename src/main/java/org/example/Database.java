@@ -13,9 +13,9 @@ public class Database {
     }
 
     public void addMember(String firstname, String lastname, int birthYear, String address, int zipCode, String city, int number, String eMail,
-                             boolean passiveOrActiveMember, boolean juniorOrSenior, boolean competitionOrExcercise) {
+                             boolean passive, boolean junior, boolean excercise, boolean hasPaid) {
 
-        Member member = new Member(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passiveOrActiveMember, juniorOrSenior, competitionOrExcercise);
+        Member member = new Member(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, junior, excercise, hasPaid);
         members.add(member);
     }
 
