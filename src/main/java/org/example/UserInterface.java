@@ -16,20 +16,20 @@ public class UserInterface {
 
     public void startMenu() throws FileNotFoundException {
         System.out.println("Welcome to The Dolphins administrative system");
-        System.out.println("Please input your employee number");
-        int employeeNumber = scanner.nextInt();
+        System.out.println("Please input your employee phoneNo");
+        int employeephoneNo = scanner.nextInt();
 
-        if (employeeNumber < 10) {
-            ChairmanMenu();
-        } else if ((employeeNumber > 11) && (employeeNumber < 20)) {
+        if (employeephoneNo < 10) {
+            chairmanMenu();
+        } else if ((employeephoneNo > 11) && (employeephoneNo < 20)) {
             cashierMenu();
-        } else if ((employeeNumber > 20) && (employeeNumber < 30)) {
-            trainerMenu();
+        } else if ((employeephoneNo > 20) && (employeephoneNo < 30)) {
+            coachMenu();
         }
     }
 
-    private void trainerMenu() throws FileNotFoundException {
-        int trainerChoice;
+    private void coachMenu() throws FileNotFoundException {
+        int coachChoice;
         do {
             boolean isRunning;
             boolean writingError;
@@ -39,15 +39,15 @@ public class UserInterface {
                     "3) View statistics\n" +
                     "4) back to main menu\n" +
                     "5) quit program");
-            trainerChoice = scanner.nextInt();
+            coachChoice = scanner.nextInt();
 
-            if (trainerChoice == 1) {
+            if (coachChoice == 1) {
                 System.out.println("choose between junior or senior swimmers");
                 System.out.println("type 'return' if you wish to return to last menu" +
                         "type Q if you wish to quit the program");
                 Scanner input = new Scanner(System.in);
-                String trainerInput = input.nextLine().toLowerCase();
-                switch (trainerInput) {
+                String coachInput = input.nextLine().toLowerCase();
+                switch (coachInput) {
                     case "Jr", "junior", "Junior", "jr":
                         System.out.println("TEST");
                         //TODO members list of junior swimmers sorted by last name
@@ -57,7 +57,7 @@ public class UserInterface {
                         //TODO members list of senior swimmers by last name
                         break;
                     case "back", "Back", "return", "Return":
-                        trainerMenu();
+                        coachMenu();
                         break;
                     case "Q", "quit", "q":
                         System.out.println("exiting program");
@@ -67,7 +67,7 @@ public class UserInterface {
                         System.out.println("try again");
                 }
 
-            } else if (trainerChoice == 2) {
+            } else if (coachChoice == 2) {
                 System.out.println("Choose which team you would like to see" +
                         "Crawl, butterfly, backcrawl or breaststroke");
                 System.out.println("type return if you wish to go back to last menu" +
@@ -92,7 +92,7 @@ public class UserInterface {
                         //TODO teamlist
                         break;
                     case "back", "Back", "return", "Return":
-                        trainerMenu();
+                        coachMenu();
                         break;
                     case "Q", "quit", "q":
                         System.out.println("exiting program");
@@ -101,7 +101,7 @@ public class UserInterface {
                     default:
                         System.out.println("Wrong input - please try again");
                 }
-            } else if (trainerChoice == 3) {
+            } else if (coachChoice == 3) {
                 System.out.println("Choose how you would like to see the statistics" +
                         "1) by team member\n" +
                         "2) by discipline\n" +
@@ -124,7 +124,7 @@ public class UserInterface {
                         //TODO teamlist
                         break;
                     case 4:
-                        trainerMenu();
+                        coachMenu();
                         break;
                     case 5:
                         System.out.println("exiting program");
@@ -133,10 +133,10 @@ public class UserInterface {
                     default:
                         System.out.println("Wrong input - please try again");
                 }
-            } else if (trainerChoice == 4) {
+            } else if (coachChoice == 4) {
                 startMenu();
             }
-        } while (trainerChoice == 5);
+        } while (coachChoice == 5);
         System.exit(0);
     }
 
@@ -176,7 +176,7 @@ public class UserInterface {
     }
 
     //ChairmanMenu
-    public void ChairmanMenu() throws FileNotFoundException {
+    public void chairmanMenu() throws FileNotFoundException {
         int chairmanChoice;
 
         do {
@@ -250,14 +250,14 @@ public class UserInterface {
         String address = scanner.next();
         scanner.nextLine();
 
-        int zipCode;
+        int postalCode;
         do {
-            zipCode = 0;
+            postalCode = 0;
             try {
                 System.out.println("Type in postal code:");
-                zipCode = Integer.parseInt(scanner.nextLine());
-                if (zipCode > 0) {
-                    member.setPostalCode((zipCode));
+                postalCode = Integer.parseInt(scanner.nextLine());
+                if (postalCode > 0) {
+                    member.setPostalCode((postalCode));
                 }
                 writingError = false;
             } catch (NumberFormatException e) {
@@ -269,10 +269,10 @@ public class UserInterface {
         System.out.println("Type in city:");
         String city = scanner.nextLine();
 
-        System.out.println("Type in phonenumber:");
-        int number = scanner.nextInt();
+        System.out.println("Type in phonephoneNo:");
+        int phoneNo = scanner.nextInt();
         scanner.nextLine();
-        //TODO skal laves ligesom ovenover i zipcode
+        //TODO skal laves ligesom ovenover i postalCode
 
         System.out.println("Type in Mail-adress:");
         String eMail = scanner.nextLine();
@@ -288,7 +288,7 @@ public class UserInterface {
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        controller.addMember(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, true, exercise, hasPaid);
+        controller.addMember(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
 
         System.out.println(toString());
 

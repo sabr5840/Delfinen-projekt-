@@ -12,10 +12,10 @@ public class Database {
         return members;
     }
 
-    public void addMember(String firstname, String lastname, int birthYear, String address, int zipCode, String city, int number, String eMail,
+    public void addMember(String firstname, String lastname, int birthYear, String address, int postalCode, String city, int phoneNo, String eMail,
                              boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
 
-        Member member = new Member(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, junior, exercise, hasPaid);
+        Member member = new Member(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         members.add(member);
     }
 

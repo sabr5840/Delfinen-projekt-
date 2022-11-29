@@ -9,7 +9,7 @@ public class Member {
     private String address;
     private int postalCode;
     private String city;
-    private int number;
+    private int phoneNo;
     private String eMail;
     private boolean passive;
     private boolean junior;
@@ -18,16 +18,16 @@ public class Member {
 
 
     //Constructor for attributes
-    public Member(String firstname, String lastname, int birthYear, String address, int zipCode,
-                  String city, int number, String eMail, boolean passive, boolean junior,
+    public Member(String firstname, String lastname, int birthYear, String address, int postalCode,
+                  String city, int phoneNo, String eMail, boolean passive, boolean junior,
                   boolean exercise, boolean hasPaid) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthYear = birthYear;
         this.address = address;
-        this.postalCode = zipCode;
+        this.postalCode = postalCode;
         this.city = city;
-        this.number = number;
+        this.phoneNo = phoneNo;
         this.eMail = eMail;
         this.passive = passive;
         this.junior = junior;
@@ -63,8 +63,8 @@ public class Member {
         return city;
     }
 
-    public int getNumber() {
-        return number;
+    public int getPhoneNo() {
+        return phoneNo;
     }
 
     public String geteMail() {
@@ -112,8 +112,8 @@ public class Member {
         this.city = city;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setPhoneNo(int phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public void seteMail(String eMail) {
@@ -142,9 +142,9 @@ public class Member {
                 ", lastname='" + lastname + '\'' +
                 ", birthYear=" + birthYear +
                 ", address='" + address + '\'' +
-                ", zipCode=" + postalCode +
+                ", postalCode=" + postalCode +
                 ", city='" + city + '\'' +
-                ", number=" + number +
+                ", phoneNo=" + phoneNo +
                 ", eMail='" + eMail + '\'' +
                 ", passive=" + passive +
                 ", junior=" + junior +

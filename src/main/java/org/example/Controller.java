@@ -11,9 +11,9 @@ public class Controller {
     private static final Database database = new Database();
     static boolean isChanged = false;
 
-    public void addMember(String firstname, String lastname, int birthYear, String address, int zipCode, String city, int number, String eMail,
+    public void addMember(String firstname, String lastname, int birthYear, String address, int postalCode, String city, int phoneNo, String eMail,
                          boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
-        database.addMember(firstname, lastname, birthYear, address, zipCode, city, number, eMail, passive, junior, exercise, hasPaid);
+        database.addMember(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         isChanged = true;
     }
 

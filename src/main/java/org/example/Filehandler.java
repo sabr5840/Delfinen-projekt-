@@ -39,7 +39,7 @@ public class Filehandler {
             output.print(";");
             output.print(member.getCity());
             output.print(";");
-            output.print(member.getNumber());
+            output.print(member.getPhoneNo());
             output.print(";");
             output.print(member.geteMail());
             output.print(";");
@@ -64,9 +64,9 @@ public class Filehandler {
         memberData.setLastname(splits[1]);
         int birthYear = Integer.parseInt(splits[2]);
         memberData.setAddress(splits[3]);
-        int zipCode = Integer.parseInt(splits[4]);
+        int postalCode = Integer.parseInt(splits[4]);
         memberData.setCity(splits[5]);
-        int number = Integer.parseInt(splits[6]);
+        int phoneNo = Integer.parseInt(splits[6]);
         memberData.seteMail(splits[7]);
         boolean passive = Boolean.parseBoolean(splits[8]);
         memberData.setPassive(passive);
@@ -83,7 +83,7 @@ public class Filehandler {
         String city = splits[5];
         String email = splits[7];
 
-        return new Member(firstName, lastName, birthYear, address, zipCode, city, number, email, passive, junior, excercise, true);
+        return new Member(firstName, lastName, birthYear, address, postalCode, city, phoneNo, email, passive, junior, excercise, true);
 
         //return memberData;
     }
