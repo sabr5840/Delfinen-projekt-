@@ -1,5 +1,4 @@
 package org.example;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -11,6 +10,7 @@ import java.util.Scanner;
 
 public class Filehandler {
     private final String path = "Data/Members.csv";
+
     public ArrayList<Member> loadData() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("Data/Members.csv"));
         ArrayList<Member> members = new ArrayList<>();
@@ -23,6 +23,7 @@ public class Filehandler {
         }
         return members;
     }
+
     public void saveData(ArrayList<Member> members) throws FileNotFoundException {
 
         PrintStream output = new PrintStream(path);
@@ -54,6 +55,7 @@ public class Filehandler {
             output.println();
         }
     }
+
     private Member splitLines(String line) {
         String[] splits = line.split(";");
 

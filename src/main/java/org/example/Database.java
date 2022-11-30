@@ -36,6 +36,13 @@ public class Database {
     public void setMembers(ArrayList<Member> members) {
         this.members = members;
     }
+
+    public boolean deleteMember(Member member){
+        boolean succes;
+        succes = members.remove(member);
+        return succes;
+    }
+
 }
 
 

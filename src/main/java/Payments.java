@@ -1,4 +1,5 @@
 public class Payments {
+
     private int juniorMember = 1000;
     private int seniorMember = 1600;
     private int passiveMember = 500;
