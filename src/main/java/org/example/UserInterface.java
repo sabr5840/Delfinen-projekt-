@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -35,11 +36,10 @@ public class UserInterface {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input - your employee number only consists of numbers");
-               employeeInput.next();
+                employeeInput.next();
             }
         }
     }
-
 
     //ChairmanMenu
     public void chairmanMenu() throws FileNotFoundException {
@@ -247,12 +247,12 @@ public class UserInterface {
         System.out.println("Last name:");
         String lastname = scanner.nextLine();
 
-        int birthYear;
-        do {
-            birthYear = 0;
 
+        int birthYear = 0;
+        do {
+            Scanner registerInput = new Scanner(System.in);
             try {
-                System.out.println("Date of birth ('ddMMyyyy')");
+                System.out.println("Date of birth ('ddMMyyyy'):");
                 String DOB = (scanner.nextLine());
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
@@ -264,16 +264,15 @@ public class UserInterface {
                 else if (calculation - birthYear > 18)
                     System.out.println("member is registered as senior \n");
 
-                writingError = false;
-            } catch (NumberFormatException e) {
-                System.out.println("try again");
-                writingError = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Date of birth must be in correct format 'ddMMyyyy'");
+               registerInput.nextLine();
+
             }
-        } while (writingError == true);
+        } while (writingError = false);
 
         System.out.println("Type in address:");
-        String address = scanner.next();
-        scanner.nextLine();
+        String address = scanner.nextLine();
 
         int postalCode = 0;
         do {
@@ -319,12 +318,20 @@ public class UserInterface {
         System.out.println("Has paid the subscription:");
         boolean hasPaid = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
-        System.out.println("In order to save, load and see your members, follow the main menu");
-
+        System.out.println("");
+        System.out.println("We have registered this information about the new member:\n" +
+                "Full name " + firstname + "" + "lastname \n" +
+                "Birthyear " + birthYear + "\n" +
+                "Address " + address + "\n" +
+                "City " + postalCode + "" + city + "\n" +
+                "Phone number " + phoneNo + "\n" +
+                "E-mail " + eMail + "\n" +
+                "Passive or active membership " + passive + "\n" +
+                //TODO junior or senior
+                "Exercise or competetion-swimmer? " + exercise + "\n" +
+                "Is subscription paid? " + hasPaid);
+        System.out.println("");
         controller.addMember(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
-
-        System.out.println(toString());
-
     }
 }
 
