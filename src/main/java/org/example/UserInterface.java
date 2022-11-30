@@ -168,13 +168,10 @@ public class UserInterface {
                 for (Member member : controller.getMembers()) {
                     System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isHasPaid() + "\n");
 
-                    System.out.println("Payments in total: ");
-                    System.out.println(findJuniors());
+                    System.out.println("Paid Payments in total: ");
+                    //For at finde det totale for alle medlemmer som har betalt
+                    System.out.println((juniorList.size() * 1000) + (seniorList.size() * 1600) + (passiveList.size() * 500));
 
-                    //For at finde den forventede total for alle medlemmer som har betalt
-                    //(juniorList.size * 1000) + (seniorList.size * 1600)
-
-                    ;
                 }
             } else if (cashierChoice == 2) {
                 //TODO paymentstatus by membership-type
@@ -243,7 +240,7 @@ public class UserInterface {
                     System.out.println("First name: " + member.getFirstname() + "\n" + "Last name: " + member.getLastname() + "\n" + "Date, mouth and year of birth: "
                             + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
                             + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
-                            "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "Has paid the subscription" + member.isHasPaid());
+                            "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "\n" + "Has paid the subscription: " + member.isHasPaid() + "\n");
                 }
 
             } else if (chairmanChoice == 7) {
@@ -371,7 +368,5 @@ public class UserInterface {
         }
         return false;
     }
-
-
 
 }
