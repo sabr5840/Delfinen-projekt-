@@ -47,6 +47,7 @@ public class Filehandler {
             output.print(";");
             output.print(member.isExercise());
             output.print(";");
+            output.print(member.isHasPaid());
         }
     }
     private Member splitLines(String line) {
@@ -67,18 +68,19 @@ public class Filehandler {
         memberData.setPassive(passive);
         boolean junior = Boolean.parseBoolean(splits[9]);
         memberData.setJunior(junior);
-        boolean excercise = Boolean.parseBoolean(splits[10]);
-        memberData.setExercise(excercise);
-
-
-        String firstName = splits[0];
+        boolean exercise = Boolean.parseBoolean(splits[10]);
+        memberData.setExercise(exercise);
+        boolean hasPaid = Boolean.parseBoolean(splits[11]);
+        memberData.setHasPaid(hasPaid);
+        
+       String firstName = splits[0];
         String lastName = splits[1];
 
         String address = splits[3];
         String city = splits[5];
         String email = splits[7];
 
-        return new Member(firstName, lastName, birthYear, address, postalCode, city, phoneNo, email, passive, junior, excercise, true);
+        return new Member(firstName, lastName, birthYear, address, postalCode, city, phoneNo, email, passive, junior, exercise, true);
 
         //return memberData;
     }

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -13,21 +14,110 @@ public class UserInterface {
     Controller controller = new Controller();
     Member member = new Member();
 
-
     public void startMenu() throws FileNotFoundException {
+        boolean isRunning = true;
         System.out.println("Welcome to The Dolphins administrative system");
-        System.out.println("Please input your employee number");
-        int employeeNumber = scanner.nextInt();
+        do {
 
-        if (employeeNumber < 10) {
-            chairmanMenu();
-        } else if ((employeeNumber > 11) && (employeeNumber < 20)) {
-            cashierMenu();
-        } else if ((employeeNumber > 20) && (employeeNumber < 30)) {
-            coachMenu();
-        }
+            System.out.println("Please input your employee number");
+            int employeeNumber = scanner.nextInt();
+
+            if ((employeeNumber == 1) || (employeeNumber > 1) && (employeeNumber < 11)) {
+                chairmanMenu();
+            } else if ((employeeNumber == 11) || (employeeNumber > 11) && (employeeNumber < 21)) {
+                cashierMenu();
+            } else if ((employeeNumber == 21) || (employeeNumber > 20) && (employeeNumber < 31)) {
+                coachMenu();
+            } else if ((employeeNumber < 0) || (employeeNumber > 30)) {
+                System.out.println("invalid employee number - please enter a valid number");
+
+            }
+        } while (isRunning = true);
     }
 
+    //ChairmanMenu
+    public void chairmanMenu() throws FileNotFoundException {
+        int chairmanChoice;
+        boolean isRunning = true;
+        do {
+            boolean writingError;
+            System.out.println("Menu");
+            System.out.println(
+                    "1) Registration of new member\n" +
+                            "2) Save data\n" +
+                            "3) load data\n" +
+                            "4) Edit member information\n" +
+                            "5) Search for member\n" +
+                            "6) View members\n" +
+                            "7) Return to main menu\n" +
+                            "8) Quit programme");
+
+            chairmanChoice = scanner.nextInt();
+            scanner.nextLine();
+            if (chairmanChoice == 1) {
+                registerMember();
+            } else if (chairmanChoice == 2) {
+                controller.saveData();
+                System.out.println("Data saved");
+            } else if (chairmanChoice == 3) {
+                controller.loadData();
+                System.out.println("Data loaded");
+            } else if (chairmanChoice == 4) {
+                controller.editData();
+            } else if (chairmanChoice == 5) {
+                System.out.println("Search for specific member by name");
+            } else if (chairmanChoice == 6) {
+                System.out.println("Members:");
+                controller.viewMembers();
+            } else if (chairmanChoice == 7) {
+                startMenu();
+            } else if (chairmanChoice == 8) {
+                System.out.println("exiting program");
+                System.exit(0);
+            }
+
+        } while (isRunning = true);
+    }
+
+    //Cashier Menu
+    private void cashierMenu() throws FileNotFoundException {
+        int cashierChoice;
+        boolean isRunning;
+        do {
+
+            boolean writingError;
+            System.out.println("Menu");
+            System.out.println("1) View payment status for all members\n" +
+                    "2) View payment status by membership-type\n" + //TODO membership type = passive or active members
+                    "3) View members who are past due\n" +
+                    "4) Edit payment status\n" +
+                    "5) Return to main men\n" +
+                    "6) Quit program");
+            cashierChoice = scanner.nextInt();
+
+            if (cashierChoice == 1) {
+                //TODO paymentstatus for all members
+                for (Member member : controller.viewMembers()) {
+                    System.out.println("Name: " + member.getFirstname() + "Lastname: " + member.getLastname() + "has paid the subscription" + member.isHasPaid());
+                }
+
+            } else if (cashierChoice == 2) {
+                //TODO paymentstatus by membership-type
+            } else if (cashierChoice == 3) {
+                //TODO view past-due members
+            } else if (cashierChoice == 4) {
+                //TODO edit payment status (edit)
+            } else if (cashierChoice == 5) {
+                startMenu();
+            } else if (cashierChoice == 6) {
+                System.out.println("exiting program");
+                System.exit(0);
+            }
+        } while (isRunning = true);
+
+    }
+
+    //CoachMenu
     private void coachMenu() throws FileNotFoundException {
         int coachChoice;
         do {
@@ -140,92 +230,9 @@ public class UserInterface {
         System.exit(0);
     }
 
-    private void cashierMenu() throws FileNotFoundException {
-        int cashierChoice;
-        do {
-            boolean isRunning;
-            boolean writingError;
-            System.out.println("Menu");
-            System.out.println("1) View payment status for all members\n" +
-                    "2) View payment status by membership-type\n" + //TODO membership type = passive or active members
-                    "3) View members who are past due" +
-                    "4) Edit payment status\n" +
-                    "5) Return to main men\n" +
-                    "6) Quit program");
-            cashierChoice = scanner.nextInt();
 
-            if (cashierChoice == 1) {
-                //TODO paymentstatus for all members
-                for (Member member : controller.viewMembers()){
-                    System.out.println("Name: " + member.getFirstname() + "Lastname: " + member.getLastname() + "has paid the subscription" + member.isHasPaid());
-                }
-
-            } else if (cashierChoice == 2) {
-                //TODO paymentstatus by membership-type
-            } else if (cashierChoice == 3) {
-                //TODO view past-due members
-            } else if (cashierChoice == 4) {
-                //TODO edit payment status (edit)
-            } else if (cashierChoice == 5) {
-                startMenu();
-            }
-            isRunning = false;
-        } while (cashierChoice != 6);
-        System.out.println("exiting program");
-        System.exit(0);
-    }
-
-    //ChairmanMenu
-    public void chairmanMenu() throws FileNotFoundException {
-        int chairmanChoice;
-
-        do {
-            boolean isRunning;
-            boolean writingError;
-            System.out.println("Menu");
-            System.out.println(
-                    "1) Registration of new member\n" +
-                            "2) Save data\n" +
-                            "3) load data\n" +
-                            "4) Edit member information\n" +
-                            "5) Search for member\n" +
-                            "6) View members\n" +
-                            "7) Return to main menu\n" +
-                            "9) Quit programme");
-
-            chairmanChoice = scanner.nextInt();
-            scanner.nextLine();
-            if (chairmanChoice == 1) {
-                registerMember();
-
-             if (chairmanChoice == 2) {
-                controller.saveData();
-                System.out.println("Data saved");
-
-            } else if (chairmanChoice == 3) {
-                controller.loadData();
-                System.out.println("Data loaded");
-
-            } else if (chairmanChoice == 4) {
-                controller.editData();
-
-            } else if (chairmanChoice == 6) {
-                System.out.println("Search for specific member by name");
-                controller.viewMembers();
-                System.out.println("Members:");
-
-            } else if (chairmanChoice == 7) {
-                startMenu();
-            }
-            isRunning = false;
-        }
-    }while (chairmanChoice != 9);
-        System.out.println("exiting program");
-        System.exit(0);
-    }
-    public void registerMember(){
-        boolean isRunning;
-        boolean writingError;
+    public void registerMember() {
+        boolean writingError = false;
         System.out.println("Register new member here");
 
         System.out.println("First name:");
@@ -234,25 +241,36 @@ public class UserInterface {
         System.out.println("Last name:");
         String lastname = scanner.nextLine();
 
-        System.out.println("Date of birth ('dd/MM/yyyy')");
-        String DOB = scanner.nextLine();
+        int birthYear;
+        do {
+            birthYear = 0;
 
-        int calculation = LocalDateTime.now().getYear();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        int birthYear = LocalDate.parse(DOB, formatter).getYear();
+            try {
+                System.out.println("Date of birth ('ddMMyyyy')");
+                String DOB = (scanner.nextLine());
 
-        if (calculation - birthYear < 18)
-            System.out.println("member is registered as junior \n");
-        else if (calculation - birthYear > 18)
-            System.out.println("member is registered as senior \n");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+
+                birthYear = LocalDate.parse(DOB, formatter).getYear();
+                int calculation = LocalDateTime.now().getYear();
+                if (calculation - birthYear < 18)
+                    System.out.println("member is registered as junior \n");
+                else if (calculation - birthYear > 18)
+                    System.out.println("member is registered as senior \n");
+
+                writingError = false;
+            } catch (NumberFormatException e) {
+                System.out.println("try again");
+                writingError = true;
+            }
+        } while (writingError == true);
 
         System.out.println("Type in address:");
         String address = scanner.next();
         scanner.nextLine();
 
-        int postalCode;
+        int postalCode = 0;
         do {
-            postalCode = 0;
             try {
                 System.out.println("Type in postal code:");
                 postalCode = Integer.parseInt(scanner.nextLine());
@@ -269,10 +287,19 @@ public class UserInterface {
         System.out.println("Type in city:");
         String city = scanner.nextLine();
 
-        System.out.println("Type in phoneNo:");
-        int phoneNo = scanner.nextInt();
-        scanner.nextLine();
-        //TODO skal laves ligesom ovenover i postalCode
+
+        int phoneNo = 0;
+        do {
+            try {
+                System.out.println("Type in phonenumber:");
+                phoneNo = Integer.parseInt(scanner.nextLine());
+                writingError = false;
+            } catch (NumberFormatException e) {
+                System.out.println("fail");
+                writingError = true;
+            }
+        } while (writingError == true);
+
 
         System.out.println("Type in Mail-adress:");
         String eMail = scanner.nextLine();
@@ -294,3 +321,4 @@ public class UserInterface {
 
     }
 }
+
