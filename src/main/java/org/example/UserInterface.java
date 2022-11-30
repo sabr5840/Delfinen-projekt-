@@ -13,6 +13,13 @@ public class UserInterface {
     Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     Controller controller = new Controller();
     Member member = new Member();
+    Database db = new Database();
+    ArrayList<Member> juniorList = new ArrayList<>();
+    ArrayList<Member> seniorList = new ArrayList<>();
+    ArrayList<Member> passiveList = new ArrayList<>();
+    ArrayList<Member> paidJuniors = new ArrayList<>();
+    ArrayList<Member> paidSeniors = new ArrayList<>();
+    ArrayList<Member> paidPassives = new ArrayList<>();
 
 
     public void startMenu() throws FileNotFoundException {
@@ -27,6 +34,7 @@ public class UserInterface {
         } else if ((employeeNumber > 20) && (employeeNumber < 30)) {
             coachMenu();
         }
+
     }
 
     private void coachMenu() throws FileNotFoundException {
@@ -40,8 +48,8 @@ public class UserInterface {
                     "3) View statistics\n" +
                     "4) back to main menu\n" +
                     "5) quit program");
-            coachChoice = scanner.nextInt();
 
+            coachChoice = scanner.nextInt();
             if (coachChoice == 1) {
                 System.out.println("choose between junior or senior swimmers");
                 System.out.println("type 'return' if you wish to return to last menu" +
@@ -148,21 +156,35 @@ public class UserInterface {
             boolean writingError;
             System.out.println("Menu");
             System.out.println("1) View payment status for all members\n" +
-                    "2) View payment status by membership-type\n" + //TODO membership type = passive or active members
-                    "3) View members who are past due" +
+                    //TODO  skal man kunne registre has paid - skal måske slette hos chairman
+                    "2) View payment status by membership-type\n" + //TODO membership type = passive or active members - hør po ad
+                    "3) View members who are past due" + "\n" +
                     "4) Edit payment status\n" +
                     "5) Return to main men\n" +
-                    "6) Quit program");
+                    "6) Quit program" + "\n");
+
             cashierChoice = scanner.nextInt();
-
             if (cashierChoice == 1) {
-                //TODO paymentstatus for all members
-                for (Member member : controller.getMembers()){
-                    System.out.println("Name: " + member.getFirstname() + "Lastname: " + member.getLastname() + "has paid the subscription" + member.isHasPaid());
-                }
+                for (Member member : controller.getMembers()) {
+                    System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isHasPaid() + "\n");
 
+                    System.out.println("Payments in total: ");
+                    System.out.println(findJuniors());
+
+                    //For at finde den forventede total for alle medlemmer som har betalt
+                    //(juniorList.size * 1000) + (seniorList.size * 1600)
+
+                    ;
+                }
             } else if (cashierChoice == 2) {
                 //TODO paymentstatus by membership-type
+
+                System.out.println("Junoir members: ");
+                System.out.println("Senior members: ");
+                System.out.println("Passive members:");
+
+                System.out.println("Expected payments in total: " + "\n");
+
             } else if (cashierChoice == 3) {
                 //TODO view past-due members
             } else if (cashierChoice == 4) {
@@ -184,8 +206,7 @@ public class UserInterface {
             boolean isRunning;
             boolean writingError;
             System.out.println("Menu");
-            System.out.println(
-                    "1) Registration of new member\n" +
+            System.out.println("1) Registration of new member\n" +
                             "2) Save data\n" +
                             "3) load data\n" +
                             "4) Edit member information\n" +
@@ -200,7 +221,7 @@ public class UserInterface {
                 registerMember();
             }
 
-             if (chairmanChoice == 2) {
+            if (chairmanChoice == 2) {
                 controller.saveData();
                 System.out.println("Data saved");
 
@@ -212,18 +233,18 @@ public class UserInterface {
                 controller.editData();
                 System.out.println("Type name of member, you'd like to edit: ");
                 String searchTerm = scanner.next();
-                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
+                ArrayList<Member> searchResult = controller.searchFor(searchTerm);
 
-                 //TO DO: skal lige laves færdigt.
+                //TO DO: skal lige laves færdigt.
 
             } else if (chairmanChoice == 6) {
-                System.out.println("List of members:" + "\n" );
-               for (Member member : controller.getMembers()){
-                   System.out.println("First name: " + member.getFirstname() + "\n" + "Last name: " + member.getLastname() + "\n" + "Date, mouth and year of birth: "
-                           + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
-                           + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
-                           "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "Has paid the subscription" + member.isHasPaid());
-               }
+                System.out.println("List of members:" + "\n");
+                for (Member member : controller.getMembers()) {
+                    System.out.println("First name: " + member.getFirstname() + "\n" + "Last name: " + member.getLastname() + "\n" + "Date, mouth and year of birth: "
+                            + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
+                            + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
+                            "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "Has paid the subscription" + member.isHasPaid());
+                }
 
             } else if (chairmanChoice == 7) {
                 startMenu();
@@ -233,7 +254,8 @@ public class UserInterface {
         System.out.println("exiting program");
         System.exit(0);
     }
-    public void registerMember(){
+
+    public void registerMember() {
         boolean isRunning;
         boolean writingError;
         System.out.println("Register new member here");
@@ -253,8 +275,10 @@ public class UserInterface {
 
         if (calculation - birthDate.getYear() < 18)
             System.out.println("member is registered as junior \n");
-        else if (calculation - birthDate.getYear() > 18)
-            System.out.println("member is registered as senior \n");
+        boolean junior = true;
+        if (calculation - birthDate.getYear() > 18){
+            boolean senior = true;
+            System.out.println("member is registered as senior \n");}
 
         System.out.println("Type in address:");
         String address = scanner.next();
@@ -298,9 +322,56 @@ public class UserInterface {
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
+        controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, member.isJunior(), exercise, hasPaid);
+        db.members.add(new Member(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid));
 
         System.out.println(toString());
 
     }
+
+    public void expectedPaymentTotal() {
+        for (int i = 0; i < db.members.size(); i++){
+            if (db.members.get(i).isJunior() == true){
+                juniorList.add(db.members.get(i));
+            } else if (db.members.get(i).isPassive() == true){
+                passiveList.add(db.members.get(i));
+            } else if (db.members.get(i).isJunior() == false){
+                seniorList.add(db.members.get(i));
+            }
+        }
+
+        for (int i = 0; i > juniorList.size(); i++) {
+            if (juniorList.get(i).isHasPaid() == true) {
+                paidJuniors.add(juniorList.get(i));
+            }
+        }
+        for (int i = 0; i < seniorList.size(); i++) {
+            if (seniorList.get(i).isHasPaid() == true) {
+                paidSeniors.add(seniorList.get(i));
+            }
+        }
+        for (int i = 0; i < passiveList.size(); i++) {
+            if (passiveList.get(i).isHasPaid() == true) {
+                paidPassives.add(passiveList.get(i));
+            }
+        }
+
+        int totalJunior = juniorList.size() * 1000;
+        int totalSenior = seniorList.size() * 1600;
+        int totalePassive = passiveList.size() * 500;;
+        int total = totalJunior + totalSenior + totalePassive;
+        System.out.println("Expected payment in total: " + total);
+    }
+    public boolean findJuniors() {
+        for (int i = 0; i < db.members.size(); i++) {
+            if (db.members.get(i).isJunior()) {
+                juniorList.add(db.members.get(i));
+            }
+            System.out.println(juniorList);
+        }
+        return false;
+    }
+
+
+
 }

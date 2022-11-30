@@ -19,6 +19,8 @@ public class Member {
     private boolean hasPaid;
 
 
+
+
     //Constructor for attributes
     public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
                   String city, int phoneNo, String eMail, boolean passive, boolean junior,
@@ -38,7 +40,8 @@ public class Member {
 
     }
 
-    public Member() {
+    public Member(){
+
     }
 
     //Getter

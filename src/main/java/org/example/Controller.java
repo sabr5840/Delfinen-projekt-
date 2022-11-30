@@ -15,6 +15,7 @@ public class Controller {
     public void addMember(String firstname, String lastname, LocalDate birthYear, String address, int postalCode, String city, int phoneNo, String eMail,
                           boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
         database.addMember(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
+        //database.members.add(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         isChanged = true;
     }
 
@@ -41,11 +42,14 @@ public class Controller {
         isChanged = true;
     }
 
-
     public void editData() {
         isChanged = true;
 
     }
+
+
+
+
 /*
     public ArrayList<Member> searchMember() {
         String searchTerm = scanner.nextLine();

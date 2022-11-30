@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Database {
 
     // Arraylist
-    private ArrayList<Member> members = new ArrayList<>();
+    public ArrayList<Member> members = new ArrayList<>();
 
     //Getter for arraylist of members
     public ArrayList<Member> getMembers() {
@@ -18,11 +18,9 @@ public class Database {
 
         Member member = new Member(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         members.add(member);
+        System.out.println(members);
     }
 
-
-    public void addMember() {
-    }
 
     public ArrayList<Member> searchFor(String searchTerm) {
        ArrayList<Member> searchResult = new ArrayList<>();
