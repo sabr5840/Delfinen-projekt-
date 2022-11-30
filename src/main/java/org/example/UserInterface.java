@@ -16,14 +16,14 @@ public class UserInterface {
 
     public void startMenu() throws FileNotFoundException {
         System.out.println("Welcome to The Dolphins administrative system");
-        System.out.println("Please input your employee phoneNo");
-        int employeeNo = scanner.nextInt();
+        System.out.println("Please input your employee number");
+        int employeeNumber = scanner.nextInt();
 
-        if (employeeNo < 10) {
+        if (employeeNumber < 10) {
             chairmanMenu();
-        } else if ((employeeNo > 11) && (employeeNo < 20)) {
+        } else if ((employeeNumber > 11) && (employeeNumber < 20)) {
             cashierMenu();
-        } else if ((employeeNo > 20) && (employeeNo < 30)) {
+        } else if ((employeeNumber > 20) && (employeeNumber < 30)) {
             coachMenu();
         }
     }
@@ -269,7 +269,7 @@ public class UserInterface {
         System.out.println("Type in city:");
         String city = scanner.nextLine();
 
-        System.out.println("Type in phonephoneNo:");
+        System.out.println("Type in phoneNo:");
         int phoneNo = scanner.nextInt();
         scanner.nextLine();
         //TODO skal laves ligesom ovenover i postalCode
