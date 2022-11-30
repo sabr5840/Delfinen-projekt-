@@ -15,25 +15,31 @@ public class UserInterface {
     Member member = new Member();
 
     public void startMenu() throws FileNotFoundException {
-        boolean isRunning = true;
+        boolean success = false;
+        Scanner employeeInput = new Scanner(System.in);
         System.out.println("Welcome to The Dolphins administrative system");
-        do {
 
-            System.out.println("Please input your employee number");
-            int employeeNumber = scanner.nextInt();
+        while (!success) {
+            try {
+                System.out.println("Please input your employee number");
+                int employeeNumber = employeeInput.nextInt();
 
-            if ((employeeNumber == 1) || (employeeNumber > 1) && (employeeNumber < 11)) {
-                chairmanMenu();
-            } else if ((employeeNumber == 11) || (employeeNumber > 11) && (employeeNumber < 21)) {
-                cashierMenu();
-            } else if ((employeeNumber == 21) || (employeeNumber > 20) && (employeeNumber < 31)) {
-                coachMenu();
-            } else if ((employeeNumber < 0) || (employeeNumber > 30)) {
-                System.out.println("invalid employee number - please enter a valid number");
-
+                if ((employeeNumber >= 1) && (employeeNumber <= 10)) {
+                    chairmanMenu();
+                } else if ((employeeNumber >= 11) && (employeeNumber <= 20)) {
+                    cashierMenu();
+                } else if ((employeeNumber >= 21) && (employeeNumber <= 30)) {
+                    coachMenu();
+                } else if ((employeeNumber <= 0) || (employeeNumber > 30)) {
+                    System.out.println("invalid employee number - please enter a valid number");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input - your employee number only consists of numbers");
+               employeeInput.next();
             }
-        } while (isRunning = true);
+        }
     }
+
 
     //ChairmanMenu
     public void chairmanMenu() throws FileNotFoundException {
