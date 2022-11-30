@@ -1,11 +1,13 @@
 package org.example;
 
 
+import java.time.LocalDate;
+
 public class Member {
     //Fields of attributes
     private String firstname;
     private String lastname;
-    private int birthYear;
+    private LocalDate birthDate;
     private String address;
     private int postalCode;
     private String city;
@@ -18,12 +20,12 @@ public class Member {
 
 
     //Constructor for attributes
-    public Member(String firstname, String lastname, int birthYear, String address, int postalCode,
+    public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
                   String city, int phoneNo, String eMail, boolean passive, boolean junior,
                   boolean exercise, boolean hasPaid) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.birthYear = birthYear;
+        this.birthDate = birthDate;
         this.address = address;
         this.postalCode = postalCode;
         this.city = city;
@@ -47,8 +49,8 @@ public class Member {
         return lastname;
     }
 
-    public int getBirthYear() {
-        return birthYear;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
     public String getAddress() {
@@ -75,7 +77,7 @@ public class Member {
         return passive;
     }
 
-    public boolean isJunoir() {
+    public boolean isJunior() {
         return junior;
     }
 
@@ -96,8 +98,8 @@ public class Member {
         this.lastname = lastname;
     }
 
-    public void setBirthYear(int birthYear) {
-        this.birthYear = birthYear;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public void setAddress(String address) {
@@ -140,7 +142,7 @@ public class Member {
         return "Member{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", birthYear=" + birthYear +
+                ", birthDate=" + birthDate +
                 ", address='" + address + '\'' +
                 ", postalCode=" + postalCode +
                 ", city='" + city + '\'' +

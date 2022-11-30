@@ -3,14 +3,16 @@ package org.example;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 
 public class Filehandler {
     private final String path = "Data/Members.csv";
     public ArrayList<Member> loadData() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(path));
+        Scanner scanner = new Scanner(new File("Data/Members.csv"));
         ArrayList<Member> members = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
@@ -22,14 +24,15 @@ public class Filehandler {
         return members;
     }
     public void saveData(ArrayList<Member> members) throws FileNotFoundException {
-        PrintStream output = new PrintStream(new File(path));
+
+        PrintStream output = new PrintStream(path);
 
         for (Member member : members) {
             output.print(member.getFirstname());
             output.print(";");
             output.print(member.getLastname());
             output.print(";");
-            output.print(member.getBirthYear());
+            output.print(member.getBirthDate());
             output.print(";");
             output.print(member.getAddress());
             output.print(";");
@@ -43,57 +46,36 @@ public class Filehandler {
             output.print(";");
             output.print(member.isPassive());
             output.print(";");
-            output.print(member.isJunoir());
+            output.print(member.isJunior());
             output.print(";");
             output.print(member.isExercise());
             output.print(";");
+            output.print(member.isHasPaid());
+            output.println();
         }
     }
     private Member splitLines(String line) {
         String[] splits = line.split(";");
 
-        Member memberData = new Member();
+        Member member = new Member();
 
         //Takes wrong information when creating member - Tutor
-        memberData.setFirstname(splits[0]);
-        memberData.setLastname(splits[1]);
-        int birthYear = Integer.parseInt(splits[2]);
-        memberData.setAddress(splits[3]);
-        int postalCode = Integer.parseInt(splits[4]);
-        memberData.setCity(splits[5]);
-        int phoneNo = Integer.parseInt(splits[6]);
-        memberData.seteMail(splits[7]);
-        boolean passive = Boolean.parseBoolean(splits[8]);
-        memberData.setPassive(passive);
-        boolean junior = Boolean.parseBoolean(splits[9]);
-        memberData.setJunior(junior);
-        boolean excercise = Boolean.parseBoolean(splits[10]);
-        memberData.setExercise(excercise);
-
-
         String firstName = splits[0];
         String lastName = splits[1];
-
+        LocalDate birthDate = LocalDate.parse(splits[2]);
         String address = splits[3];
+        int postalCode = Integer.parseInt(splits[4]);
         String city = splits[5];
+        int phoneNo = Integer.parseInt(splits[6]);
         String email = splits[7];
+        boolean passive = Boolean.parseBoolean(splits[8]);
+        boolean junior = Boolean.parseBoolean(splits[9]);
+        boolean excercise = Boolean.parseBoolean(splits[10]);
+        boolean hasPaid = Boolean.parseBoolean(splits[11]);
 
-        return new Member(firstName, lastName, birthYear, address, postalCode, city, phoneNo, email, passive, junior, excercise, true);
 
-        //return memberData;
-    }
-    public static void main(String[] args) {
-        Filehandler handler = new Filehandler();
+        return new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, excercise, hasPaid);
 
-        try{
-            ArrayList<Member> members = handler.loadData();
-            for (Member member : members) {
-                System.out.println(member);
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }
 

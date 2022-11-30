@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -156,7 +157,7 @@ public class UserInterface {
 
             if (cashierChoice == 1) {
                 //TODO paymentstatus for all members
-                for (Member member : controller.viewMembers()){
+                for (Member member : controller.getMembers()){
                     System.out.println("Name: " + member.getFirstname() + "Lastname: " + member.getLastname() + "has paid the subscription" + member.isHasPaid());
                 }
 
@@ -197,6 +198,7 @@ public class UserInterface {
             scanner.nextLine();
             if (chairmanChoice == 1) {
                 registerMember();
+            }
 
              if (chairmanChoice == 2) {
                 controller.saveData();
@@ -208,18 +210,26 @@ public class UserInterface {
 
             } else if (chairmanChoice == 4) {
                 controller.editData();
+                System.out.println("Type name of member, you'd like to edit: ");
+                String searchTerm = scanner.next();
+                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
+
+                 //TO DO: skal lige laves færdigt.
 
             } else if (chairmanChoice == 6) {
-                System.out.println("Search for specific member by name");
-                controller.viewMembers();
-                System.out.println("Members:");
+                System.out.println("List of members:" + "\n" );
+               for (Member member : controller.getMembers()){
+                   System.out.println("First name: " + member.getFirstname() + "\n" + "Last name: " + member.getLastname() + "\n" + "Date, mouth and year of birth: "
+                           + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
+                           + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
+                           "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "Has paid the subscription" + member.isHasPaid());
+               }
 
             } else if (chairmanChoice == 7) {
                 startMenu();
             }
             isRunning = false;
-        }
-    }while (chairmanChoice != 9);
+        } while (chairmanChoice != 9);
         System.out.println("exiting program");
         System.exit(0);
     }
@@ -239,11 +249,11 @@ public class UserInterface {
 
         int calculation = LocalDateTime.now().getYear();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        int birthYear = LocalDate.parse(DOB, formatter).getYear();
+        LocalDate birthDate = LocalDate.parse(DOB, formatter);
 
-        if (calculation - birthYear < 18)
+        if (calculation - birthDate.getYear() < 18)
             System.out.println("member is registered as junior \n");
-        else if (calculation - birthYear > 18)
+        else if (calculation - birthDate.getYear() > 18)
             System.out.println("member is registered as senior \n");
 
         System.out.println("Type in address:");
@@ -288,7 +298,7 @@ public class UserInterface {
 
         System.out.println("In order to save, load and see your members, follow the main menu");
 
-        controller.addMember(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
+        controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
 
         System.out.println(toString());
 

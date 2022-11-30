@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
@@ -7,31 +8,35 @@ public class Database {
     // Arraylist
     private ArrayList<Member> members = new ArrayList<>();
 
-    //Getter for arraylist
+    //Getter for arraylist of members
     public ArrayList<Member> getMembers() {
         return members;
     }
 
-    public void addMember(String firstname, String lastname, int birthYear, String address, int postalCode, String city, int phoneNo, String eMail,
-                             boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
+    public void addMember(String firstname, String lastname, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail,
+                          boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
 
-        Member member = new Member(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
+        Member member = new Member(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         members.add(member);
     }
 
-    public ArrayList<Member> members() {
-        return getMembers();
-    }
-
-    public ArrayList<Member> viewMembers() {
-        return members;
-    }
-
-    public void updateMemberList(ArrayList<Member> members) {
-        this.members = members;
-    }
 
     public void addMember() {
+    }
+
+    public ArrayList<Member> searchFor(String searchTerm) {
+       ArrayList<Member> searchResult = new ArrayList<>();
+
+       for (Member member : members){
+           if (member.getFirstname().equalsIgnoreCase(searchTerm)){
+               searchResult.add(member);
+           }
+       }
+       return searchResult;
+    }
+
+    public void setMembers(ArrayList<Member> members) {
+        this.members = members;
     }
 }
 
