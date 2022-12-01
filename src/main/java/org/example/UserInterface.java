@@ -259,7 +259,7 @@ public class UserInterface {
 
 
             } else if (cashierChoice == 3) {
-                //TODO view past-due members
+                //TODO view past-due members JEE
 
 
             } else if (cashierChoice == 4) {
