@@ -28,25 +28,35 @@ public class UserInterface {
         boolean success = false;
         Scanner employeeInput = new Scanner(System.in);
         System.out.println("Welcome to The Dolphins administrative system");
-        System.out.println("Please input your employee number");
-        int employeeNumber = scanner.nextInt();
 
-        if (employeeNumber < 10) {
-            chairmanMenu();
-        } else if ((employeeNumber > 11) && (employeeNumber < 20)) {
-            cashierMenu();
-        } else if ((employeeNumber > 20) && (employeeNumber < 30)) {
-            coachMenu();
+        while (!success) {
+            try {
+                System.out.println("Please input your employee number");
+                int employeeNumber = employeeInput.nextInt();
+
+                if ((employeeNumber >= 1) && (employeeNumber <= 10)) {
+                    chairmanMenu();
+                } else if ((employeeNumber >= 11) && (employeeNumber <= 20)) {
+                    cashierMenu();
+                } else if ((employeeNumber >= 21) && (employeeNumber <= 30)) {
+                    coachMenu();
+                } else if ((employeeNumber <= 0) || (employeeNumber > 30)) {
+                    System.out.println("invalid employee number - please enter a valid number");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input - your employee number only consists of numbers");
+                employeeInput.next();
+            }
         }
-
     }
 
     // Menu for chairman
     public void chairmanMenu() throws FileNotFoundException {
         int chairmanChoice;
-
+        boolean isRunning = true;
+        boolean writingError;
         do {
-            boolean isRunning;
+
             System.out.println("Menu");
             System.out.println("1) Registration of new member\n" +
                     "2) Save data\n" +
@@ -223,11 +233,11 @@ public class UserInterface {
 
             } else if (chairmanChoice == 9) {
                 startMenu();
+            }else if (chairmanChoice == 10) {
+                System.exit(0);
             }
             isRunning = false;
-        } while (chairmanChoice != 10);
-        System.out.println("exiting program");
-        System.exit(0);
+        } while (isRunning = true);
     }
 
     // Menu for cashier
@@ -428,8 +438,7 @@ public class UserInterface {
     }
 
     public void registerMember() {
-        boolean isRunning;
-        boolean writingError;
+        boolean writingError = false;
         System.out.println("Register new member here");
 
         System.out.println("First name:");
@@ -438,27 +447,35 @@ public class UserInterface {
         System.out.println("Last name:");
         String lastname = scanner.nextLine();
 
-        System.out.println("Date of birth ('dd/MM/yyyy')");
-        String DOB = scanner.nextLine();
 
-        int calculation = LocalDateTime.now().getYear();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate birthDate = LocalDate.parse(DOB, formatter);
+        int birthYear = 0;
+        do {
+            Scanner registerInput = new Scanner(System.in);
+            try {
+                System.out.println("Date of birth ('ddMMyyyy'):");
+                String DOB = (scanner.nextLine());
 
-        if (calculation - birthDate.getYear() < 18)
-            System.out.println("member is registered as junior \n");
-        boolean junior = true;
-        if (calculation - birthDate.getYear() > 18){
-            boolean senior = true;
-            System.out.println("member is registered as senior \n");}
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+
+                birthYear = LocalDate.parse(DOB, formatter).getYear();
+                int calculation = LocalDateTime.now().getYear();
+                if (calculation - birthYear < 18)
+                    System.out.println("member is registered as junior \n");
+                else if (calculation - birthYear > 18)
+                    System.out.println("member is registered as senior \n");
+
+            } catch (DateTimeParseException e) {
+                System.out.println("Date of birth must be in correct format 'ddMMyyyy'");
+                registerInput.nextLine();
+
+            }
+        } while (writingError = false);
 
         System.out.println("Type in address:");
-        String address = scanner.next();
-        scanner.nextLine();
+        String address = scanner.nextLine();
 
-        int postalCode;
+        int postalCode = 0;
         do {
-            postalCode = 0;
             try {
                 System.out.println("Type in postal code:");
                 postalCode = Integer.parseInt(scanner.nextLine());
@@ -475,10 +492,19 @@ public class UserInterface {
         System.out.println("Type in city:");
         String city = scanner.nextLine();
 
-        System.out.println("Type in phoneNo:");
-        int phoneNo = scanner.nextInt();
-        scanner.nextLine();
-        //TODO skal laves ligesom ovenover i postalCode
+
+        int phoneNo = 0;
+        do {
+            try {
+                System.out.println("Type in phonenumber:");
+                phoneNo = Integer.parseInt(scanner.nextLine());
+                writingError = false;
+            } catch (NumberFormatException e) {
+                System.out.println("fail");
+                writingError = true;
+            }
+        } while (writingError == true);
+
 
         System.out.println("Type in Mail-adress:");
         String eMail = scanner.nextLine();
@@ -492,13 +518,21 @@ public class UserInterface {
         System.out.println("Has paid the subscription:");
         boolean hasPaid = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
 
-        System.out.println("In order to save, load and see your members, follow the main menu");
+        System.out.println("");
+        System.out.println("We have registered this information about the new member:\n" +
+                "Full name " + firstname + "" + "lastname \n" +
+                "Birthyear " + birthYear + "\n" +
+                "Address " + address + "\n" +
+                "City " + postalCode + "" + city + "\n" +
+                "Phone number " + phoneNo + "\n" +
+                "E-mail " + eMail + "\n" +
+                "Passive or active membership " + passive + "\n" +
+                //TODO junior or senior
+                "Exercise or competetion-swimmer? " + exercise + "\n" +
+                "Is subscription paid? " + hasPaid);
+        System.out.println("");
 
-        controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, member.isJunior(), exercise, hasPaid);
-        db.members.add(new Member(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid));
-
-        System.out.println(toString());
-
+        controller.addMember(firstname, lastname, LocalDate.ofEpochDay(birthYear), address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
     }
 
     public void expectedPaymentTotal() {
