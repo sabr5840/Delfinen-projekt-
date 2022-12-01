@@ -309,7 +309,7 @@ public class UserInterface {
 
             } else if (cashierChoice == 5){
                 System.out.println("5) Payment overview");
-                System.out.println("Paid Payments in total: " + getPaymentsInTotal());
+                System.out.println("Paid Main.Payments in total: " + getPaymentsInTotal());
                 System.out.println(expectedPaymentTotal());
 
             } else if (cashierChoice == 6) {
