@@ -1,9 +1,12 @@
 package org.example;
+
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -20,8 +23,10 @@ public class UserInterface {
     ArrayList<Member> paidSeniors = new ArrayList<>();
     ArrayList<Member> paidPassives = new ArrayList<>();
 
-    // Mainmenu
+
     public void startMenu() throws FileNotFoundException {
+        boolean success = false;
+        Scanner employeeInput = new Scanner(System.in);
         System.out.println("Welcome to The Dolphins administrative system");
         System.out.println("Please input your employee number");
         int employeeNumber = scanner.nextInt();
@@ -322,6 +327,7 @@ public class UserInterface {
                     "5) quit program");
 
             coachChoice = scanner.nextInt();
+
             if (coachChoice == 1) {
                 System.out.println("choose between junior or senior swimmers");
                 System.out.println("type 'return' if you wish to return to last menu" +
