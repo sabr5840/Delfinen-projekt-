@@ -511,7 +511,7 @@ public class UserInterface {
         System.out.println("");
         System.out.println("We have registered this information about the new member:\n" +
                 "Full name " + firstname + "" + "lastname \n" +
-                "Birthyear " + birthYear + "\n" +
+                "Birthyear " + //todo + "\n" +
                 "Address " + address + "\n" +
                 "City " + postalCode + "" + city + "\n" +
                 "Phone number " + phoneNo + "\n" +
@@ -522,7 +522,7 @@ public class UserInterface {
                 "Is subscription paid? " + hasPaid);
         System.out.println("");
 
-        controller.addMember(firstname, lastname, LocalDate.ofEpochDay(birthYear), address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
+        controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
     }
 
     public boolean expectedPaymentTotal() {
@@ -588,4 +588,4 @@ public class UserInterface {
 
 }
 
-//fml
+//fm
