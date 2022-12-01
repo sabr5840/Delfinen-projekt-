@@ -436,7 +436,7 @@ public class UserInterface {
     }
 
     public void registerMember() {
-        boolean writingError = false;
+       boolean writingError = false;
         System.out.println("Register new member here");
 
         System.out.println("First name:");
@@ -521,33 +521,41 @@ public class UserInterface {
         boolean exercise = true;
         char memberType;
         do {
-            memberType = scanner.nextLine().charAt(0);
-            if (memberType == 'c') {
-                exercise = false;
-                break;
-            } else if (memberType == 'e') {
-                exercise = true;
-                break;
-            } else
-                System.out.println("typing error - try again");
-        } while (memberType != 'e' || memberType != 'c');
+            try {
+                memberType = scanner.nextLine().charAt(0);
+
+                if (memberType == 'c') {
+                    exercise = false;
+                    break;
+                } else if (memberType == 'e') {
+                    exercise = true;
+                    break;
+                } else
+                    System.out.println("typing error - try again");
+            } catch (NumberFormatException e) {
+                System.out.println("Error ocurred - try again");
+                writingError = true;
+            }
+        }
+        while (writingError = true);
 
         System.out.println("Has paid the subscription (y/n):");
         boolean hasPaid = true;
         char paidStatus;
         do {
             paidStatus = scanner.nextLine().charAt(0);
-            if (paidStatus == 'y') {
+            if (paidStatus == 'n') {
                 hasPaid = false;
-            } else if (paidStatus == 'n') {
+                break;
+            } else if (paidStatus == 'y') {
                 hasPaid = true;
                 break;
             } else
                 System.out.println("Typing error - try again");
-        } while (paidStatus != 'y' || paidStatus != 'n');
+            writingError = true;
+        } while (writingError = true);
 
-
-        System.out.println("");
+        System.out.println(" ");
         System.out.println("We have registered this information about the new member:\n" +
                 "Full name " + firstname + "" + "lastname \n" +
                 "birthDate " + birthDate + "\n" +
@@ -559,7 +567,6 @@ public class UserInterface {
                 //TODO junior or senior
                 "Exercise or competetion-swimmer? " + exercise + "\n" +
                 "Is subscription paid? " + hasPaid);
-        System.out.println("");
 
         controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
     }
