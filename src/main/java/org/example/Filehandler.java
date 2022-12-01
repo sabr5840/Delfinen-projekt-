@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class Filehandler {
     private final String path = "Data/Members.csv";
+
     public ArrayList<Member> loadData() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("Data/Members.csv"));
         ArrayList<Member> members = new ArrayList<>();
@@ -23,6 +24,7 @@ public class Filehandler {
         }
         return members;
     }
+
     public void saveData(ArrayList<Member> members) throws FileNotFoundException {
 
         PrintStream output = new PrintStream(path);
@@ -54,6 +56,7 @@ public class Filehandler {
             output.println();
         }
     }
+
     private Member splitLines(String line) {
         String[] splits = line.split(";");
 
@@ -76,22 +79,6 @@ public class Filehandler {
 
         return new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, excercise, hasPaid);
 
-        return new Member(firstName, lastName, birthYear, address, postalCode, city, phoneNo, email, passive, junior, excercise, true);
-
-        //return memberData;
-    }
-    public static void main(String[] args) {
-        Filehandler handler = new Filehandler();
-
-        try{
-            ArrayList<Member> members = handler.loadData();
-            for (Member member : members) {
-                System.out.println(member);
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }
 
