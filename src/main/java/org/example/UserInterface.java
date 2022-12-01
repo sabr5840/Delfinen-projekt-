@@ -1,9 +1,12 @@
 package org.example;
 
+import org.w3c.dom.CDATASection;
+
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
@@ -416,18 +419,25 @@ public class UserInterface {
         System.out.println("Last name:");
         String lastname = scanner.nextLine();
 
-        LocalDate birthDate = LocalDate.now();
-        boolean inputError;
+
+        LocalDate birthDate = null;
+        boolean dateInputError;
         do {
             try {
                 System.out.println("Date of birth ('ddMMyyyy'):");
-               birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("ddMMyyyy"));
-               inputError = false;
+                birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("ddMMyyy"));
+                LocalDate todaysDate = LocalDate.now();
+                dateInputError = false;
+                if (ChronoUnit.YEARS.between(birthDate, todaysDate) < 18) {
+                    System.out.println("member registered as Junior");
+                } else if (ChronoUnit.YEARS.between(birthDate, todaysDate) > 18) {
+                    System.out.println("member registered as senior");
+                }
             } catch (DateTimeParseException | NumberFormatException e) {
                 System.out.println("Date of birth must be in correct format 'ddMMyyyy'");
-                inputError = true;
+                dateInputError = true;
             }
-        } while (writingError = false);
+        } while (dateInputError);
 
         System.out.println("Type in address:");
         String address = scanner.nextLine();
@@ -463,12 +473,23 @@ public class UserInterface {
             }
         } while (writingError == true);
 
-
         System.out.println("Type in Mail-adress:");
         String eMail = scanner.nextLine();
 
-        System.out.println("Type in active or passive member status:");
-        boolean passive = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        System.out.println("Type in active 'a' or passive 'p' member status:");
+        boolean passive = true;
+        char passiveOrActive;
+        do {
+            passiveOrActive = scanner.nextLine().charAt(0);
+            if (passiveOrActive == 'p') {
+                passive = false;
+                break;
+            } else if (passiveOrActive == 'a') {
+                passive = true;
+                break;
+            } else
+                System.out.println("input error - try again");
+        } while (passiveOrActive != 'p' || passiveOrActive != 'a');
 
         System.out.println("Type in competition swimmer 'c' or exerciser 'e' member status:");
         boolean exercise = true;
@@ -485,8 +506,20 @@ public class UserInterface {
                 System.out.println("typing error - try again");
         } while (memberType != 'e' || memberType != 'c');
 
-        System.out.println("Has paid the subscription:");
-        boolean hasPaid = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        System.out.println("Has paid the subscription (y/n):");
+        boolean hasPaid = true;
+        char paidStatus;
+        do {
+            paidStatus = scanner.nextLine().charAt(0);
+            if (paidStatus == 'y') {
+                hasPaid = false;
+            } else if (paidStatus == 'n') {
+                hasPaid = true;
+                break;
+            } else
+                System.out.println("Typing error - try again");
+        } while (paidStatus != 'y' || paidStatus != 'n');
+
 
         System.out.println("");
         System.out.println("We have registered this information about the new member:\n" +
