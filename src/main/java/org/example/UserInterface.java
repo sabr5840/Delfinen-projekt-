@@ -194,7 +194,7 @@ public class UserInterface {
                     System.out.println("Remember to save your changes by typing `2`");
                 }
 
-            } else if (chairmanChoice == 7) {
+            } else if (chairmanChoice == 6) {
                 System.out.println("Search for the member you want to remove from the system:");
                 String searchTerm = scanner.next();
                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
