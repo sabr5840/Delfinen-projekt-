@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
@@ -193,16 +194,16 @@ public class UserInterface {
                     System.out.println("Remember to save your changes by typing `2`");
                 }
 
-            } else if (chairmanChoice == 7) {
+            } else if (chairmanChoice == 5) {
                 System.out.println("Search for the member you want to remove from the system:");
                 String searchTerm = scanner.next();
                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
 
-                if (searchResult.isEmpty()){
+                if (searchResult.isEmpty()) {
                     System.out.println("No member found \n");
-                }else {
+                } else {
                     System.out.println("Member found: ");
-                    for (int i = 0; i<searchResult.size(); i++){
+                    for (int i = 0; i < searchResult.size(); i++) {
 
                     }
                     System.out.println("Type in name for desired member ");
@@ -211,14 +212,16 @@ public class UserInterface {
 
                     System.out.println("Are you sure, you want to delete the member? (true/false)");
                     boolean delete = scanner.nextBoolean();
-                    if (delete ==  true){
+                    if (delete == true) {
                         db.deleteMember(member);
 
                         System.out.println("Member deleted from system");
-                    }else if (delete == false){
+                    } else if (delete == false) {
                         System.out.println("Member not deleted");
                     }
                 }
+            } else if (chairmanChoice == 6){
+
 
             } else if (chairmanChoice == 7) {
                 System.out.println("List of members:" + "\n");
