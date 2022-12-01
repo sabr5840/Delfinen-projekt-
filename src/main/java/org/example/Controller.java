@@ -33,24 +33,9 @@ public class Controller {
 
     }
 
-    public void loadData() throws FileNotFoundException {
-        Filehandler filehandler = new Filehandler();
-        ArrayList<Member> members = filehandler.loadData();
-        database.setMembers(members);
-
-        isChanged = true;
-    }
 
     public void editData() {
         isChanged = true;
 
     }
-
-    public void deleteMember (Member member) throws FileNotFoundException {
-        database.deleteMember(member);
-        isChanged = true;
-        saveData();
-        loadData();
-    }
-
 }
