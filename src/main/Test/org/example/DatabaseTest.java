@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,11 +18,11 @@ class DatabaseTest {
 
     @Test
     void registration() {
-        database.addMember("Simone",  "Gottbrecht", 1992, "Hejvej",
+        database.addMember("Simone",  "Gottbrecht", LocalDate.ofEpochDay(1992), "Hejvej",
                 2100, "København", 28891106, "simo79j5@stud.kea.dk", true, true, true, true);
-        database.addMember("Simone",  "Gottbrecht", 1992, "Hejvej",
+        database.addMember("Simone",  "Gottbrecht", LocalDate.ofEpochDay(1992), "Hejvej",
                 2100, "København", 28891106, "simo79j5@stud.kea.dk", true, true, true, true);
-        database.addMember("Simone",  "Gottbrecht", 1992, "Hejvej",
+        database.addMember("Simone",  "Gottbrecht", LocalDate.ofEpochDay(1992), "Hejvej",
                 2100, "København", 28891106, "simo79j5@stud.kea.dk", true, true, true, true);
         //act on method
         ArrayList<Member> test = database.getMembers();
