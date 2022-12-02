@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.FileNotFoundException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -371,7 +372,6 @@ public class UserInterface {
                 switch (teamInput) {
                     case "crawl", "Crawl":
                         System.out.println("TEST");
-                        //TODO teamlist
                         break;
                     case "butterfly", "Butterfly":
                         System.out.println("TEST");
