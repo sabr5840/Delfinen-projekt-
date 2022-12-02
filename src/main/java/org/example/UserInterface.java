@@ -26,6 +26,7 @@ public class UserInterface {
 
 
     public void startMenu() throws FileNotFoundException {
+        db.loadData();
         boolean success = false;
         Scanner employeeInput = new Scanner(System.in);
         System.out.println("Welcome to The Dolphins administrative system");
