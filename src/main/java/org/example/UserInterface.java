@@ -568,6 +568,7 @@ public class UserInterface {
                 "Is subscription paid? " + hasPaid);
 
         controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
+
     }
 
     public boolean expectedPaymentTotal() {
