@@ -218,7 +218,7 @@ public class UserInterface {
             }else if (chairmanChoice == 5) {
                 System.out.println("List of members:" + "\n");
                 for (Member member : controller.getMembers()) {
-                    System.out.println("First name: " + member.getFirstname() + "\n" + "Last name: " + member.getLastname() + "\n" + "Date, month and year of birth: "
+                    System.out.println("Full name " + member.getFirstname() + "\n" + member.getLastname() + "\n" + "Date, month and year of birth: "
                             + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
                             + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
                             "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "\n" + "Has paid the subscription: " + member.isHasPaid() + "\n");
