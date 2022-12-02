@@ -1,3 +1,5 @@
+package org.example;
+
 public class Payments {
 
     private int juniorMember = 1000;

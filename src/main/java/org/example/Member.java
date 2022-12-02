@@ -22,7 +22,7 @@ public class Member {
     //Constructor for attributes
     public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
                   String city, int phoneNo, String eMail, boolean passive, boolean junior,
-                  boolean exercise, boolean hasPaid) {
+                  boolean exercise, boolean hasPaid){
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthDate = birthDate;
@@ -41,6 +41,7 @@ public class Member {
     public Member() {
 
     }
+
 
     //Getter
     public String getFirstname() {

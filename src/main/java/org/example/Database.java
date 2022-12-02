@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -45,6 +46,14 @@ public class Database {
         boolean succes;
         succes = members.remove(member);
         return succes;
+    }
+
+    public void loadData() throws FileNotFoundException {
+        Filehandler filehandler = new Filehandler();
+        this.members = filehandler.loadData();
+
+
+        //isChanged = true;
     }
 
 }

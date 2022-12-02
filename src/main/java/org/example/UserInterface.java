@@ -3,8 +3,8 @@ package org.example;
 import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
@@ -49,6 +49,7 @@ public class UserInterface {
                 employeeInput.next();
             }
         }
+
     }
 
     // Menu for chairman
@@ -64,10 +65,10 @@ public class UserInterface {
                     "3) load data\n" +
                     "4) Edit member information\n" +
                     "5) Search for member\n" +
-                    "6) View members\n" +
-                    "7) Delete member\n" +
-                    "9) Return to main menu\n" +
-                    "10) Quit programme\n");
+                    "6) Delete member\n" +
+                    "7) View members\n" +
+                    "8) Return to main menu\n" +
+                    "9) Quit programme\n");
 
             chairmanChoice = scanner.nextInt();
             scanner.nextLine();
@@ -79,7 +80,7 @@ public class UserInterface {
                 System.out.println("Data saved");
 
             } else if (chairmanChoice == 3) {
-                controller.loadData();
+                db.loadData();
                 System.out.println("Data loaded");
 
             } else if (chairmanChoice == 4) {
@@ -87,7 +88,6 @@ public class UserInterface {
                 System.out.println("Name of member to edit ");
                 String searchTerm = scanner.next();
                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
-
                 if (searchResult.isEmpty()) {
                     System.out.println("No member found");
                 } else {
@@ -195,7 +195,7 @@ public class UserInterface {
                     System.out.println("Remember to save your changes by typing `2`");
                 }
 
-            } else if (chairmanChoice == 7) {
+            } else if (chairmanChoice == 6) {
                 System.out.println("Search for the member you want to remove from the system:");
                 String searchTerm = scanner.next();
                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
@@ -214,7 +214,7 @@ public class UserInterface {
                     System.out.println("Are you sure, you want to delete the member? (true/false)");
                     boolean delete = scanner.nextBoolean();
                     if (delete ==  true){
-                        controller.deleteMember(member);
+                        db.deleteMember(member);
 
                         System.out.println("Member deleted from system");
                     }else if (delete == false){
@@ -222,8 +222,7 @@ public class UserInterface {
                     }
                 }
 
-
-            } else if (chairmanChoice == 8) {
+            } else if (chairmanChoice == 7) {
                 System.out.println("List of members:" + "\n");
                 for (Member member : controller.getMembers()) {
                     System.out.println("First name: " + member.getFirstname() + "\n" + "Last name: " + member.getLastname() + "\n" + "Date, mouth and year of birth: "
@@ -232,13 +231,13 @@ public class UserInterface {
                             "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "\n" + "Has paid the subscription: " + member.isHasPaid() + "\n");
                 }
 
-            } else if (chairmanChoice == 9) {
+            } else if (chairmanChoice == 8) {
                 startMenu();
-            }else if (chairmanChoice == 10) {
-                System.exit(0);
             }
             isRunning = false;
-        } while (isRunning = true);
+        } while (chairmanChoice != 9);
+        System.out.println("exiting program");
+        System.exit(0);
     }
 
     // Menu for cashier
@@ -253,32 +252,26 @@ public class UserInterface {
                     "2) View payment status by membership-type\n" + //TODO membership type = passive or active members - hør po ad
                     "3) View members who are past due" + "\n" +
                     "4) Edit payment status\n" +
-                    "5) Return to main men\n" +
-                    "6) Quit program" + "\n");
+                    "5) Payment overview\n" +
+                    "6) Return to main men\n" +
+                    "7) Quit program" + "\n");
 
             cashierChoice = scanner.nextInt();
             if (cashierChoice == 1) {
                 for (Member member : controller.getMembers()) {
                     System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isHasPaid() + "\n");
-
-                    System.out.println("Paid Payments in total: ");
-                    //For at finde det totale for alle medlemmer som har betalt
-                    System.out.println((juniorList.size() * 1000) + (seniorList.size() * 1600) + (passiveList.size() * 500));
-
                 }
             } else if (cashierChoice == 2) {
                 //TODO paymentstatus by membership-type
 
-                System.out.println("Junoir members: ");
+                System.out.println("Junior members: ");
                 System.out.println("Senior members: ");
-                System.out.println("Passive members:");
+                System.out.println("Passive members: ");
 
 
             } else if (cashierChoice == 3) {
-                //TODO view past-due members
+                //TODO view past-due members JEE
 
-                System.out.println("Expected payments in total: " + "\n");
-                System.out.println();
 
             } else if (cashierChoice == 4) {
                 //TODO hør om en ligende get metode - bare til string
@@ -286,40 +279,44 @@ public class UserInterface {
                 String searchTerm = scanner.next();
                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
 
-                if (searchResult.isEmpty()){
+                if (searchResult.isEmpty()) {
                     System.out.println("No member found");
 
-                }else {
+                } else {
                     System.out.println("Member found: ");
-                    for (int i = 0; i < searchResult.size(); i++);
+                    for (int i = 0; i < searchResult.size(); i++) ;
                     //System.out.println(((i)+ 1 )+ ") " + searchResult.get(i));
 
                     System.out.println("Type name of member to edit");
                     String fullname = scanner.nextLine();
-                   // Member member = searchResult.get(number -1)
+                    // Member member = searchResult.get(number -1)
 
                     boolean writingError2 = false;
                     do {
                         try {
                             System.out.println("Type in new subscription status");
                             String hasPaid = scanner.nextLine();
-                            if (!hasPaid.isEmpty()){
+                            if (!hasPaid.isEmpty()) {
                                 member.setHasPaid(Boolean.parseBoolean(hasPaid));
                             }
                             writingError2 = false;
-                        }catch (NumberFormatException e){
+                        } catch (NumberFormatException e) {
                             System.out.println("Error occurred - try again.");
                             writingError = true;
                         }
-                    }while (writingError2 == true);
-
+                    } while (writingError2 == true);
                 }
 
-            } else if (cashierChoice == 5) {
+            } else if (cashierChoice == 5){
+                System.out.println("5) Payment overview");
+                System.out.println("Paid Main.Payments in total: " + getPaymentsInTotal());
+                System.out.println(expectedPaymentTotal());
+
+            } else if (cashierChoice == 6) {
                 startMenu();
             }
             isRunning = false;
-        } while (cashierChoice != 6);
+        } while (cashierChoice != 7);
         System.out.println("exiting program");
         System.exit(0);
     }
@@ -438,7 +435,7 @@ public class UserInterface {
     }
 
     public void registerMember() {
-        boolean writingError = false;
+       boolean writingError = false;
         System.out.println("Register new member here");
 
         System.out.println("First name:");
@@ -448,28 +445,24 @@ public class UserInterface {
         String lastname = scanner.nextLine();
 
 
-        int birthYear = 0;
+        LocalDate birthDate = null;
+        boolean dateInputError;
         do {
-            Scanner registerInput = new Scanner(System.in);
             try {
                 System.out.println("Date of birth ('ddMMyyyy'):");
-                String DOB = (scanner.nextLine());
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-
-                birthYear = LocalDate.parse(DOB, formatter).getYear();
-                int calculation = LocalDateTime.now().getYear();
-                if (calculation - birthYear < 18)
-                    System.out.println("member is registered as junior \n");
-                else if (calculation - birthYear > 18)
-                    System.out.println("member is registered as senior \n");
-
-            } catch (DateTimeParseException e) {
+                birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("ddMMyyy"));
+                LocalDate todaysDate = LocalDate.now();
+                dateInputError = false;
+                if (ChronoUnit.YEARS.between(birthDate, todaysDate) < 18) {
+                    System.out.println("member registered as Junior");
+                } else if (ChronoUnit.YEARS.between(birthDate, todaysDate) > 18) {
+                    System.out.println("member registered as senior");
+                }
+            } catch (DateTimeParseException | NumberFormatException e) {
                 System.out.println("Date of birth must be in correct format 'ddMMyyyy'");
-                registerInput.nextLine();
-
+                dateInputError = true;
             }
-        } while (writingError = false);
+        } while (dateInputError);
 
         System.out.println("Type in address:");
         String address = scanner.nextLine();
@@ -505,23 +498,66 @@ public class UserInterface {
             }
         } while (writingError == true);
 
-
         System.out.println("Type in Mail-adress:");
         String eMail = scanner.nextLine();
 
-        System.out.println("Type in active or passive member status:");
-        boolean passive = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        System.out.println("Type in active 'a' or passive 'p' member status:");
+        boolean passive = true;
+        char passiveOrActive;
+        do {
+            passiveOrActive = scanner.nextLine().charAt(0);
+            if (passiveOrActive == 'p') {
+                passive = false;
+                break;
+            } else if (passiveOrActive == 'a') {
+                passive = true;
+                break;
+            } else
+                System.out.println("input error - try again");
+        } while (passiveOrActive != 'p' || passiveOrActive != 'a');
 
-        System.out.println("Type in competition swimmer or exerciser member status:");
-        boolean exercise = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+        System.out.println("Type in competition swimmer 'c' or exerciser 'e' member status:");
+        boolean exercise = true;
+        char memberType;
+        do {
+            try {
+                memberType = scanner.nextLine().charAt(0);
 
-        System.out.println("Has paid the subscription:");
-        boolean hasPaid = scanner.nextLine().substring(0, 1).equalsIgnoreCase("Y");
+                if (memberType == 'c') {
+                    exercise = false;
+                    break;
+                } else if (memberType == 'e') {
+                    exercise = true;
+                    break;
+                } else
+                    System.out.println("typing error - try again");
+            } catch (NumberFormatException e) {
+                System.out.println("Error ocurred - try again");
+                writingError = true;
+            }
+        }
+        while (writingError = true);
 
-        System.out.println("");
+        System.out.println("Has paid the subscription (y/n):");
+        boolean hasPaid = true;
+        char paidStatus;
+        do {
+            paidStatus = scanner.nextLine().charAt(0);
+            if (paidStatus == 'n') {
+                hasPaid = false;
+                break;
+            } else if (paidStatus == 'y') {
+                hasPaid = true;
+                break;
+            } else
+                System.out.println("Typing error - try again");
+            writingError = true;
+        } while (writingError = true);
+
+        System.out.println(" ");
         System.out.println("We have registered this information about the new member:\n" +
                 "Full name " + firstname + "" + "lastname \n" +
-                "Birthyear " + birthYear + "\n" +
+                "birthDate " + birthDate + "\n" +
                 "Address " + address + "\n" +
                 "City " + postalCode + "" + city + "\n" +
                 "Phone number " + phoneNo + "\n" +
@@ -530,19 +566,18 @@ public class UserInterface {
                 //TODO junior or senior
                 "Exercise or competetion-swimmer? " + exercise + "\n" +
                 "Is subscription paid? " + hasPaid);
-        System.out.println("");
 
-        controller.addMember(firstname, lastname, LocalDate.ofEpochDay(birthYear), address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
+        controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
     }
 
-    public void expectedPaymentTotal() {
+    public boolean expectedPaymentTotal() {
         for (int i = 0; i < db.members.size(); i++){
             if (db.members.get(i).isJunior() == true){
                 juniorList.add(db.members.get(i));
             } else if (db.members.get(i).isPassive() == true){
                 passiveList.add(db.members.get(i));
             } else if (db.members.get(i).isJunior() == false){
-                seniorList.add(db.members.get(i));
+                juniorList.add(db.members.get(i));
             }
         }
 
@@ -564,9 +599,10 @@ public class UserInterface {
 
         int totalJunior = juniorList.size() * 1000;
         int totalSenior = seniorList.size() * 1600;
-        int totalePassive = passiveList.size() * 500;;
+        int totalePassive = passiveList.size() * 500;
         int total = totalJunior + totalSenior + totalePassive;
-        System.out.println("Expected payment in total: " + total);
+        System.out.println("Expected annual payment in total: " + total);
+        return false;
     }
     public boolean findJuniors() {
         for (int i = 0; i < db.members.size(); i++) {
@@ -576,6 +612,25 @@ public class UserInterface {
             System.out.println(juniorList);
         }
         return false;
+
+
+    }
+    private int getPaymentsInTotal(){
+        int total = 0;
+        for(Member member : db.getMembers()){
+            if (member.isHasPaid()){
+                if (member.isJunior()){
+                    total += 1000;
+                }else if (member.isPassive()){
+                    total += 500;
+                }else{
+                    total += 1600;
+                }
+            }
+        }
+        return total;
     }
 
 }
+
+//fm
