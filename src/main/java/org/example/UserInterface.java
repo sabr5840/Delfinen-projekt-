@@ -556,10 +556,10 @@ public class UserInterface {
 
         System.out.println(" ");
         System.out.println("We have registered this information about the new member:\n" +
-                "Full name " + firstname + "" + "lastname \n" +
-                "birthDate " + birthDate + "\n" +
-                "Address " + address + "\n" +
-                "City " + postalCode + "" + city + "\n" +
+                "Full name " + firstname + " " + lastname  + "\n" +
+                "Birth date " + birthDate + "\n" +
+                "Address \n" + address + "\n" +
+                 postalCode + " " + city + "\n" +
                 "Phone number " + phoneNo + "\n" +
                 "E-mail " + eMail + "\n" +
                 "Passive or active membership " + passive + "\n" +
