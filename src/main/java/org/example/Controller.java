@@ -8,12 +8,14 @@ import java.util.Scanner;
 
 public class Controller {
 
+    private Filehandler filehandler = new Filehandler();
     private Database database = new Database();
     boolean isChanged = false;
 
     public void addMember(String firstname, String lastname, LocalDate birthYear, String address, int postalCode, String city, int phoneNo, String eMail,
-                          boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
+                          boolean passive, boolean junior, boolean exercise, boolean hasPaid) throws FileNotFoundException {
         database.addMember(firstname, lastname, birthYear, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
+        filehandler.saveData(database.getMembers());
         isChanged = true;
     }
 

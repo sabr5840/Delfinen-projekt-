@@ -439,13 +439,12 @@ public class UserInterface {
         System.out.println("Last name:");
         String lastname = scanner.nextLine();
 
-
         LocalDate birthDate = null;
         boolean dateInputError;
         do {
             try {
                 System.out.println("Date of birth ('ddMMyyyy'):");
-                birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("ddMMyyy"));
+                birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("ddMMyyyy"));
                 LocalDate todaysDate = LocalDate.now();
                 dateInputError = false;
                 if (ChronoUnit.YEARS.between(birthDate, todaysDate) < 18) {
@@ -579,7 +578,7 @@ public class UserInterface {
             } else if (db.members.get(i).isPassive() == true) {
                 passiveList.add(db.members.get(i));
             } else if (db.members.get(i).isJunior() == false) {
-                juniorList.add(db.members.get(i));
+                seniorList.add(db.members.get(i));
             }
         }
 
@@ -637,4 +636,3 @@ public class UserInterface {
 
 }
 
-//fm
