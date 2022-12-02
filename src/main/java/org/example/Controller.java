@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Controller {
 
-    Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     private Database database = new Database();
     boolean isChanged = false;
 

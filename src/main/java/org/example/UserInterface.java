@@ -58,32 +58,22 @@ public class UserInterface {
         boolean isRunning = true;
         boolean writingError;
         do {
-
+            db.loadData();
             System.out.println("Menu");
             System.out.println("1) Registration of new member\n" +
-                    "2) Save data\n" +
-                    "3) load data\n" +
-                    "4) Edit member information\n" +
-                    "5) Search for member\n" +
-                    "6) Delete member\n" +
-                    "7) View members\n" +
-                    "8) Return to main menu\n" +
-                    "9) Quit programme\n");
+                    "2) Edit member information\n" +
+                    "3) Search for member\n" +
+                    "4) Delete member\n" +
+                    "5) View members\n" +
+                    "6) Return to main menu\n" +
+                    "7) Quit programme\n");
 
             chairmanChoice = scanner.nextInt();
             scanner.nextLine();
             if (chairmanChoice == 1) {
                 registerMember();
 
-            }else if (chairmanChoice == 2) {
-                controller.saveData();
-                System.out.println("Data saved");
-
-            } else if (chairmanChoice == 3) {
-                db.loadData();
-                System.out.println("Data loaded");
-
-            } else if (chairmanChoice == 4) {
+            } else if (chairmanChoice == 2) {
                 controller.editData();
                 System.out.println("Name of member to edit ");
                 String searchTerm = scanner.next();
@@ -195,16 +185,16 @@ public class UserInterface {
                     System.out.println("Remember to save your changes by typing `2`");
                 }
 
-            } else if (chairmanChoice == 6) {
+            } else if (chairmanChoice == 3) {
                 System.out.println("Search for the member you want to remove from the system:");
                 String searchTerm = scanner.next();
                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
 
-                if (searchResult.isEmpty()){
+                if (searchResult.isEmpty()) {
                     System.out.println("No member found \n");
-                }else {
+                } else {
                     System.out.println("Member found: ");
-                    for (int i = 0; i<searchResult.size(); i++){
+                    for (int i = 0; i < searchResult.size(); i++) {
 
                     }
                     System.out.println("Type in name for desired member ");
@@ -213,16 +203,19 @@ public class UserInterface {
 
                     System.out.println("Are you sure, you want to delete the member? (true/false)");
                     boolean delete = scanner.nextBoolean();
-                    if (delete ==  true){
+                    if (delete == true) {
                         db.deleteMember(member);
 
                         System.out.println("Member deleted from system");
-                    }else if (delete == false){
+                    } else if (delete == false) {
                         System.out.println("Member not deleted");
                     }
                 }
 
-            } else if (chairmanChoice == 7) {
+            } else if (chairmanChoice == 4) {
+                //TODO deletemember method
+
+            }else if (chairmanChoice == 5) {
                 System.out.println("List of members:" + "\n");
                 for (Member member : controller.getMembers()) {
                     System.out.println("First name: " + member.getFirstname() + "\n" + "Last name: " + member.getLastname() + "\n" + "Date, mouth and year of birth: "
@@ -231,11 +224,11 @@ public class UserInterface {
                             "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "\n" + "Has paid the subscription: " + member.isHasPaid() + "\n");
                 }
 
-            } else if (chairmanChoice == 8) {
+            } else if (chairmanChoice == 6) {
                 startMenu();
             }
             isRunning = false;
-        } while (chairmanChoice != 9);
+        } while (chairmanChoice != 7);
         System.out.println("exiting program");
         System.exit(0);
     }
@@ -307,7 +300,7 @@ public class UserInterface {
                     } while (writingError2 == true);
                 }
 
-            } else if (cashierChoice == 5){
+            } else if (cashierChoice == 5) {
                 System.out.println("5) Payment overview");
                 System.out.println("Paid Main.Payments in total: " + getPaymentsInTotal());
                 System.out.println(expectedPaymentTotal());
@@ -434,8 +427,8 @@ public class UserInterface {
         System.exit(0);
     }
 
-    public void registerMember() {
-       boolean writingError = false;
+    public void registerMember() throws FileNotFoundException {
+        boolean writingError = false;
         System.out.println("Register new member here");
 
         System.out.println("First name:");
@@ -556,28 +549,34 @@ public class UserInterface {
 
         System.out.println(" ");
         System.out.println("We have registered this information about the new member:\n" +
-                "Full name " + firstname + " " + lastname  + "\n" +
+                "Full name " + firstname + " " + lastname + "\n" +
                 "Birth date " + birthDate + "\n" +
                 "Address \n" + address + "\n" +
-                 postalCode + " " + city + "\n" +
+                postalCode + " " + city + "\n" +
                 "Phone number " + phoneNo + "\n" +
                 "E-mail " + eMail + "\n" +
                 "Passive or active membership " + passive + "\n" +
                 //TODO junior or senior
                 "Exercise or competetion-swimmer? " + exercise + "\n" +
                 "Is subscription paid? " + hasPaid);
-
-        controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
-
+        System.out.println("Do you wish to save the new member? 'yes'/'no' ");
+        String yesNo = scanner.nextLine().toLowerCase();
+        if (yesNo.equals("yes")) {
+            System.out.println("New member saved in database");
+            controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
+        } else if (yesNo.equals("no")) {
+            System.out.println("member not saved, returning to previous menu");
+            chairmanMenu();
+        }
     }
 
     public boolean expectedPaymentTotal() {
-        for (int i = 0; i < db.members.size(); i++){
-            if (db.members.get(i).isJunior() == true){
+        for (int i = 0; i < db.members.size(); i++) {
+            if (db.members.get(i).isJunior() == true) {
                 juniorList.add(db.members.get(i));
-            } else if (db.members.get(i).isPassive() == true){
+            } else if (db.members.get(i).isPassive() == true) {
                 passiveList.add(db.members.get(i));
-            } else if (db.members.get(i).isJunior() == false){
+            } else if (db.members.get(i).isJunior() == false) {
                 juniorList.add(db.members.get(i));
             }
         }
@@ -605,6 +604,7 @@ public class UserInterface {
         System.out.println("Expected annual payment in total: " + total);
         return false;
     }
+
     public boolean findJuniors() {
         for (int i = 0; i < db.members.size(); i++) {
             if (db.members.get(i).isJunior()) {
@@ -616,15 +616,16 @@ public class UserInterface {
 
 
     }
-    private int getPaymentsInTotal(){
+
+    private int getPaymentsInTotal() {
         int total = 0;
-        for(Member member : db.getMembers()){
-            if (member.isHasPaid()){
-                if (member.isJunior()){
+        for (Member member : db.getMembers()) {
+            if (member.isHasPaid()) {
+                if (member.isJunior()) {
                     total += 1000;
-                }else if (member.isPassive()){
+                } else if (member.isPassive()) {
                     total += 500;
-                }else{
+                } else {
                     total += 1600;
                 }
             }
