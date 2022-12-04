@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
+    Filehandler filehandler = new Filehandler();
     public static ArrayList<SwimTiming> crawlList = new ArrayList<>();
     public static ArrayList<SwimTiming> breastList = new ArrayList<>();
     public static ArrayList<SwimTiming> backCrawlList = new ArrayList<>();
@@ -23,6 +24,7 @@ public class Database {
 
         Member member = new Member(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         members.add(member);
+
         System.out.println(members);
     }
 
