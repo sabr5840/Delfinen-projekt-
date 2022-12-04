@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -328,11 +329,13 @@ public class UserInterface {
             boolean isRunning;
             boolean writingError;
             System.out.println("Menu");
-            System.out.println("1) view exercise teams\n" +
-                    "2) view competition teams\n" +
-                    "3) View statistics\n" +
-                    "4) back to main menu\n" +
-                    "5) quit program");
+            System.out.println("1) View exercise teams\n" +
+                    "2) View competition teams\n" +
+                    "3) Register members swimming discipline\n" +
+                    "4) Register result score\n" + //TODO stævne, plecerng, tid
+                    "5) View statistics\n" +
+                    "6) Back to main menu\n" +
+                    "7) Quit program");
 
             coachChoice = scanner.nextInt();
 
@@ -348,7 +351,8 @@ public class UserInterface {
                         //TODO members list of junior swimmers sorted by last name
                         break;
                     case "Sr", "senior", "Senior", "sr":
-                        System.out.println("TEST");
+
+                        System.out.println(member.isExercise());
                         //TODO members list of senior swimmers by last name
                         break;
                     case "back", "Back", "return", "Return":
@@ -363,27 +367,19 @@ public class UserInterface {
                 }
 
             } else if (coachChoice == 2) {
-                System.out.println("Choose which team you would like to see" +
-                        "Crawl, butterfly, backcrawl or breaststroke");
-                System.out.println("type return if you wish to go back to last menu" +
-                        "type Q if you wish to quit the program");
+                System.out.println("Choose between junior and senior swimmers");
+                System.out.println("Type return if you wish to go back to last menu" +
+                        "Type Q if you wish to quit the program");
                 Scanner input = new Scanner(System.in);
                 String teamInput = input.nextLine().toLowerCase();
                 switch (teamInput) {
-                    case "crawl", "Crawl":
+                    case "Jr", "Junior", "junior", "jr":
                         System.out.println("TEST");
+                        //TODO memberList of juniors sorted by alphabetical order and discipline //simone : crawl, butterfly
                         break;
-                    case "butterfly", "Butterfly":
+                    case "Sr", "senior", "Senior", "sr":
                         System.out.println("TEST");
-                        //TODO teamlist
-                        break;
-                    case "backcrawl", "Backcrawl":
-                        System.out.println("TEST");
-                        //TODO teamlist
-                        break;
-                    case "breaststroke", "Breaststroke":
-                        System.out.println("TEST");
-                        //TODO teamlist
+                        //TODO memberList of seniors sorted by alphabetical order and discipline// naja : backcrawl
                         break;
                     case "back", "Back", "return", "Return":
                         coachMenu();
@@ -395,42 +391,57 @@ public class UserInterface {
                     default:
                         System.out.println("Wrong input - please try again");
                 }
-            } else if (coachChoice == 3) {
+            } else if (coachChoice ==3) {
+                System.out.println("Register swimming disciplines for members");
+                System.out.println("Which member would you like to register in a swimming discipline?");
+                System.out.println("Which discipline would you like to register? (ex. Butterfly, Crawl, Backcrawl or Breast)");
+                System.out.println("Would you like to register more disciplines: yes or no?");
+                //TODO add discipline to list //if else//save
+
+            }else if (coachChoice == 4){
+                    //TODO enklete svømmers bedste træningstid og dato løbende registreres + konkurrencesvømmer registreres stævne, placeing og tid
+
+            } else if (coachChoice == 4) {
                 System.out.println("Choose how you would like to see the statistics" +
-                        "1) by team member\n" +
-                        "2) by discipline\n" +
-                        "3) by best times\n" +
-                        "4) Return to previous menu\n" +
-                        "5) Quit programme");
+                        "1) Best swimmers in butterfly \n" +
+                        "2) Best swimmers in crawl \n" +
+                        "3) Best swimmers in backcrawl \n" +
+                        "4) Best swimmers in breast \n "+
+                        "5) Return to previous menu\n" +
+                        "6) Quit programme");
                 Scanner input = new Scanner(System.in);
                 int statsInput = input.nextInt();
                 switch (statsInput) {
                     case 1:
                         System.out.println("TEST");
-                        //TODO teamlist
+                        //TODO teamlist sorted by best time in butterfly
                         break;
                     case 2:
                         System.out.println("TEST");
-                        //TODO teamlist
+                        //TODO teamlist sorted by best time in crawl
                         break;
                     case 3:
                         System.out.println("TEST");
-                        //TODO teamlist
+                        //TODO teamlist sorted by best time in backcrawl
                         break;
                     case 4:
-                        coachMenu();
+                        //TODO teamlist sorted by best time in breast
                         break;
                     case 5:
+                        coachMenu();
+                        break;
+                    case 6:
                         System.out.println("exiting program");
                         System.exit(0);
                         break;
                     default:
                         System.out.println("Wrong input - please try again");
                 }
-            } else if (coachChoice == 4) {
+
+            } else if (coachChoice == 5) {
                 startMenu();
             }
-        } while (coachChoice == 5);
+        } while (coachChoice == 6);
         System.exit(0);
     }
 

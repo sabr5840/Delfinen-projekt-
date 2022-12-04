@@ -4,8 +4,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class SwimTiming {
-        private final CompetitiveSwimmer swimmer;
-        private final Duration timing;
+        private CompetitiveSwimmer swimmer;
+        private Duration timing;
 
     public SwimTiming(CompetitiveSwimmer swimmer, Duration timing) {
         this.swimmer = swimmer;

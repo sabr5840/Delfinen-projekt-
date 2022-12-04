@@ -182,7 +182,7 @@ public class CompetitiveSwimmer extends Member {
     }
 }
 
-    /*public String chooseBackCrawl() {
+    public String chooseBackCrawl() {
         ArrayList<CompetitiveSwimmer> competitiveSwimmers;
         CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(getFirstname(), getLastname(), getBirthDate(),
                 getAddress(), getPostalCode(), getCity(), getPhoneNo(), geteMail(), isJunior(), isExercise(), isHasPaid());
