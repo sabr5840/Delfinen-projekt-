@@ -232,7 +232,7 @@ public class UserInterface {
             }
             isRunning = false;
         } while (chairmanChoice != 7);
-        System.out.println("exiting program");
+        System.out.println("Exiting programme");
         System.exit(0);
     }
 
@@ -313,7 +313,7 @@ public class UserInterface {
             }
             isRunning = false;
         } while (cashierChoice != 7);
-        System.out.println("exiting program");
+        System.out.println("Exiting programme");
         System.exit(0);
     }
 
