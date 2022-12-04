@@ -14,7 +14,7 @@ public class CompetitiveSwimmer extends Member {
     private String competitiveJunior;
     private String competitiveSenior;
 
-    public CompetitiveSwimmer(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean hasPaid, boolean breast, boolean crawl, boolean backCrawl, double registerTime, String competitiveJunior, String competitiveSenior) {
+    public CompetitiveSwimmer(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
         super(firstName, lastName, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         this.breast = breast;
         this.crawl = crawl;
@@ -38,22 +38,15 @@ public class CompetitiveSwimmer extends Member {
                 passive,
                 junior,
                 exercise,
-                hasPaid,
-                true,
-                false,
-                false,
-                registerTime,
-                competitiveJunior,
-                competitiveSenior
+                hasPaid
         );
     }
-
 
     public void chooseBreast() {
         ArrayList<CompetitiveSwimmer> breastList = new ArrayList<>();
         CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(getFirstname(), getLastname(), getBirthDate(),
                 getAddress(), getPostalCode(), getCity(), getPhoneNo(), geteMail(), isJunior(), isExercise(), isHasPaid(),
-                getBreast(), getCrawl(), getBackCrawl(), getButterfly(), getRegisterTime(), getCompetitiveJunior(), getCompetitiveSenior());
+                getBreast());
 
         breastList.add(competitiveSwimmer);
         breast = true;
@@ -180,19 +173,42 @@ public class CompetitiveSwimmer extends Member {
             return "Not chosen";
         }
     }
-}
 
-    public String chooseBackCrawl() {
-        ArrayList<CompetitiveSwimmer> competitiveSwimmers;
-        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(getFirstname(), getLastname(), getBirthDate(),
-                getAddress(), getPostalCode(), getCity(), getPhoneNo(), geteMail(), isJunior(), isExercise(), isHasPaid());
-
-        backCrawl = true;
+    public void registerBackCrawl(Duration timing) {
+        Database.backCrawlList.add(new SwimTiming(this, timing));
 
     }
 
-//Method which sets breast discipline to true and saves it to the list
-public class Breast extends CompetitiveSwimmer(
+    public void registerBreast(Duration timing) {
+        Database.breastList.add(new SwimTiming(this, timing));
+    }
+
+    public String viewBreast() {
+        for (SwimTiming swimTiming : Database.breastList) {
+            System.out.println(swimTiming);
+        }
+        {
+            breast = true;
+        }
+
+        return null;
+    }
+
 }
+   /* }
+        public void chooseBackCrawl() {
+            ArrayList<CompetitiveSwimmer> competitiveSwimmers;
+            CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(getFirstname(), getLastname(), getBirthDate(),
+                    getAddress(), getPostalCode(), getCity(), getPhoneNo(), geteMail(), isPassive(), isJunior(),
+                    isExercise(), isHasPaid());
+
+        }
+
+    }
+
 }
-     */
+*/
+
+
+
+

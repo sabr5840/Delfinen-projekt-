@@ -335,9 +335,10 @@ public class UserInterface {
             coachChoice = scanner.nextInt();
 
             if (coachChoice == 1) {
-                System.out.println("choose between junior or senior swimmers");
-                System.out.println("type 'return' if you wish to return to last menu" +
-                        "type Q if you wish to quit the program");
+                System.out.println("Choose between junior or senior swimmers");
+                System.out.println("Type 'return' if you wish to return to last menu" +
+                        "Type Q if you wish to quit the programme");
+
                 Scanner input = new Scanner(System.in);
                 String coachInput = input.nextLine().toLowerCase();
                 switch (coachInput) {
@@ -354,7 +355,7 @@ public class UserInterface {
                         coachMenu();
                         break;
                     case "Q", "quit", "q":
-                        System.out.println("exiting program");
+                        System.out.println("Exiting programme");
                         System.exit(0);
                         break;
                     default:
@@ -364,7 +365,7 @@ public class UserInterface {
             } else if (coachChoice == 2) {
                 System.out.println("Choose between junior and senior swimmers");
                 System.out.println("Type return if you wish to go back to last menu" +
-                        "Type Q if you wish to quit the program");
+                        "Type Q if you wish to quit the programme");
                 Scanner input = new Scanner(System.in);
                 String teamInput = input.nextLine().toLowerCase();
                 switch (teamInput) {
@@ -380,7 +381,7 @@ public class UserInterface {
                         coachMenu();
                         break;
                     case "Q", "quit", "q":
-                        System.out.println("exiting program");
+                        System.out.println("Exiting programme");
                         System.exit(0);
                         break;
                     default:
@@ -426,7 +427,7 @@ public class UserInterface {
                         coachMenu();
                         break;
                     case 6:
-                        System.out.println("exiting program");
+                        System.out.println("Exiting programme");
                         System.exit(0);
                         break;
                     default:
@@ -459,9 +460,9 @@ public class UserInterface {
                 LocalDate todaysDate = LocalDate.now();
                 dateInputError = false;
                 if (ChronoUnit.YEARS.between(birthDate, todaysDate) < 18) {
-                    System.out.println("member registered as Junior");
+                    System.out.println("Member registered as Junior");
                 } else if (ChronoUnit.YEARS.between(birthDate, todaysDate) > 18) {
-                    System.out.println("member registered as senior");
+                    System.out.println("Member registered as senior");
                 }
             } catch (DateTimeParseException | NumberFormatException e) {
                 System.out.println("Date of birth must be in correct format 'ddMMyyyy'");
@@ -498,7 +499,7 @@ public class UserInterface {
                 phoneNo = Integer.parseInt(scanner.nextLine());
                 writingError = false;
             } catch (NumberFormatException e) {
-                System.out.println("fail");
+                System.out.println("Fail");
                 writingError = true;
             }
         } while (writingError == true);
@@ -518,7 +519,7 @@ public class UserInterface {
                 passive = true;
                 break;
             } else
-                System.out.println("input error - try again");
+                System.out.println("Input error - try again");
         } while (passiveOrActive != 'p' || passiveOrActive != 'a');
 
         System.out.println("Type in competition swimmer 'c' or exerciser 'e' member status:");
@@ -535,7 +536,7 @@ public class UserInterface {
                     exercise = true;
                     break;
                 } else
-                    System.out.println("typing error - try again");
+                    System.out.println("Typing error - try again");
             } catch (NumberFormatException e) {
                 System.out.println("Error ocurred - try again");
                 writingError = true;
@@ -577,7 +578,7 @@ public class UserInterface {
             System.out.println("New member saved in database");
             controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
         } else if (yesNo.equals("no")) {
-            System.out.println("member not saved, returning to previous menu");
+            System.out.println("Member not saved, returning to previous menu");
             chairmanMenu();
         }
     }
