@@ -2,6 +2,9 @@ package org.example;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Member {
     //Fields of attributes
@@ -156,6 +159,16 @@ public class Member {
                 ", hasPaid=" + hasPaid +
                 '}';
     }
+
+
+
+
+
+
+
 }
+
+
+
 
 

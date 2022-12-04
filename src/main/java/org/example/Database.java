@@ -30,14 +30,15 @@ public class Database {
 
 
     public ArrayList<Member> searchFor(String searchTerm) {
-       ArrayList<Member> searchResult = new ArrayList<>();
+       ArrayList<Member> searchResults = new ArrayList<>();
 
        for (Member member : members){
-           if (member.getFirstname().equalsIgnoreCase(searchTerm)){
-               searchResult.add(member);
+           String name = member.getLastname().toLowerCase();
+           if (name.contains(searchTerm.toLowerCase().trim())){
+               searchResults.add(member);
            }
        }
-       return searchResult;
+       return searchResults;
     }
 
     public void setMembers(ArrayList<Member> members) {
@@ -45,8 +46,8 @@ public class Database {
     }
 
     public boolean deleteMember(Member member){
-        boolean succes;
-        succes = members.remove(member);
+        getMembers().remove(member);
+        boolean succes = true;
         return succes;
     }
 
