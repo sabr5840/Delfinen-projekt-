@@ -14,6 +14,7 @@ public class CompetitiveSwimmer extends Member {
     private String competitiveJunior;
     private String competitiveSenior;
 
+
     public CompetitiveSwimmer(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
         super(firstName, lastName, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
         this.breast = breast;
