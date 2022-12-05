@@ -78,20 +78,17 @@ public class UserInterface {
             } else if (chairmanChoice == 2) {
                 controller.editData();
                 System.out.println("Name of member to edit ");
-                String searchTerm = scanner.next();
+                String searchTerm = scanner.nextLine();
+
                 ArrayList<Member> searchResult = controller.searchFor(searchTerm);
                 if (searchResult.isEmpty()) {
                     System.out.println("No member found");
                 } else {
-                    //TODO hør om en ligende get metode - bare til string
+                    //TODO hør om en ligende get metode - bare til string - virker ikke skal laves om...
                     System.out.println("Member found; ");
-                    int i;
-                    for (i = 0; i < searchResult.size(); i++) ;
-                    //System.out.println(((i) + 1) + ") " + searchResult.get(i));
+                    int index = 1;
 
                     System.out.println("\n Type name of member to edit");
-                    String fullname = scanner.nextLine();
-                    //Member member = searchResult.get();
 
                     System.out.println("Type new first name or press `enter`to keep present name");
                     String firstName = scanner.nextLine();
@@ -245,7 +242,7 @@ public class UserInterface {
             System.out.println("Menu");
             System.out.println("1) View payment status for all members\n" +
                     //TODO  skal man kunne registre has paid - skal måske slette hos chairman
-                    "2) View payment status by membership-type\n" + //TODO membership type = passive or active members - hør po ad
+                    "2) View payment status by membership-type\n" +
                     "3) View members who are past due" + "\n" +
                     "4) Edit payment status\n" +
                     "5) Payment overview\n" +
@@ -258,16 +255,10 @@ public class UserInterface {
                     System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isHasPaid() + "\n");
                 }
             } else if (cashierChoice == 2) {
-                //TODO paymentstatus by membership-type
-
-                System.out.println("Junior members: ");
-                System.out.println("Senior members: ");
-                System.out.println("Passive members: ");
-
+                sortMemberPastDue();
 
             } else if (cashierChoice == 3) {
-                //TODO view past-due members JEE
-
+                //TODO view only past-due members
 
             } else if (cashierChoice == 4) {
                 //TODO hør om en ligende get metode - bare til string
@@ -304,8 +295,8 @@ public class UserInterface {
                 }
 
             } else if (cashierChoice == 5) {
-                System.out.println("5) Payment overview");
-                System.out.println("Paid Main.Payments in total: " + getPaymentsInTotal());
+                System.out.println("Payment overview" + "\n");
+                System.out.println("Payments in total "+ "\n" + getPaymentsInTotal() + "\n");
                 System.out.println(expectedPaymentTotal());
 
             } else if (cashierChoice == 6) {
@@ -646,5 +637,45 @@ public class UserInterface {
         return total;
     }
 
+    private void sortMemberPastDue(){
+        Scanner scanner = new Scanner(System.in);
+
+        int input = 0;
+        boolean inputError;
+        String sortInput = "";
+
+        while (input != 9){
+            System.out.println("2. sort member list by active/passive membership");
+            System.out.println("3. sort member list by junior/senior member");
+            System.out.println("4. sort member list by exerciser or competitive swimmer");
+            do {
+                try {
+                    input = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (input){
+                        case 1 -> sortInput = "passive";
+                        case 2 -> sortInput = "junior";
+                        case 3 -> sortInput = "exercise";
+                    }
+                    ArrayList<Member> sortedList = controller.sort(sortInput);
+                    printSorted(sortedList);
+                    inputError = false;
+                }catch (InputMismatchException e){
+                    System.out.println("Error, try again");
+                    inputError = true;
+                    scanner.nextLine();
+                }
+            }while (inputError);
+        }
+    }
+
+    private void printSorted(ArrayList<Member> sortedMembers) {
+        // TODO skal have kigget på, hvordan den printer det rigtige ud
+        for (Member member : sortedMembers){
+            System.out.println("Active/passive membership status" + member.isPassive() + "\n" +  "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+            System.out.println("junior/senior member status" + member.isPassive() + "\n" +  "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+            System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" +  "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+        }
+    }
 }
 
