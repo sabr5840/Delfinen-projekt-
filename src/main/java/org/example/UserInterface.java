@@ -553,20 +553,20 @@ public class UserInterface {
 
         System.out.println(" ");
         System.out.println("We have registered this information about the new member:\n" +
-                "Full name " + firstname + " " + lastname + "\n" +
-                "Birth date " + birthDate + "\n" +
-                "Address \n" + address + "\n" +
+                "Full name : " + firstname + " " + lastname + "\n" +
+                "Birth date : " + birthDate + "\n" +
+                "Address : \n" + address + "\n" +
                 postalCode + " " + city + "\n" +
-                "Phone number " + phoneNo + "\n" +
-                "E-mail " + eMail + "\n" +
-                "Passive or active membership " + passive + "\n" +
+                "Phone number : " + phoneNo + "\n" +
+                "E-mail : " + eMail + "\n" +
+                "Passive or active membership : " + passive + "\n" +
                 //TODO junior or senior
-                "Exercise or competetion-swimmer? " + exercise + "\n" +
-                "Is subscription paid? " + hasPaid);
-        System.out.println("Do you wish to save the new member? 'yes'/'no' ");
+                "Exercise or competetion-swimmer? : " + exercise + "\n" +
+                "Is subscription paid? : " + hasPaid);
+        System.out.println("Do you wish to save the new member? : 'yes'/'no' ");
         String yesNo = scanner.nextLine().toLowerCase();
         if (yesNo.equals("yes")) {
-            System.out.println("New member saved in database");
+            System.out.println("New member saved in database:\n");
             controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
         } else if (yesNo.equals("no")) {
             System.out.println("Member not saved, returning to previous menu");
