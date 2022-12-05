@@ -495,7 +495,7 @@ public class UserInterface {
             }
         } while (writingError == true);
 
-        System.out.println("Type in Mail-adress:");
+        System.out.println("Type in e-Mail:");
         String eMail = scanner.nextLine();
 
         System.out.println("Type in active 'a' or passive 'p' member status:");
