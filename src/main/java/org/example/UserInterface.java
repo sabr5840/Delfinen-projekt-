@@ -239,7 +239,7 @@ public class UserInterface {
         do {
             boolean isRunning;
             boolean writingError;
-            System.out.println("Menu");
+            System.out.println("Cashier menu");
             System.out.println("1) View payment status for all members\n" +
                     //TODO  skal man kunne registre has paid - skal måske slette hos chairman
                     "2) View payment status by membership-type\n" +
