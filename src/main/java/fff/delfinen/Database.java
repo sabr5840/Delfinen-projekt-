@@ -1,4 +1,4 @@
-package org.example;
+package fff.delfinen;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -51,9 +51,13 @@ public class Database {
         return succes;
     }
 
-    public void loadData() throws FileNotFoundException {
+    public void loadData(){
         Filehandler filehandler = new Filehandler();
-        this.members = filehandler.loadData();
+        try {
+            this.members = filehandler.loadData();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
 
         //isChanged = true;

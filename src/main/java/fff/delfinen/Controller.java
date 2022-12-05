@@ -1,11 +1,10 @@
-package org.example;
+package fff.delfinen;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Locale;
-import java.util.Scanner;
+
 import Comparator.FlexibleComparator;
 
 public class Controller {
@@ -21,6 +20,10 @@ public class Controller {
         isChanged = true;
     }
 
+    public void loadData(){
+        database.loadData();
+    }
+
     // Calls the search method from database
     public ArrayList<Member> searchFor (String searchTerm){
         return database.searchFor(searchTerm);
@@ -29,19 +32,6 @@ public class Controller {
     public ArrayList <Member> getMembers(){
         return database.getMembers();
     }
-
-    public void saveData() throws FileNotFoundException {
-        Filehandler filehandler = new Filehandler();
-        filehandler.saveData(database.getMembers());
-        isChanged = true;
-
-    }
-
-    // Calls the delete method from database
-    public void deleteMember (Member deleteMember){
-        database.deleteMember(deleteMember);
-    }
-
 
     public void editData() {
         isChanged = true;

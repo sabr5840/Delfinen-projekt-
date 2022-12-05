@@ -1,6 +1,6 @@
 package Comparator;
 
-import org.example.Member;
+import fff.delfinen.Member;
 
 import java.util.Comparator;
 

@@ -1,6 +1,10 @@
-package org.example;
+package fff.delfinen;
+
+import fff.delfinen.ui.CashierMenu;
+import fff.delfinen.ui.ChairmanMenu;
 
 public class Payments {
+
 
     private int juniorMember = 1000;
     private int seniorMember = 1600;
