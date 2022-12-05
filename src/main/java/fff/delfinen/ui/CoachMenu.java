@@ -1,10 +1,12 @@
 package fff.delfinen.ui;
 
+import fff.delfinen.CompetitiveSwimmer;
 import fff.delfinen.Member;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CoachMenu {
+public class CoachMenu{
 
     // Menu for coach
     void coachMenu(UserInterface userInterface) {
@@ -78,13 +80,49 @@ public class CoachMenu {
         System.exit(0);
     }
 
-    private static void registerMembersSwimmingDiscipline() {
-        System.out.println("Register swimming disciplines for members");
-        System.out.println("Which member would you like to register in a swimming discipline?");
+    private void registerMembersSwimmingDiscipline() {
+        boolean isRunning = true;
+        Scanner input = new Scanner(System.in);
+            System.out.println("Register competitive swimmers and their disciplines \n " +
+                    "\nWhich member would you like to register?");
+            input.next();
+            String statsInput = input.next();
         System.out.println("Which discipline would you like to register? (ex. Butterfly, Crawl, Backcrawl or Breast)");
-        System.out.println("Would you like to register more disciplines: yes or no?");
+
+
+        switch (statsInput) {
+            case "breast", "Breast" -> System.out.println("U choose breast good day my lady");
+
+            case "Butterfly", "butterfly" -> System.out.println("TEST");
+
+            //TODO teamlist sorted by best time in crawl
+            case "E" -> System.out.println("TEST");
+
+            //TODO teamlist sorted by best time in backcrawl
+            case "C" -> System.out.println();
+
+            //TODO teamlist sorted by best time in breast
+
+            case "A" -> {
+                System.out.println("Exiting programme");
+                System.exit(0);
+            }
+            default -> System.out.println("Wrong input - please try again");
+        }
+        }
+
+
+
+
+
+
+
+
+       //
+
+      //  System.out.println("Would you like to register more disciplines: yes or no?");
         //TODO add discipline to list //if else//save
-    }
+
 
     private void viewCompetitionTeams(UserInterface userInterface) {
         System.out.println("Choose between junior and senior swimmers");

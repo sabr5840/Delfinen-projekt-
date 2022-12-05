@@ -208,6 +208,8 @@ public class ChairmanMenu {
 
         LocalDate birthDate = null;
         boolean dateInputError;
+        boolean junior = true;
+        String input;
         do {
             try {
                 System.out.println("Date of birth ('ddMMyyyy'):");
@@ -215,9 +217,11 @@ public class ChairmanMenu {
                 LocalDate todaysDate = LocalDate.now();
                 dateInputError = false;
                 if (ChronoUnit.YEARS.between(birthDate, todaysDate) < 18) {
+                    junior = true;
                     userInterface.member.setJunior(true);
                     System.out.println("Member registered as junior");
                 } else if (ChronoUnit.YEARS.between(birthDate, todaysDate) > 18) {
+                    junior = false;
                     userInterface.member.setJunior(false);
                     System.out.println("Member registered as senior");
                 }
@@ -237,8 +241,9 @@ public class ChairmanMenu {
                 postalCode = Integer.parseInt(userInterface.scanner.nextLine());
                 if (postalCode > 0) {
                     userInterface.member.setPostalCode((postalCode));
+                    writingError = false;
                 }
-                writingError = false;
+
             } catch (NumberFormatException e) {
                 System.out.println("Error ocurred - try again");
                 writingError = true;
@@ -282,6 +287,7 @@ public class ChairmanMenu {
         System.out.println("Type in competition swimmer 'c' or exerciser 'e' member status:");
         boolean exercise = true;
         char memberType;
+
         do {
             try {
                 memberType = userInterface.scanner.nextLine().charAt(0);
@@ -334,7 +340,7 @@ public class ChairmanMenu {
         if (yesNo.equals("yes")) {
             System.out.println("New member saved in database");
             try {
-                userInterface.controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, true, exercise, hasPaid);
+                userInterface.controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
             } catch (FileNotFoundException e) {
                 System.out.println("ERROR: Could not save to file");
             }
