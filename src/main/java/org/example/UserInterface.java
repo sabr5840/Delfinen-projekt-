@@ -61,7 +61,7 @@ public class UserInterface {
         boolean writingError;
         do {
             db.loadData();
-            System.out.println("Menu");
+            System.out.println("Chairman menu");
             System.out.println("1) Registration of new member\n" +
                     "2) Edit member information\n" +
                     "3) Search for member\n" +
@@ -314,7 +314,7 @@ public class UserInterface {
         do {
             boolean isRunning;
             boolean writingError;
-            System.out.println("Menu");
+            System.out.println("Coach menu");
             System.out.println("1) View exercise teams\n" +
                     "2) View competition teams\n" +
                     "3) Register members swimming discipline\n" +
