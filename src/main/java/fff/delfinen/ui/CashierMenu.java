@@ -46,46 +46,32 @@ public class CashierMenu {
         quitProgramme();
     }
 
-    private static void quitProgramme() {
+    private void quitProgramme() {
         System.out.println("Exiting programme");
         System.exit(0);
     }
 
-    private static void editPaymentStatus(UserInterface userInterface) {
-        boolean writingError;
-        //TODO hør om en ligende get metode - bare til string
-        System.out.println("Type name of member to edit payment");
-        String searchTerm = userInterface.scanner.next();
-        Member searchResult = userInterface.controller.memberSearch(searchTerm);
+    private void editPaymentStatus(UserInterface userInterface) {
+        System.out.println("Type name of member to edit payment status");
+        String fullName = userInterface.scanner.next();
+        Member editPayment = userInterface.controller.memberSearch(fullName);
 
-        if (searchResult == null) {
-            System.out.println("No member found");
-
-        } else {
-            System.out.println("Member found: ");
-
-            //System.out.println(((i)+ 1 )+ ") " + searchResult.get(i));
-
-            System.out.println("Type name of member to edit");
-            String fullname = userInterface.scanner.nextLine();
-            // Member member = searchResult.get(number -1)
-
-            boolean writingError2 = false;
-            do {
+        boolean writingError = false;
+        do {
                 try {
                     System.out.println("Type in new subscription status");
                     String hasPaid = userInterface.scanner.nextLine();
                     if (!hasPaid.isEmpty()) {
-                        userInterface.member.setHasPaid(Boolean.parseBoolean(hasPaid));
+                        editPayment.setHasPaid(Boolean.parseBoolean(hasPaid));
                     }
-                    writingError2 = false;
+
                 } catch (NumberFormatException e) {
                     System.out.println("Error occurred - try again.");
                     writingError = true;
                 }
-            } while (writingError2 == true);
+            } while (writingError == true);
         }
-    }
+
 
 
     private static void viewPaymentStatusAllMembers(UserInterface userInterface) {

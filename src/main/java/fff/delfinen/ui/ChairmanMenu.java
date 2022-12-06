@@ -57,7 +57,7 @@ public class ChairmanMenu {
 
     private void viewMembers(UserInterface userInterface) {
         System.out.println("List of members:" + "\n");
-        for (Member member : userInterface.controller.getMembers()) {
+        for (Member member : controller.getMembers()) {
             System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Date, month and year of birth: "
                     + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
                     + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
@@ -136,7 +136,6 @@ public class ChairmanMenu {
             editMember.setCity(city);
         }
 
-
         boolean writingError1 = false;
         do {
             try {
@@ -184,7 +183,7 @@ public class ChairmanMenu {
             }
         } while (writingError1);
 
-        System.out.println("Member changed to: \n" + userInterface.member + "\n");
+        System.out.println("New member information changed to \n" );
     }
 
 
