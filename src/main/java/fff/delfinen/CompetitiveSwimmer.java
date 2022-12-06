@@ -13,6 +13,8 @@ public class CompetitiveSwimmer extends Member {
     private double registerTime;
     private String competitiveJunior;
     private String competitiveSenior;
+    private String exerciseJunior;
+    private String exerciseSenior;
 
 
     public CompetitiveSwimmer(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
@@ -24,6 +26,8 @@ public class CompetitiveSwimmer extends Member {
         this.registerTime = registerTime;
         this.competitiveJunior = competitiveJunior;
         this.competitiveSenior = competitiveSenior;
+        this.exerciseJunior = exerciseJunior;
+        this.exerciseSenior = exerciseSenior;
     }
 
     public static CompetitiveSwimmer breastSwimmer(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean hasPaid, double registerTime, String competitiveJunior, String competitiveSenior) {
@@ -110,6 +114,14 @@ public class CompetitiveSwimmer extends Member {
 
     public void setCompetitiveJunior(String competitiveJunior) {
         this.competitiveJunior = competitiveJunior;
+    }
+
+    public String getExerciseSenior(String exerciseSenior) {
+        return exerciseSenior;
+    }
+
+    public String getExerciseJunior(String exerciseJunior) {
+        return exerciseJunior;
     }
 
     public String getCompetitiveSenior() {
