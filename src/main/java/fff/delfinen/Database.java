@@ -31,12 +31,12 @@ public class Database {
 
     public Member memberSearch(String fullName) {
 
-       for (Member member : members){
-           String name = member.getFirstname().toLowerCase() + " " + member.getLastname().toLowerCase();
-           if (name.equals(fullName.toLowerCase())){
-               return member;
-           }
-       }
+        for (Member member : members) {
+            String name = member.getFirstname().toLowerCase() + " " + member.getLastname().toLowerCase();
+            if (name.equals(fullName.toLowerCase())) {
+                return member;
+            }
+        }
         return null;
     }
 
@@ -44,15 +44,16 @@ public class Database {
         this.members = members;
     }
 
-    public boolean deleteMember(String fullName){
+    public boolean deleteMember(String fullName) {
         Member member = memberSearch(fullName);
-        if (member == null){
-        return false;
+        if (member == null) {
+            return false;
         }
         return getMembers().remove(member);
     }
 
-    public void loadData(){
+
+    public void loadData() {
         Filehandler filehandler = new Filehandler();
         try {
             this.members = filehandler.loadData();

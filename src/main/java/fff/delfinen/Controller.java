@@ -33,15 +33,10 @@ public class Controller {
         return database.getMembers();
     }
 
-    public void editData() {
-        isChanged = true;
-
-    }
 
     public boolean deleteMember(String fullName){
         return database.deleteMember(fullName);
     }
-
 
     public ArrayList<Member>sort (String sortInput){
         Comparator comparator = new FlexibleComparator(sortInput);

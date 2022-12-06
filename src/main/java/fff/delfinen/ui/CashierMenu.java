@@ -14,7 +14,6 @@ public class CashierMenu {
             boolean writingError;
             System.out.println("Cashier menu");
             System.out.println("1) View payment status for all members\n" +
-                    //TODO  skal man kunne registre has paid - skal måske slette hos chairman
                     "2) View payment status by membership-type\n" +
                     "3) View members who are past due" + "\n" +
                     "4) Edit payment status\n" +
@@ -35,7 +34,6 @@ public class CashierMenu {
                 editPaymentStatus(userInterface);
 
             } else if (cashierChoice == 5) {
-                System.out.println("Payment overview" + "\n");
                 // TODO: Flyt til payments
 //                System.out.println("Payments in total " + "\n" + getPaymentsInTotal() + "\n");
 //                System.out.println(expectedPaymentTotal());
