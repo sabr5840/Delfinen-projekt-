@@ -1,5 +1,6 @@
 package fff.delfinen.ui;
 
+import fff.delfinen.Controller;
 import fff.delfinen.Member;
 
 import java.io.FileNotFoundException;
@@ -7,11 +8,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
+
 
 public class ChairmanMenu {
+    private Controller controller;
+    private UserInterface userInterface;
+
+    public ChairmanMenu(Controller controller, UserInterface userInterface) {
+        this.controller = controller;
+        this.userInterface = userInterface;
+    }
+
     // Menu for chairman
-    public void chairmanMenu(UserInterface userInterface) {
+    public void chMenu() {
         int chairmanChoice;
         boolean isRunning = true;
         boolean writingError;
@@ -19,11 +28,11 @@ public class ChairmanMenu {
             System.out.println("Chairman menu");
             System.out.println("1) Registration of new member\n" +
                     "2) Edit member information\n" +
-                    "3) Search for member\n" +
-                    "4) Delete member\n" +
-                    "5) View members\n" +
+                    "3) Delete member\n" +
+                    "4) Search for member\n" +
+                    "5) View all members\n" +
                     "6) Return to main menu\n" +
-                    "7) Quit programme\n");
+                    "7) Quit program\n");
 
             chairmanChoice = userInterface.scanner.nextInt();
             userInterface.scanner.nextLine();
@@ -32,10 +41,10 @@ public class ChairmanMenu {
             } else if (chairmanChoice == 2) {
                 editMember(userInterface);
             } else if (chairmanChoice == 3) {
-                searchForMember(userInterface);
-            } else if (chairmanChoice == 4) {
-                // TODO
+                delteMemberCM();
                 //db.deleteMember(Member member);
+            } else if (chairmanChoice == 4) {
+                // TODO find ud af hvordan man søger efter medlem udfra både efternan + fornavn
             } else if (chairmanChoice == 5) {
                 viewMembers(userInterface);
             } else if (chairmanChoice == 6) {
@@ -47,6 +56,7 @@ public class ChairmanMenu {
         System.exit(0);
     }
 
+
     private void viewMembers(UserInterface userInterface) {
         System.out.println("List of members:" + "\n");
         for (Member member : userInterface.controller.getMembers()) {
@@ -57,42 +67,39 @@ public class ChairmanMenu {
         }
     }
 
-    private void searchForMember(UserInterface userInterface) {
+    private void delteMemberCM() {
         System.out.println("Search for the member you want to remove from the system:");
-        String searchTerm = userInterface.scanner.next();
-        ArrayList<Member> searchResult = userInterface.controller.searchFor(searchTerm);
 
-        if (searchResult.isEmpty()) {
-            System.out.println("No member found \n");
-        } else {
-            System.out.println("Member found: ");
-            for (int i = 0; i < searchResult.size(); i++) {
+        System.out.println("Type in name for desired member ");
+        String fullName = userInterface.scanner.nextLine();
 
-            }
-            System.out.println("Type in name for desired member ");
-            String fullname = userInterface.scanner.nextLine();
-            //Member member = searchResult.get(number - 1);
+        System.out.println("Are you sure, you want to delete the member? (true/false)");
+        boolean delete = userInterface.scanner.nextBoolean();
+        if (delete) {
 
-            System.out.println("Are you sure, you want to delete the member? (true/false)");
-            boolean delete = userInterface.scanner.nextBoolean();
-            if (delete == true) {
-                // TODO: Flyt til controller
-                //db.deleteMember(member);
-
+            boolean isMemberDeleted = controller.deleteMember(fullName);
+            if (isMemberDeleted) {
                 System.out.println("Member deleted from system");
-            } else if (delete == false) {
-                System.out.println("Member not deleted");
+            } else {
+                System.out.println("Error, member not deleted");
             }
+
+        } else {
+            System.out.println("Delete member cancelled");
         }
     }
+
+
+    //opdatere liste i databasen - når vi sletter skal vi gemme listen i databasen
 
     private void editMember(UserInterface userInterface) {
         userInterface.controller.editData();
         System.out.println("Name of member to edit ");
         String searchTerm = userInterface.scanner.nextLine();
 
-        ArrayList<Member> searchResult = userInterface.controller.searchFor(searchTerm);
-        if (searchResult.isEmpty()) {
+        Member searchResult = controller.memberSearch(searchTerm);
+
+        if (searchResult == null) {
             System.out.println("No member found");
         } else {
             //TODO hør om en ligende get metode - bare til string - virker ikke skal laves om...
@@ -325,16 +332,16 @@ public class ChairmanMenu {
 
         System.out.println(" ");
         System.out.println("We have registered this information about the new member:\n" +
-                "Full name " + firstname + " " + lastname + "\n" +
-                "Birth date " + birthDate + "\n" +
-                "Address \n" + address + "\n" +
+                "Full name: " + firstname + " " + lastname + "\n" +
+                "Birth date: " + birthDate + "\n" +
+                "Address: \n" + address + "\n" +
                 postalCode + " " + city + "\n" +
-                "Phone number " + phoneNo + "\n" +
-                "E-mail " + eMail + "\n" +
-                "Passive or active membership " + passive + "\n" +
+                "Phone number: " + phoneNo + "\n" +
+                "E-mail: " + eMail + "\n" +
+                "Passive or active membership; " + passive + "\n" +
                 //TODO junior or senior
-                "Exercise or competetion-swimmer? " + exercise + "\n" +
-                "Is subscription paid? " + hasPaid);
+                "Exercise or competetion-swimmer: " + exercise + "\n" +
+                "Subscription status: " + hasPaid);
         System.out.println("Do you wish to save the new member? 'yes'/'no' ");
         String yesNo = userInterface.scanner.nextLine().toLowerCase();
         if (yesNo.equals("yes")) {
@@ -346,7 +353,7 @@ public class ChairmanMenu {
             }
         } else if (yesNo.equals("no")) {
             System.out.println("Member not saved, returning to previous menu");
-            chairmanMenu(userInterface);
+            chMenu();
         }
     }
 }

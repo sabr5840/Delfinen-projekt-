@@ -40,7 +40,6 @@ public class CashierMenu {
 //                System.out.println("Payments in total " + "\n" + getPaymentsInTotal() + "\n");
 //                System.out.println(expectedPaymentTotal());
 
-
             } else if (cashierChoice == 6) {
                 userInterface.startMenu();
             }
@@ -59,14 +58,14 @@ public class CashierMenu {
         //TODO hør om en ligende get metode - bare til string
         System.out.println("Type name of member to edit payment");
         String searchTerm = userInterface.scanner.next();
-        ArrayList<Member> searchResult = userInterface.controller.searchFor(searchTerm);
+        Member searchResult = userInterface.controller.memberSearch(searchTerm);
 
-        if (searchResult.isEmpty()) {
+        if (searchResult == null) {
             System.out.println("No member found");
 
         } else {
             System.out.println("Member found: ");
-            for (int i = 0; i < searchResult.size(); i++) ;
+
             //System.out.println(((i)+ 1 )+ ") " + searchResult.get(i));
 
             System.out.println("Type name of member to edit");
@@ -91,12 +90,13 @@ public class CashierMenu {
     }
 
 
-
     private static void viewPaymentStatusAllMembers(UserInterface userInterface) {
         for (Member member : userInterface.controller.getMembers()) {
             System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isHasPaid() + "\n");
         }
     }
+
+
 
     private static void viewPaymentStatusByMembership(UserInterface userInterface) {
         userInterface.sortMemberPastDue();

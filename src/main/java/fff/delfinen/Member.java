@@ -1,6 +1,8 @@
 package fff.delfinen;
 
 
+import fff.delfinen.ui.UserInterface;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -44,6 +46,7 @@ public class Member {
     public Member() {
 
     }
+
 
 
     //Getter

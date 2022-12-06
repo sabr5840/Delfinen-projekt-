@@ -29,26 +29,27 @@ public class Database {
     }
 
 
-    public ArrayList<Member> searchFor(String searchTerm) {
-       ArrayList<Member> searchResults = new ArrayList<>();
+    public Member memberSearch(String fullName) {
 
        for (Member member : members){
-           String name = member.getLastname().toLowerCase();
-           if (name.contains(searchTerm.toLowerCase().trim())){
-               searchResults.add(member);
+           String name = member.getFirstname().toLowerCase() + " " + member.getLastname().toLowerCase();
+           if (name.equals(fullName.toLowerCase())){
+               return member;
            }
        }
-       return searchResults;
+        return null;
     }
 
     public void setMembers(ArrayList<Member> members) {
         this.members = members;
     }
 
-    public boolean deleteMember(Member member){
-        getMembers().remove(member);
-        boolean succes = true;
-        return succes;
+    public boolean deleteMember(String fullName){
+        Member member = memberSearch(fullName);
+        if (member == null){
+        return false;
+        }
+        return getMembers().remove(member);
     }
 
     public void loadData(){

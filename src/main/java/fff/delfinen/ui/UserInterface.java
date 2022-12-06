@@ -16,7 +16,7 @@ public class UserInterface {
     private CashierMenu cashierMenu;
 
     Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
-    Controller controller = new Controller();
+    public Controller controller = new Controller();
     Member member = new Member();
 
     ArrayList<Member> juniorList = new ArrayList<>();
@@ -28,7 +28,8 @@ public class UserInterface {
 
     public void start() throws FileNotFoundException {
         coachMenu = new CoachMenu();
-        chairmanMenu = new ChairmanMenu();
+        chairmanMenu = new ChairmanMenu(controller, this);
+        cashierMenu = new CashierMenu();
         // TODO: Start controller og lad den loade
     controller.loadData();
         startMenu();
@@ -45,7 +46,7 @@ public class UserInterface {
                 int employeeNumber = employeeInput.nextInt();
 
                 if ((employeeNumber >= 1) && (employeeNumber <= 10)) {
-                    chairmanMenu.chairmanMenu(this);
+                    chairmanMenu.chMenu();
                 } else if ((employeeNumber >= 11) && (employeeNumber <= 20)) {
                     cashierMenu.cashierMenu(this);
                 } else if ((employeeNumber >= 21) && (employeeNumber <= 30)) {
@@ -63,6 +64,50 @@ public class UserInterface {
 
     // TODO: Flyt til controller+payments
     /*
+
+*/
+    void sortMemberPastDue() {
+        Scanner scanner = new Scanner(System.in);
+
+        int input = 0;
+        boolean inputError;
+        String sortInput = "";
+
+        while (input != 9) {
+            System.out.println("2. sort member list by active/passive membership");
+            System.out.println("3. sort member list by junior/senior member");
+            System.out.println("4. sort member list by exerciser or competitive swimmer");
+            do {
+                try {
+                    input = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (input) {
+                        case 1 -> sortInput = "passive";
+                        case 2 -> sortInput = "junior";
+                        case 3 -> sortInput = "exercise";
+                    }
+                    ArrayList<Member> sortedList = controller.sort(sortInput);
+                    printSorted(sortedList);
+                    inputError = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("Error, try again");
+                    inputError = true;
+                    scanner.nextLine();
+                }
+            } while (inputError);
+        }
+    }
+
+    private void printSorted(ArrayList<Member> sortedMembers) {
+        // TODO skal have kigget på, hvordan den printer det rigtige ud
+        for (Member member : sortedMembers) {
+            System.out.println("Active/passive membership status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+            System.out.println("junior/senior member status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+            System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+        }
+    }
+
+/*
     public boolean expectedPaymentTotal() {
         for (int i = 0; i < db.members.size(); i++) {
             if (db.members.get(i).isJunior() == true) {
@@ -115,46 +160,8 @@ public class UserInterface {
         }
         return total;
     }
-*/
-    void sortMemberPastDue() {
-        Scanner scanner = new Scanner(System.in);
 
-        int input = 0;
-        boolean inputError;
-        String sortInput = "";
 
-        while (input != 9) {
-            System.out.println("2. sort member list by active/passive membership");
-            System.out.println("3. sort member list by junior/senior member");
-            System.out.println("4. sort member list by exerciser or competitive swimmer");
-            do {
-                try {
-                    input = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (input) {
-                        case 1 -> sortInput = "passive";
-                        case 2 -> sortInput = "junior";
-                        case 3 -> sortInput = "exercise";
-                    }
-                    ArrayList<Member> sortedList = controller.sort(sortInput);
-                    printSorted(sortedList);
-                    inputError = false;
-                } catch (InputMismatchException e) {
-                    System.out.println("Error, try again");
-                    inputError = true;
-                    scanner.nextLine();
-                }
-            } while (inputError);
-        }
-    }
-
-    private void printSorted(ArrayList<Member> sortedMembers) {
-        // TODO skal have kigget på, hvordan den printer det rigtige ud
-        for (Member member : sortedMembers) {
-            System.out.println("Active/passive membership status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
-            System.out.println("junior/senior member status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
-            System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
-        }
-    }
+ */
 }
 

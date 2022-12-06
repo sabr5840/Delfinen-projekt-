@@ -25,8 +25,8 @@ public class Controller {
     }
 
     // Calls the search method from database
-    public ArrayList<Member> searchFor (String searchTerm){
-        return database.searchFor(searchTerm);
+    public Member memberSearch(String searchTerm){
+        return database.memberSearch(searchTerm);
     }
 
     public ArrayList <Member> getMembers(){
@@ -38,9 +38,19 @@ public class Controller {
 
     }
 
+    public boolean deleteMember(String fullName){
+        return database.deleteMember(fullName);
+    }
+
+
     public ArrayList<Member>sort (String sortInput){
         Comparator comparator = new FlexibleComparator(sortInput);
         database.getMembers().sort(comparator);
         return database.getMembers();
     }
+
+
+
+
+
 }
