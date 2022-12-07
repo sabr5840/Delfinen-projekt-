@@ -15,7 +15,7 @@ public class UserInterface {
     private CoachMenu coachMenu;
     private CashierMenu cashierMenu;
 
-    Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
+    static Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     public Controller controller = new Controller();
     Member member = new Member();
 
@@ -27,7 +27,7 @@ public class UserInterface {
     ArrayList<Member> paidPassives = new ArrayList<>();
 
     public void start() throws FileNotFoundException {
-        coachMenu = new CoachMenu();
+        coachMenu = new CoachMenu(this, controller);
         chairmanMenu = new ChairmanMenu(controller, this);
         cashierMenu = new CashierMenu();
         controller.loadData();
@@ -49,7 +49,7 @@ public class UserInterface {
                 } else if ((employeeNumber >= 11) && (employeeNumber <= 20)) {
                     cashierMenu.cashierMenu(this);
                 } else if ((employeeNumber >= 21) && (employeeNumber <= 30)) {
-                    coachMenu.coachMenu(this);
+                    coachMenu.coachMenu();
                 } else if ((employeeNumber <= 0) || (employeeNumber > 30)) {
                     System.out.println("invalid employee number - please enter a valid number");
                 }
