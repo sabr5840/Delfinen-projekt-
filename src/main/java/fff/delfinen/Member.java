@@ -1,13 +1,11 @@
 package fff.delfinen;
 
-
 import fff.delfinen.ui.UserInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class Member {
     //Fields of attributes
     private String firstname;
@@ -160,8 +158,3 @@ public class Member {
                 '}';
     }
 }
-
-
-
-
-
