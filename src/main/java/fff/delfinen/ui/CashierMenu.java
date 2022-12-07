@@ -13,7 +13,8 @@ public class CashierMenu {
             boolean isRunning;
             boolean writingError;
             System.out.println("Cashier menu");
-            System.out.println("1) View payment status for all members\n" +
+            System.out.println(
+                    "1) View payment status for all members\n" +
                     "2) View payment status by membership-type\n" +
                     "3) View members who are past due" + "\n" +
                     "4) Edit payment status\n" +
