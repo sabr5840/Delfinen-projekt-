@@ -20,7 +20,7 @@ public class ChairmanMenu {
     }
 
     // Menu for chairman
-    void viewChairmanMenu() {
+    public void viewChairmanMenu() {
         int chairmanChoice;
         boolean isRunning = true;
         boolean writingError;
