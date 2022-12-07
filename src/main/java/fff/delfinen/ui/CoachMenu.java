@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CoachMenu{
-
     // Menu for coach
     void coachMenu(UserInterface userInterface) {
         int coachChoice;
@@ -15,7 +14,8 @@ public class CoachMenu{
             boolean isRunning;
             boolean writingError;
             System.out.println("Coach menu");
-            System.out.println("1) View exercise teams\n" +
+            System.out.println(
+                    "1) View exercise teams\n" +
                     "2) View competition teams\n" +
                     "3) Register members swimming discipline\n" +
                     "4) Register result score\n" + //TODO stævne, plecerng, tid
@@ -111,19 +111,8 @@ public class CoachMenu{
         }
         }
 
-
-
-
-
-
-
-
-       //
-
       //  System.out.println("Would you like to register more disciplines: yes or no?");
         //TODO add discipline to list //if else//save
-
-
     private void viewCompetitionTeams(UserInterface userInterface) {
         System.out.println("Choose between junior and senior swimmers");
         System.out.println("Type return if you wish to go back to last menu" +
@@ -152,37 +141,46 @@ public class CoachMenu{
     }
 
     private void viewExcerciseTeams(UserInterface userInterface) {
+
         System.out.println("Choose between junior or senior swimmers");
         System.out.println("Type 'return' if you wish to return to last menu" +
                 "Type Q if you wish to quit the programme");
 
         Scanner input = new Scanner(System.in);
         String coachInput = input.nextLine().toLowerCase();
-        switch (coachInput) {
-            case "Jr", "junior", "Junior", "jr":
-                for (Member member : userInterface.controller.getMembers()) {
-                    if (member.isJunior())
-                        System.out.println(member.getFirstname());//vi vil vælge hvilken værdi der printes));
-                }
-                break;
-            case "Sr", "senior", "Senior", "sr":
-            for (Member member : userInterface.controller.getMembers()){
-                if (member.isJunior() == false){
-                    System.out.println(member.getFirstname() + member.getLastname());
-                }
+        boolean isRunning;
+        do {
+            isRunning = true;
+            switch (coachInput) {
+                case "Jr", "junior", "Junior", "jr":
+                    for (Member member : userInterface.controller.getMembers()) {
+                        if (member.isJunior())
+                            System.out.println(member.getFirstname() + " " + member.getLastname());//vi vil vælge hvilken værdi der printes));
+                        System.out.println(" ");
+                    }
+                    coachMenu(userInterface);
+                case "Sr", "senior", "Senior", "sr":
+                    for (Member member : userInterface.controller.getMembers()) {
+                        if (member.isJunior() == false) {
+                            System.out.println(member.getFirstname() + " " + member.getLastname());
+                            System.out.println(" ");
+                        }
+                    }
+                    coachMenu(userInterface);
+                    //System.out.println(userInterface.member.isExercise());
+                    //TODO members list of senior swimmers by last name
+                    break;
+                case "back", "Back", "return", "Return":
+                    coachMenu(userInterface);
+                    break;
+                case "Q", "quit", "q":
+                    System.out.println("Exiting programme");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("try again");
             }
-                System.out.println(userInterface.member.isExercise());
-                //TODO members list of senior swimmers by last name
-                break;
-            case "back", "Back", "return", "Return":
-                coachMenu(userInterface);
-                break;
-            case "Q", "quit", "q":
-                System.out.println("Exiting programme");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("try again");
-        }
+
+        } while (isRunning == false);
     }
 }
