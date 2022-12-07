@@ -62,8 +62,6 @@ public class UserInterface {
     }
 
     // TODO: Flyt til controller+payments
-    /*
-     */
     void sortMemberPastDue() {
         Scanner scanner = new Scanner(System.in);
 
