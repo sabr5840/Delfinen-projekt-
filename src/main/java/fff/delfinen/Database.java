@@ -3,31 +3,26 @@ package fff.delfinen;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Database {
     Filehandler filehandler = new Filehandler();
-    public static ArrayList<SwimTiming> crawlList = new ArrayList<>();
-    public static ArrayList<SwimTiming> breastList = new ArrayList<>();
-    public static ArrayList<SwimTiming> backCrawlList = new ArrayList<>();
-    public static ArrayList<SwimTiming> butterflyList = new ArrayList<>();
-
     // Arraylist
+    private ArrayList<CompetitiveSwimmer> competitiveSwimmers = new ArrayList<>();
     public ArrayList<Member> members = new ArrayList<>();
 
     //Getter for arraylist of members
     public ArrayList<Member> getMembers() {
         return members;
     }
-
     public void addMember(String firstname, String lastname, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail,
-                          boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
+                          boolean passive, boolean junior, boolean exercise, boolean paid) {
 
-        Member member = new Member(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
+        Member member = new Member(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, paid);
         members.add(member);
 
         System.out.println(members);
     }
-
 
     public Member memberSearch(String fullName) {
 
@@ -51,8 +46,6 @@ public class Database {
         }
         return getMembers().remove(member);
     }
-
-
     public void loadData() {
         Filehandler filehandler = new Filehandler();
         try {
@@ -60,9 +53,6 @@ public class Database {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-
-        //isChanged = true;
     }
 
 }

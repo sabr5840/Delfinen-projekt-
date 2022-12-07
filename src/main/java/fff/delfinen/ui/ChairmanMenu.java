@@ -43,7 +43,7 @@ public class ChairmanMenu {
             } else if (chairmanChoice == 3) {
                 deleteMember();
             } else if (chairmanChoice == 4) {
-                // TODO find ud af hvordan man søger efter medlem udfra både efternan + fornavn
+                searchMember(userInterface);
             } else if (chairmanChoice == 5) {
                 viewMembers(userInterface);
             } else if (chairmanChoice == 6) {
@@ -61,7 +61,7 @@ public class ChairmanMenu {
             System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Date, month and year of birth: "
                     + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
                     + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
-                    "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "\n" + "Has paid the subscription: " + member.isHasPaid() + "\n");
+                    "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "\n" + "Has paid the subscription: " + member.isPaid() + "\n");
         }
     }
 
@@ -309,15 +309,15 @@ public class ChairmanMenu {
         while (writingError);
 
         System.out.println("Has paid the subscription (y/n):");
-        boolean hasPaid = true;
+        boolean paid = true;
         char paidStatus;
         do {
             paidStatus = userInterface.scanner.nextLine().charAt(0);
             if (paidStatus == 'n') {
-                hasPaid = false;
+                paid = false;
                 break;
             } else if (paidStatus == 'y') {
-                hasPaid = true;
+                paid = true;
                 break;
             } else
                 System.out.println("Typing error - try again");
@@ -335,13 +335,13 @@ public class ChairmanMenu {
                 "Passive or active membership; " + passive + "\n" +
                 //TODO junior or senior
                 "Exercise or competetion-swimmer: " + exercise + "\n" +
-                "Subscription status: " + hasPaid);
+                "Subscription status: " + paid);
         System.out.println("Do you wish to save the new member? 'yes'/'no' ");
         String yesNo = userInterface.scanner.nextLine().toLowerCase();
         if (yesNo.equals("yes")) {
             System.out.println("New member saved in database");
             try {
-                userInterface.controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
+                userInterface.controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, paid);
             } catch (FileNotFoundException e) {
                 System.out.println("ERROR: Could not save to file");
             }

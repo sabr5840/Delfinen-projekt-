@@ -97,9 +97,9 @@ public class UserInterface {
     private void printSorted(ArrayList<Member> sortedMembers) {
         // TODO skal have kigget på, hvordan den printer det rigtige ud
         for (Member member : sortedMembers) {
-            System.out.println("Active/passive membership status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
-            System.out.println("junior/senior member status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
-            System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+            System.out.println("Active/passive membership status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isPaid());
+            System.out.println("junior/senior member status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isPaid());
+            System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isPaid());
         }
     }
 
@@ -116,17 +116,17 @@ public class UserInterface {
         }
 
         for (int i = 0; i > juniorList.size(); i++) {
-            if (juniorList.get(i).isHasPaid() == true) {
+            if (juniorList.get(i).isPaid() == true) {
                 paidJuniors.add(juniorList.get(i));
             }
         }
         for (int i = 0; i < seniorList.size(); i++) {
-            if (seniorList.get(i).isHasPaid() == true) {
+            if (seniorList.get(i).isPaid() == true) {
                 paidSeniors.add(seniorList.get(i));
             }
         }
         for (int i = 0; i < passiveList.size(); i++) {
-            if (passiveList.get(i).isHasPaid() == true) {
+            if (passiveList.get(i).isPaid() == true) {
                 paidPassives.add(passiveList.get(i));
             }
         }
@@ -144,7 +144,7 @@ public class UserInterface {
     private int getPaymentsInTotal() {
         int total = 0;
         for (Member member : controller.getMembers()) {
-            if (member.isHasPaid()) {
+            if (member.isPaid()) {
                 if (member.isJunior()) {
                     total += 1000;
                 } else if (member.isPassive()) {

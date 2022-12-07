@@ -21,13 +21,13 @@ public class Member {
     private boolean passive;
     private boolean junior;
     private boolean exercise;
-    private boolean hasPaid;
+    private boolean paid;
 
 
     //Constructor for attributes
     public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
                   String city, int phoneNo, String eMail, boolean passive, boolean junior,
-                  boolean exercise, boolean hasPaid){
+                  boolean exercise, boolean paid){
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthDate = birthDate;
@@ -39,16 +39,13 @@ public class Member {
         this.passive = passive;
         this.junior = junior;
         this.exercise = exercise;
-        this.hasPaid = hasPaid;
+        this.paid = paid;
 
     }
 
     public Member() {
 
     }
-
-
-
     //Getter
     public String getFirstname() {
         return firstname;
@@ -93,8 +90,8 @@ public class Member {
         return exercise;
     }
 
-    public boolean isHasPaid(){
-        return hasPaid;
+    public boolean isPaid(){
+        return paid;
     }
 
     //Setter
@@ -130,8 +127,8 @@ public class Member {
         this.eMail = eMail;
     }
 
-    public void setHasPaid(boolean hasPaid){
-        this.hasPaid = hasPaid;
+    public void setHasPaid(boolean paid){
+        this.paid = paid;
     }
 
     public void setPassive(boolean passive) {
@@ -159,16 +156,9 @@ public class Member {
                 ", passive=" + passive +
                 ", junior=" + junior +
                 ", exercise=" + exercise +
-                ", hasPaid=" + hasPaid +
+                ", paid=" + paid +
                 '}';
     }
-
-
-
-
-
-
-
 }
 
 

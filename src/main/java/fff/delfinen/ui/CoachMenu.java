@@ -4,16 +4,15 @@ import fff.delfinen.Controller;
 import fff.delfinen.Member;
 
 import java.util.Scanner;
+import java.util.SortedMap;
 
 public class CoachMenu {
     private Controller controller;
     private UserInterface userInterface;
 
-
     public CoachMenu(UserInterface userInterface, Controller controller) {
         this.controller = controller;
         this.userInterface = userInterface;
-
     }
 
     // Menu for coach
@@ -24,10 +23,10 @@ public class CoachMenu {
             boolean writingError;
             System.out.println("Coach menu");
             System.out.println(
-                    "1) View exercise teams\n" +
+                            "1) View exercise teams\n" +
                             "2) View competition teams\n" +
                             "3) Register members swimming discipline\n" +
-                            "4) Register result score\n" + //TODO stævne, plecerng, tid
+                            "4) Register result score\n" +
                             "5) View statistics\n" +
                             "6) Back to main menu\n" +
                             "7) Quit program");
@@ -52,34 +51,9 @@ public class CoachMenu {
     }
 
     void registerMembersSwimmingDiscipline() {
-        boolean isRunning = true;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Register competitive swimmers and their disciplines \n " +
-                "\nWhich member would you like to register?");
-        input.next();
-        String statsInput = input.next();
-        System.out.println("Which discipline would you like to register? (ex. Butterfly, Crawl, Backcrawl or Breast)");
+    boolean isRunning = true;
+    Scanner input = new Scanner(System.in);
 
-
-        switch (statsInput) {
-            case "breast", "Breast" -> System.out.println("U choose breast good day my lady");
-
-            case "Butterfly", "butterfly" -> System.out.println("TEST");
-
-            //TODO teamlist sorted by best time in crawl
-            case "E" -> System.out.println("TEST");
-
-            //TODO teamlist sorted by best time in backcrawl
-            case "C" -> System.out.println();
-
-            //TODO teamlist sorted by best time in breast
-
-            case "A" -> {
-                System.out.println("Exiting programme");
-                System.exit(0);
-            }
-            default -> System.out.println("Wrong input - please try again");
-        }
     }
 
     void viewCompetitionTeams() {
@@ -152,37 +126,9 @@ public class CoachMenu {
     }
 
     public void statistics() {
-        System.out.println(
-                "Choose how you would like to see the statistics" +
-                        "1) Best swimmers in butterfly \n" +
-                        "2) Best swimmers in crawl \n" +
-                        "3) Best swimmers in backcrawl \n" +
-                        "4) Best swimmers in breast \n " +
-                        "5) Return to previous menu\n" +
-                        "6) Quit programme");
-        Scanner input = new Scanner(System.in);
-        int statsInput = input.nextInt();
-        switch (statsInput) {
-            case 1:
-                System.out.println("NOT YET IMPLEMENTED");
-                //TODO teamlist sorted by best time in butterfly
-            case 2:
-                System.out.println("NOT YET IMPLEMENTED");
-                //TODO teamlist sorted by best time in crawl
-            case 3:
-                System.out.println("NOT YET IMPLEMENTED");
-                //TODO teamlist sorted by best time in backcrawl
-            case 4:
-                //TODO teamlist sorted by best time in breast
-            case 5:
-                coachMenu();
+        System.out.println();
+        //TODO liste af svømmere med tid
 
-            case 6:
-                System.out.println("Exiting programme");
-                System.exit(0);
-
-            default:
-                System.out.println("Wrong input - please try again");
-        }
     }
 }
+

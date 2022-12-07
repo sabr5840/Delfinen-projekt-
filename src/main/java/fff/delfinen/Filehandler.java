@@ -51,7 +51,7 @@ public class Filehandler {
             output.print(";");
             output.print(member.isExercise());
             output.print(";");
-            output.print(member.isHasPaid());
+            output.print(member.isPaid());
             output.println();
         }
     }
