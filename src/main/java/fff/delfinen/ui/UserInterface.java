@@ -30,12 +30,11 @@ public class UserInterface {
         coachMenu = new CoachMenu();
         chairmanMenu = new ChairmanMenu(controller, this);
         cashierMenu = new CashierMenu();
-        // TODO: Start controller og lad den loade
-    controller.loadData();
+        controller.loadData();
         startMenu();
     }
 
-    public void startMenu()  {
+    public void startMenu() {
         boolean success = false;
         Scanner employeeInput = new Scanner(System.in);
         System.out.println("Welcome to The Dolphins administrative system");
@@ -64,7 +63,7 @@ public class UserInterface {
 
     // TODO: Flyt til controller+payments
     /*
-*/
+     */
     void sortMemberPastDue() {
         Scanner scanner = new Scanner(System.in);
 

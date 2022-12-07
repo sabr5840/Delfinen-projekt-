@@ -121,9 +121,12 @@ public class CoachMenu{
         String teamInput = input.nextLine().toLowerCase();
         switch (teamInput) {
             case "Jr", "Junior", "junior", "jr":
-                System.out.println("TEST");
-                //TODO memberList of juniors sorted by alphabetical order and discipline //simone : crawl, butterfly
-                break;
+                for (Member member : userInterface.controller.getMembers()) {
+                    if (member.isExercise() == false && member.isJunior())
+                        System.out.println(member.getFirstname() + " " + member.getLastname() + " " + member.isExercise());
+                    System.out.println("");
+                }
+                coachMenu(userInterface);
             case "Sr", "senior", "Senior", "sr":
                 System.out.println("TEST");
                 //TODO memberList of seniors sorted by alphabetical order and discipline// naja : backcrawl
