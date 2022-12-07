@@ -45,7 +45,7 @@ public class UserInterface {
                 int employeeNumber = employeeInput.nextInt();
 
                 if ((employeeNumber >= 1) && (employeeNumber <= 10)) {
-                    chairmanMenu.chMenu();
+                    chairmanMenu.viewChairmanMenu();
                 } else if ((employeeNumber >= 11) && (employeeNumber <= 20)) {
                     cashierMenu.cashierMenu(this);
                 } else if ((employeeNumber >= 21) && (employeeNumber <= 30)) {

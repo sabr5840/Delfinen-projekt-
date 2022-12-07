@@ -20,7 +20,7 @@ public class ChairmanMenu {
     }
 
     // Menu for chairman
-    public void viewChairmanMenu() {
+    void viewChairmanMenu() {
         int chairmanChoice;
         boolean isRunning = true;
         boolean writingError;
@@ -197,7 +197,7 @@ public class ChairmanMenu {
     }
 
 
-    public void registerMember(UserInterface userInterface) {
+    private void registerMember(UserInterface userInterface) {
         boolean writingError = false;
         System.out.println("Register new member here");
 
