@@ -11,8 +11,9 @@ public class Database {
     public static ArrayList<SwimTiming> backCrawlList = new ArrayList<>();
     public static ArrayList<SwimTiming> butterflyList = new ArrayList<>();
 
+
     // Arraylist
-    public ArrayList<Member> members = new ArrayList<>();
+    public static ArrayList<Member> members = new ArrayList<>();
 
     //Getter for arraylist of members
     public ArrayList<Member> getMembers() {

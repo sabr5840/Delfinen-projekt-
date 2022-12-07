@@ -13,12 +13,15 @@ import java.time.temporal.ChronoUnit;
 public class ChairmanMenu {
     private Controller controller;
     private UserInterface userInterface;
+    Member member = new Member();
+
 
 
     public ChairmanMenu(Controller controller, UserInterface userInterface) {
         this.controller = controller;
         this.userInterface = userInterface;
     }
+
 
     // Menu for chairman
     public void viewChairmanMenu() {

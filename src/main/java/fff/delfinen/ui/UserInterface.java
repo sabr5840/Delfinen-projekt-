@@ -11,25 +11,21 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    public Member member = new Member();
     private ChairmanMenu chairmanMenu;
     private CoachMenu coachMenu;
     private CashierMenu cashierMenu;
 
-    static Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
+    //TODO: Kun static virker - ellers fejl i coachMenu
+    public static Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     public Controller controller = new Controller();
-    Member member = new Member();
 
-    ArrayList<Member> juniorList = new ArrayList<>();
-    ArrayList<Member> seniorList = new ArrayList<>();
-    ArrayList<Member> passiveList = new ArrayList<>();
-    ArrayList<Member> paidJuniors = new ArrayList<>();
-    ArrayList<Member> paidSeniors = new ArrayList<>();
-    ArrayList<Member> paidPassives = new ArrayList<>();
+
 
     public void start() throws FileNotFoundException {
-        coachMenu = new CoachMenu(this, controller);
+        coachMenu = new CoachMenu();
         chairmanMenu = new ChairmanMenu(controller, this);
-        cashierMenu = new CashierMenu();
+        cashierMenu = new CashierMenu(controller,this);
         controller.loadData();
         startMenu();
     }
@@ -47,7 +43,7 @@ public class UserInterface {
                 if ((employeeNumber >= 1) && (employeeNumber <= 10)) {
                     chairmanMenu.viewChairmanMenu();
                 } else if ((employeeNumber >= 11) && (employeeNumber <= 20)) {
-                    cashierMenu.cashierMenu(this);
+                    cashierMenu.cashierMenu();
                 } else if ((employeeNumber >= 21) && (employeeNumber <= 30)) {
                     coachMenu.coachMenu();
                 } else if ((employeeNumber <= 0) || (employeeNumber > 30)) {
@@ -62,7 +58,7 @@ public class UserInterface {
     }
 
     // TODO: Flyt til controller+payments
-    void sortMemberPastDue() {
+    public void sortMemberPastDue() {
         Scanner scanner = new Scanner(System.in);
 
         int input = 0;
@@ -102,62 +98,16 @@ public class UserInterface {
             System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
         }
     }
-
-/*
-    public boolean expectedPaymentTotal() {
-        for (int i = 0; i < db.members.size(); i++) {
-            if (db.members.get(i).isJunior() == true) {
-                juniorList.add(db.members.get(i));
-            } else if (db.members.get(i).isPassive() == true) {
-                passiveList.add(db.members.get(i));
-            } else if (db.members.get(i).isJunior() == false) {
-                seniorList.add(db.members.get(i));
-            }
-        }
-
-        for (int i = 0; i > juniorList.size(); i++) {
-            if (juniorList.get(i).isHasPaid() == true) {
-                paidJuniors.add(juniorList.get(i));
-            }
-        }
-        for (int i = 0; i < seniorList.size(); i++) {
-            if (seniorList.get(i).isHasPaid() == true) {
-                paidSeniors.add(seniorList.get(i));
-            }
-        }
-        for (int i = 0; i < passiveList.size(); i++) {
-            if (passiveList.get(i).isHasPaid() == true) {
-                paidPassives.add(passiveList.get(i));
-            }
-        }
-
-        int totalJunior = juniorList.size() * 1000;
-        int totalSenior = seniorList.size() * 1600;
-        int totalePassive = passiveList.size() * 500;
-        int total = totalJunior + totalSenior + totalePassive;
-        System.out.println("Expected annual payment in total: " + total);
-        return false;
+    public int readInt() {
+        int input = scanner.nextInt();
+        return input;
     }
-
-
-    // TODO: Flyt til Controller+Payments
-    private int getPaymentsInTotal() {
-        int total = 0;
-        for (Member member : controller.getMembers()) {
-            if (member.isHasPaid()) {
-                if (member.isJunior()) {
-                    total += 1000;
-                } else if (member.isPassive()) {
-                    total += 500;
-                } else {
-                    total += 1600;
-                }
-            }
-        }
-        return total;
-    }
-
-
- */
 }
+
+
+
+
+
+
+
 

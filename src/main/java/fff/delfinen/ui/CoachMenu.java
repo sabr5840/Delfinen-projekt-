@@ -1,6 +1,7 @@
 package fff.delfinen.ui;
 
 import fff.delfinen.Controller;
+import fff.delfinen.ExerciseSwimmer;
 import fff.delfinen.Member;
 
 import java.util.Scanner;
@@ -8,16 +9,16 @@ import java.util.Scanner;
 public class CoachMenu {
     private Controller controller;
     private UserInterface userInterface;
+    private ExerciseSwimmer exerciseSwimmer = new ExerciseSwimmer();
 
-
-    public CoachMenu(UserInterface userInterface, Controller controller) {
+    public CoachMenu() {
         this.controller = controller;
         this.userInterface = userInterface;
 
     }
 
     // Menu for coach
-    void coachMenu() {
+    public void coachMenu() {
         int coachChoice;
         do {
             boolean isRunning;
@@ -35,7 +36,7 @@ public class CoachMenu {
             coachChoice = UserInterface.scanner.nextInt();
 
             if (coachChoice == 1) {
-                viewExcerciseTeams();
+                exerciseSwimmer.viewExerciseTeams();
             } else if (coachChoice == 2) {
                 viewCompetitionTeams();
             } else if (coachChoice == 3) {
@@ -113,43 +114,7 @@ public class CoachMenu {
         }
     }
 
-    void viewExcerciseTeams() {
 
-        System.out.println("Choose between junior or senior swimmers");
-        System.out.println("Type 'return' if you wish to return to last menu" +
-                "Type Q if you wish to quit the programme");
-
-        Scanner input = new Scanner(System.in);
-        String coachInput = input.nextLine().toLowerCase();
-        boolean isRunning;
-        do {
-            isRunning = true;
-            switch (coachInput) {
-                case "Jr", "junior", "Junior", "jr":
-                    for (Member member : userInterface.controller.getMembers()) {
-                        if (member.isJunior())
-                            System.out.println(member.getFirstname() + " " + member.getLastname());//vi vil vælge hvilken værdi der printes));
-                        System.out.println(" ");
-                    }
-                case "Sr", "senior", "Senior", "sr":
-                    for (Member member : userInterface.controller.getMembers()) {
-                        if (member.isJunior() == false) {
-                            System.out.println(member.getFirstname() + " " + member.getLastname());
-                            System.out.println(" ");
-                        }
-                    }
-                case "back", "Back", "return", "Return":
-                    coachMenu();
-                    break;
-                case "Q", "quit", "q":
-                    System.out.println("Exiting programme");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("try again");
-            }
-        } while (isRunning == false);
-    }
 
     public void statistics() {
         System.out.println(
