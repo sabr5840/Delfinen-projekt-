@@ -23,8 +23,7 @@ public class CoachMenu{
                     "6) Back to main menu\n" +
                     "7) Quit program");
 
-            coachChoice = userInterface.scanner.nextInt();
-
+            coachChoice = userInterface.readInt();
             if (coachChoice == 1) {
                 viewExcerciseTeams(userInterface);
 

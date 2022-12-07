@@ -29,13 +29,13 @@ public class UserInterface {
     public void start() throws FileNotFoundException {
         coachMenu = new CoachMenu();
         chairmanMenu = new ChairmanMenu(controller, this);
-        cashierMenu = new CashierMenu();
+        cashierMenu = new CashierMenu(controller, this);
         // TODO: Start controller og lad den loade
-    controller.loadData();
+        controller.loadData();
         startMenu();
     }
 
-    public void startMenu()  {
+    public void startMenu() {
         boolean success = false;
         Scanner employeeInput = new Scanner(System.in);
         System.out.println("Welcome to The Dolphins administrative system");
@@ -48,7 +48,7 @@ public class UserInterface {
                 if ((employeeNumber >= 1) && (employeeNumber <= 10)) {
                     chairmanMenu.chMenu();
                 } else if ((employeeNumber >= 11) && (employeeNumber <= 20)) {
-                    cashierMenu.cashierMenu(this);
+                    cashierMenu.cashierMenu();
                 } else if ((employeeNumber >= 21) && (employeeNumber <= 30)) {
                     coachMenu.coachMenu(this);
                 } else if ((employeeNumber <= 0) || (employeeNumber > 30)) {
@@ -64,7 +64,7 @@ public class UserInterface {
 
     // TODO: Flyt til controller+payments
     /*
-*/
+     */
     void sortMemberPastDue() {
         Scanner scanner = new Scanner(System.in);
 
@@ -99,12 +99,17 @@ public class UserInterface {
 
     private void printSorted(ArrayList<Member> sortedMembers) {
         // TODO skal have kigget på, hvordan den printer det rigtige ud
+        String input = scanner.nextLine();
         for (Member member : sortedMembers) {
-            System.out.println("Active/passive membership status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
-            System.out.println("junior/senior member status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
-            System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+
+            switch (input) {
+                case "Active", "active", "a":
+                    System.out.println("Active/passive membership status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+                case "Passive", "passive", "p":
+                    System.out.println("junior/senior member status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+                    System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isHasPaid());
+            }
         }
-    }
 
 /*
     public boolean expectedPaymentTotal() {
@@ -158,9 +163,21 @@ public class UserInterface {
             }
         }
         return total;
+
+
+
     }
 
 
  */
-}
 
+
+
+    }
+
+    public int readInt() {
+        int inputRead = scanner.nextInt();
+        scanner.nextLine();
+        return inputRead;
+    }
+}

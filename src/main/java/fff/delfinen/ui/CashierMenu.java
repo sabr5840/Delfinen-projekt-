@@ -1,13 +1,22 @@
 package fff.delfinen.ui;
 
+import fff.delfinen.Controller;
 import fff.delfinen.Member;
 
 import java.util.ArrayList;
 
 public class CashierMenu {
 
+    private Controller controller;
+    private UserInterface userInterface;
+
+    public CashierMenu(Controller controller, UserInterface userInterface) {
+        this.controller = controller;
+        this.userInterface = userInterface;
+    }
+
     // Menu for cashier
-    void cashierMenu(UserInterface userInterface) {
+    void cashierMenu() {
         int cashierChoice;
         do {
             boolean isRunning;
@@ -21,17 +30,17 @@ public class CashierMenu {
                     "6) Return to main men\n" +
                     "7) Quit program" + "\n");
 
-            cashierChoice = userInterface.scanner.nextInt();
+            cashierChoice = userInterface.readInt();
             if (cashierChoice == 1) {
-                viewPaymentStatusAllMembers(userInterface);
+                viewPaymentStatusAllMembers();
             } else if (cashierChoice == 2) {
-                viewPaymentStatusByMembership(userInterface);
+                viewPaymentStatusByMembership();
 
             } else if (cashierChoice == 3) {
                 //TODO view only past-due members
 
             } else if (cashierChoice == 4) {
-                editPaymentStatus(userInterface);
+                editPaymentStatus();
 
             } else if (cashierChoice == 5) {
                 // TODO: Flyt til payments
@@ -46,18 +55,20 @@ public class CashierMenu {
         quitProgramme();
     }
 
+
+
     private void quitProgramme() {
         System.out.println("Exiting programme");
         System.exit(0);
     }
 
-    private void editPaymentStatus(UserInterface userInterface) {
+    private void editPaymentStatus() {
         System.out.println("Type name of member to edit payment status");
-        String fullName = userInterface.scanner.next();
-        Member editPayment = userInterface.controller.memberSearch(fullName);
-
-        boolean writingError = false;
-        do {
+        String fullName = userInterface.scanner.nextLine();
+        Member editPayment = controller.memberSearch(fullName);
+        if (editPayment != null){
+            boolean writingError = false;
+            do {
                 try {
                     System.out.println("Type in new subscription status");
                     String hasPaid = userInterface.scanner.nextLine();
@@ -70,17 +81,20 @@ public class CashierMenu {
                     writingError = true;
                 }
             } while (writingError == true);
+        }else {
+            System.out.println("Member not found");
+        }
         }
 
 
-    private static void viewPaymentStatusAllMembers(UserInterface userInterface) {
-        for (Member member : userInterface.controller.getMembers()) {
+    private  void viewPaymentStatusAllMembers() {
+        for (Member member : controller.getMembers()) {
             System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isHasPaid() + "\n");
         }
     }
 
 
-    private static void viewPaymentStatusByMembership(UserInterface userInterface) {
+    private void viewPaymentStatusByMembership() {
         userInterface.sortMemberPastDue();
     }
 

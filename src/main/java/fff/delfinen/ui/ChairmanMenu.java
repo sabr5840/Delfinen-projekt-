@@ -14,6 +14,7 @@ public class ChairmanMenu {
     private Controller controller;
     private UserInterface userInterface;
 
+
     public ChairmanMenu(Controller controller, UserInterface userInterface) {
         this.controller = controller;
         this.userInterface = userInterface;
@@ -33,9 +34,7 @@ public class ChairmanMenu {
                     "5) View all members\n" +
                     "6) Return to main menu\n" +
                     "7) Quit program\n");
-
-            chairmanChoice = userInterface.scanner.nextInt();
-            userInterface.scanner.nextLine();
+            chairmanChoice = userInterface.readInt();
             if (chairmanChoice == 1) {
                 registerMember(userInterface);
             } else if (chairmanChoice == 2) {
