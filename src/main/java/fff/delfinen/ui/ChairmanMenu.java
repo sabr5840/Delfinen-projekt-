@@ -20,7 +20,7 @@ public class ChairmanMenu {
     }
 
     // Menu for chairman
-    public void chMenu() {
+    public void viewChairmanMenu() {
         int chairmanChoice;
         boolean isRunning = true;
         boolean writingError;
@@ -97,7 +97,7 @@ public class ChairmanMenu {
         }
     }
 
-    //opdatere liste i databasen - når vi sletter skal vi gemme listen i databasen
+    // TODO opdatere liste i databasen - når vi sletter skal vi gemme listen i databasen
 
     private void editMember(UserInterface userInterface) {
         System.out.println("Member to edit");
@@ -347,7 +347,7 @@ public class ChairmanMenu {
             }
         } else if (yesNo.equals("no")) {
             System.out.println("Member not saved, returning to previous menu");
-            chMenu();
+            viewChairmanMenu();
         }
     }
 }
