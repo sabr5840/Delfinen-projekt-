@@ -1,11 +1,17 @@
 package fff.delfinen;
 
+import fff.delfinen.ui.CoachMenu;
+import fff.delfinen.ui.UserInterface;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CompetitiveSwimmer extends Member {
+
+UserInterface userInterface = new UserInterface();
+
     private boolean breast;
     private boolean crawl;
     private boolean backCrawl;
@@ -17,41 +23,14 @@ public class CompetitiveSwimmer extends Member {
     private String exerciseSenior;
 
 
-    public CompetitiveSwimmer(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean hasPaid) {
-        super(firstName, lastName, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, hasPaid);
-        this.breast = breast;
-        this.crawl = crawl;
-        this.backCrawl = backCrawl;
-        this.butterfly = butterfly;
+    public CompetitiveSwimmer() {
         this.registerTime = registerTime;
-        this.competitiveJunior = competitiveJunior;
-        this.competitiveSenior = competitiveSenior;
-        this.exerciseJunior = exerciseJunior;
-        this.exerciseSenior = exerciseSenior;
-    }
-
-    public static CompetitiveSwimmer breastSwimmer(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean hasPaid, double registerTime, String competitiveJunior, String competitiveSenior) {
-        return new CompetitiveSwimmer(
-                firstName,
-                lastName,
-                birthDate,
-                address,
-                postalCode,
-                city,
-                phoneNo,
-                eMail,
-                passive,
-                junior,
-                exercise,
-                hasPaid
-        );
     }
 
     public void chooseBreast() {
         ArrayList<CompetitiveSwimmer> breastList = new ArrayList<>();
-        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(getFirstname(), getLastname(), getBirthDate(),
-                getAddress(), getPostalCode(), getCity(), getPhoneNo(), geteMail(), isJunior(), isExercise(), isHasPaid(),
-                getBreast());
+        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(
+        );
 
         breastList.add(competitiveSwimmer);
         breast = true;
@@ -60,7 +39,6 @@ public class CompetitiveSwimmer extends Member {
     }
 
     public String returnBreast() {
-
         if (breast) {
             return "Chosen";
         } else {
@@ -108,8 +86,7 @@ public class CompetitiveSwimmer extends Member {
         this.registerTime = registerTime;
     }
 
-    public String getCompetitiveJunior() {
-        return competitiveJunior;
+    public void getCompetitiveJunior() {
     }
 
     public void setCompetitiveJunior(String competitiveJunior) {
@@ -203,24 +180,126 @@ public class CompetitiveSwimmer extends Member {
         {
             breast = true;
         }
-
         return null;
     }
 
+    public void registerMembersSwimmingDiscipline() {
+        boolean isRunning = true;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Register competitive swimmers and their disciplines \n " +
+                "\nWhich member would you like to register?");
+        input.next();
+        String statsInput = input.next();
+        System.out.println("Which discipline would you like to register? (ex. Butterfly, Crawl, Backcrawl or Breast)");
+
+
+        switch (statsInput) {
+            case "breast", "Breast" -> System.out.println("U choose breast good day my lady");
+
+            case "Butterfly", "butterfly" -> System.out.println("TEST");
+
+            //TODO teamlist sorted by best time in crawl
+            case "E" -> System.out.println("TEST");
+
+            //TODO teamlist sorted by best time in backcrawl
+            case "C" -> System.out.println();
+
+            //TODO teamlist sorted by best time in breast
+
+            case "A" -> {
+                System.out.println("Exiting programme");
+                System.exit(0);
+            }
+            default -> System.out.println("Wrong input - please try again");
+        }
+    }
+
+    public void viewCompetitionTeams(CoachMenu coachMenu) {
+        System.out.println("Choose between junior and senior swimmers");
+        System.out.println("Type return if you wish to go back to last menu" +
+                "Type Q if you wish to quit the programme");
+        Scanner input = new Scanner(System.in);
+        String teamInput = input.nextLine().toLowerCase();
+        switch (teamInput) {
+            case "junior", "jr":
+                for (Member member : coachMenu.userInterface.controller.getMembers()) {
+                    if (!member.isExercise() && member.isJunior())
+                        System.out.println(member.getFirstname() + " " + member.getLastname() + " " + member.isExercise());
+                    System.out.println("");
+                }
+            case "senior", "sr":
+                for (Member member : coachMenu.userInterface.controller.getMembers()) {
+                    if (!member.isExercise() && !member.isJunior())
+                        System.out.println(member.getFirstname() + " " + member.getLastname() + " " + member.isExercise());
+                    System.out.println("");
+                }
+            case "back", "return":
+                coachMenu.coachMenu();
+                break;
+            case "quit", "q":
+                System.out.println("Exiting programme");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Wrong input - please try again");
+        }
+    }
+    public void statistics() {
+        System.out.println(
+                """
+                        Choose how you would like to see the statistics:\s
+                        1) Best swimmers in butterfly\s
+                        2) Best swimmers in crawl\s
+                        3) Best swimmers in backcrawl\s
+                        4) Best swimmers in breast\s
+                        5) Return to previous menu
+                        6) Quit programme""");
+        Scanner input = new Scanner(System.in);
+        int statsInput = input.nextInt();
+
+
+        switch (statsInput) {
+            case 1:
+                System.out.println("NOT YET IMPLEMENTED");
+                //TODO teamlist sorted by best time in butterfly
+                break;
+            case 2:
+                System.out.println("NOT YET IMPLEMENTED..");
+                //TODO teamlist sorted by best time in crawl
+                break;
+            case 3:
+                System.out.println("NOT YET IMPLEMENTED.");
+                //TODO teamlist sorted by best time in backcrawl
+                break;
+            case 4:
+                //TODO teamlist sorted by best time in breast
+                break;
+            case 5:
+                //ååååååååååhhhhh
+                break;
+            case 6:
+                System.out.println("Exiting programme");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Wrong input - please try again");
+        }
+
 }
-   /* }
+    /*
         public void chooseBackCrawl() {
             ArrayList<CompetitiveSwimmer> competitiveSwimmers;
             CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(getFirstname(), getLastname(), getBirthDate(),
                     getAddress(), getPostalCode(), getCity(), getPhoneNo(), geteMail(), isPassive(), isJunior(),
-                    isExercise(), isHasPaid());
+                    isExercise(), isPaid());
 
         }
-
+*/
     }
 
-}
-*/
+
+
+
 
 
 

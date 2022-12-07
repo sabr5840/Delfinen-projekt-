@@ -51,7 +51,7 @@ public class Filehandler {
             output.print(";");
             output.print(member.isExercise());
             output.print(";");
-            output.print(member.isHasPaid());
+            output.print(member.isPaid());
             output.println();
         }
     }
@@ -72,11 +72,11 @@ public class Filehandler {
         String email = splits[7];
         boolean passive = Boolean.parseBoolean(splits[8]);
         boolean junior = Boolean.parseBoolean(splits[9]);
-        boolean excercise = Boolean.parseBoolean(splits[10]);
+        boolean exercise = Boolean.parseBoolean(splits[10]);
         boolean hasPaid = Boolean.parseBoolean(splits[11]);
 
 
-        return new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, excercise, hasPaid);
+        return new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, exercise, hasPaid);
 
     }
 }

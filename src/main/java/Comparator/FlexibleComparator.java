@@ -27,7 +27,7 @@ public class FlexibleComparator implements Comparator<Member> {
                 return Boolean.compare(o1.isExercise(), o2.isExercise());
             }
             case "hasPaid" -> {
-                return Boolean.compare(o1.isHasPaid(), o2.isHasPaid());
+                return Boolean.compare(o1.isPaid(), o2.isPaid());
             }
         }
         return 0;

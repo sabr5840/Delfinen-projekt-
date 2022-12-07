@@ -5,14 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
-    Filehandler filehandler = new Filehandler();
     public static ArrayList<SwimTiming> crawlList = new ArrayList<>();
     public static ArrayList<SwimTiming> breastList = new ArrayList<>();
     public static ArrayList<SwimTiming> backCrawlList = new ArrayList<>();
     public static ArrayList<SwimTiming> butterflyList = new ArrayList<>();
-
-
-    // Arraylist
     public static ArrayList<Member> members = new ArrayList<>();
 
     //Getter for arraylist of members
