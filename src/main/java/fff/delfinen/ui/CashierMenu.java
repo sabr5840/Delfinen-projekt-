@@ -73,13 +73,11 @@ public class CashierMenu {
         }
 
 
-
     private static void viewPaymentStatusAllMembers(UserInterface userInterface) {
         for (Member member : userInterface.controller.getMembers()) {
             System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isHasPaid() + "\n");
         }
     }
-
 
 
     private static void viewPaymentStatusByMembership(UserInterface userInterface) {

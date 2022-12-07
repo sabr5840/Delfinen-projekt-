@@ -65,6 +65,16 @@ public class ChairmanMenu {
         }
     }
 
+    private void searchMember(UserInterface userInterface){
+        System.out.println("Search for a specific member by their fullname \n ");
+
+        String fullName = userInterface.scanner.nextLine();
+        Member editMember = controller.memberSearch(fullName);
+
+        System.out.println();
+    }
+
+
     private void deleteMember() {
         System.out.println("Search for the member you want to remove from the system:");
 
@@ -92,10 +102,9 @@ public class ChairmanMenu {
     private void editMember(UserInterface userInterface) {
         System.out.println("Member to edit");
 
-        System.out.println("Type in name for desired member to edit ");
+        System.out.println("Type in fullname for desired member to edit ");
         String fullName = userInterface.scanner.nextLine();
         Member editMember = controller.memberSearch(fullName);
-
 
         System.out.println("Type new first name or press `enter`to keep present name");
         String firstName = userInterface.scanner.nextLine();
@@ -183,7 +192,8 @@ public class ChairmanMenu {
             }
         } while (writingError1);
 
-        System.out.println("New member information changed to \n" );
+        System.out.println("New member information changed to \n"  );
+
     }
 
 
