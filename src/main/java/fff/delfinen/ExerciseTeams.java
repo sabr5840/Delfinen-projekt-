@@ -20,7 +20,7 @@ public void viewExerciseTeams(CoachMenu coachMenu) {
             switch (coachInput) {
                 case "junior", "jr":
                     for (Member member : coachMenu.controller.getMembers()) {
-                        if (member.isJunior()) {
+                        if (member.isJunior() == true) {
                             System.out.println(member.getFirstname() + " " + member.getLastname());
                             System.out.println(" ");
                         }
