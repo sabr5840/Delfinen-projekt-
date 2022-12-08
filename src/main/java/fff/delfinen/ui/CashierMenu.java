@@ -70,10 +70,10 @@ public class CashierMenu {
         boolean inputError;
         String sortedInput = "";
 
-        System.out.println("Choose how you could like to sort members\n");
-        System.out.println("1) sort member list by active/passive membership");
-        System.out.println("2) sort member list by junior/senior member");
-        System.out.println("3) sort member list by exerciser or competitive swimmer");
+        System.out.println("Choose how you would like to sort members\n");
+        System.out.println("1) Sort member list by active/passive membership");
+        System.out.println("2) Sort member list by junior/senior member");
+        System.out.println("3) Sort member list by exerciser or competitive swimmer");
 
         ArrayList<Member> sortedList = controller.getMembers();
 

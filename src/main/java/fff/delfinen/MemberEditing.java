@@ -9,8 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
-import fff.delfinen.CompetitionTeams;
-
 import static fff.delfinen.ui.UserInterface.scanner;
 
 
