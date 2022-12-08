@@ -16,6 +16,10 @@ public class CompetitionTeams extends Member {
         this.butterfly = butterfly;
     }
 
+    public CompetitionTeams() {
+
+    }
+
     public String getCrawl() {
         return crawl;
     }

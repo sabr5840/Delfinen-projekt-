@@ -59,7 +59,6 @@ public class Filehandler {
     private Member splitLines(String line) {
         String[] splits = line.split(";");
 
-        Member member = new Member();
 
         //Takes wrong information when creating member - Tutor
         String firstName = splits[0];

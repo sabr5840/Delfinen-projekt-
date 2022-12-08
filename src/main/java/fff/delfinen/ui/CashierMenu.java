@@ -18,7 +18,7 @@ public class CashierMenu {
     }
 
     void cashierMenu() {
-        int cashierChoice;
+        int cashierChoice = 0;
         do {
             boolean isRunning;
             boolean writingError;
@@ -33,8 +33,7 @@ public class CashierMenu {
                     6) Return to main menu
                     7) Quit program
                     """);
-
-            cashierChoice = userInterface.readInt();
+            
             if (cashierChoice == 1) {
                 payments.viewPaymentStatusAllMembers();
             } else if (cashierChoice == 2) {
