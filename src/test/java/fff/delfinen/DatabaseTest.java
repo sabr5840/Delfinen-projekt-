@@ -1,5 +1,7 @@
-package org.example;
+package fff.delfinen;
 
+import fff.delfinen.Database;
+import fff.delfinen.Member;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
