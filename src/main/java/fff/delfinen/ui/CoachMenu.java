@@ -1,5 +1,6 @@
 package fff.delfinen.ui;
 
+import fff.delfinen.CompetitionTeams;
 import fff.delfinen.Controller;
 import fff.delfinen.ExerciseTeams;
 
@@ -7,6 +8,7 @@ public class CoachMenu {
     public Controller controller;
     public UserInterface userInterface;
     private final ExerciseTeams exerciseTeams = new ExerciseTeams();
+    private final CompetitionTeams competitionTeams = new CompetitionTeams();
 
     public CoachMenu(UserInterface userInterface, Controller controller) {
         this.controller = controller;
