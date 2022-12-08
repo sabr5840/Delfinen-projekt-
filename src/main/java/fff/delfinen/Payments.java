@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static fff.delfinen.ui.UserInterface.member;
 import static fff.delfinen.ui.UserInterface.scanner;
 
 public class Payments {

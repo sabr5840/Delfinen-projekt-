@@ -5,8 +5,8 @@ import java.time.LocalDate;
 
 public class Member {
 
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private LocalDate birthDate;
     private String address;
     private int postalCode;
@@ -17,22 +17,10 @@ public class Member {
     private boolean junior;
     private boolean exercise;
     private boolean Paid;
-    private String discipline;
 
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
-
-    public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
-                  String city, int phoneNo, String eMail, boolean passive, boolean junior,
-                  boolean exercise, boolean Paid, String discipline) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Member(String firstName, String lastName, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String email, boolean passive, boolean junior, boolean exercise, boolean paid) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.birthDate = birthDate;
         this.address = address;
         this.postalCode = postalCode;
@@ -43,19 +31,19 @@ public class Member {
         this.junior = junior;
         this.exercise = exercise;
         this.Paid = Paid;
-        this.discipline = discipline;
     }
+
 
     public Member() {
     }
 
     //Getter
     public String getFirstname() {
-        return firstname;
+        return firstName;
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
     public LocalDate getBirthDate() {
@@ -100,11 +88,11 @@ public class Member {
 
     //Setter
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstName = firstname;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
 
     public void setBirthDate(LocalDate birthDate) {

@@ -1,5 +1,8 @@
 package fff.delfinen;
 import fff.delfinen.ui.CoachMenu;
+import fff.delfinen.ui.UserInterface;
+import fff.delfinen.Database;
+
 import java.util.Scanner;
 
 public class ExerciseTeams {
@@ -16,13 +19,14 @@ public void viewExerciseTeams(CoachMenu coachMenu) {
             isRunning = true;
             switch (coachInput) {
                 case "junior", "jr":
-                    for (Member member : coachMenu.userInterface.controller.getMembers()) {
-                        if (member.isJunior())
+                    for (Member member : coachMenu.controller.getMembers()) {
+                        if (member.isJunior()) {
                             System.out.println(member.getFirstname() + " " + member.getLastname());
-                        System.out.println(" ");
+                            System.out.println(" ");
+                        }
                     }
                 case "sr", "senior":
-                    for (Member member : coachMenu.userInterface.controller.getMembers()) {
+                    for (Member member : coachMenu.controller.getMembers()) {
                         if (member.isJunior() == false) {
                             System.out.println(member.getFirstname() + " " + member.getLastname());
                             System.out.println(" ");

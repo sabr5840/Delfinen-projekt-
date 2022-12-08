@@ -33,10 +33,6 @@ public class Database {
         return null;
     }
 
-    public void setMembers(ArrayList<Member> members) {
-        this.members = members;
-    }
-
     public boolean deleteMember(String fullName) {
         Member member = memberSearch(fullName);
         if (member == null) {
@@ -49,7 +45,7 @@ public class Database {
     public void loadData() {
         Filehandler filehandler = new Filehandler();
         try {
-            this.members = filehandler.loadData();
+            members = filehandler.loadData();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -70,10 +70,10 @@ public class Filehandler {
         boolean passive = Boolean.parseBoolean(splits[8]);
         boolean junior = Boolean.parseBoolean(splits[9]);
         boolean exercise = Boolean.parseBoolean(splits[10]);
-        boolean hasPaid = Boolean.parseBoolean(splits[11]);
+        boolean paid = Boolean.parseBoolean(splits[11]);
 
-
-        return new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, exercise, hasPaid);
+        Member member = new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, exercise, paid);
+        return member;
 
     }
 }

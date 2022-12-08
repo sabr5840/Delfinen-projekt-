@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+
     public static Member member = new Member();
     public ChairmanMenu chairmanMenu;
     private CoachMenu coachMenu;

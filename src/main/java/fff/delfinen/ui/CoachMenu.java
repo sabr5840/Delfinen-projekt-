@@ -1,15 +1,12 @@
 package fff.delfinen.ui;
 
-import fff.delfinen.CompetitionTeams;
 import fff.delfinen.Controller;
 import fff.delfinen.ExerciseTeams;
-import java.util.Locale;
 
 public class CoachMenu {
     public Controller controller;
     public UserInterface userInterface;
     private final ExerciseTeams exerciseTeams = new ExerciseTeams();
-    private final CompetitionTeams competitionTeams = new CompetitionTeams();
 
     public CoachMenu(UserInterface userInterface, Controller controller) {
         this.controller = controller;
@@ -26,8 +23,8 @@ public class CoachMenu {
             System.out.println(
                     """
                             1) View exercise teams
-                            2) Add member to competition team
-                            2) View competition teams
+                            2) Add member to competition team - not implemented
+                            2) View competition teams - not implemented
                             3) Back to main menu
                             4) Quit program""");
 
@@ -36,9 +33,9 @@ public class CoachMenu {
             if (coachChoice == 1) {
                 exerciseTeams.viewExerciseTeams(this);
             } else if (coachChoice == 2) {
-                competitionTeams.setCompetitionTeams();
+                //competitionTeams.setCompetitionTeams();
             } else if (coachChoice == 3) {
-                competitionTeams.viewCompetitionTeams();
+                //competitionTeams.viewCompetitionTeams();
             } else if (coachChoice == 4) {
                 userInterface.startMenu();
             }
