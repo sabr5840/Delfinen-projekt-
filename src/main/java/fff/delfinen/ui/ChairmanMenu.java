@@ -2,10 +2,13 @@ package fff.delfinen.ui;
 import fff.delfinen.Controller;
 import fff.delfinen.MemberEditing;
 
+import java.util.Scanner;
+
 public class ChairmanMenu {
     public Controller controller;
     public UserInterface userInterface;
     private final MemberEditing memberEditing = new MemberEditing();
+    Scanner scanner = new Scanner(System.in);
 
     public ChairmanMenu() {
         this.controller = controller;

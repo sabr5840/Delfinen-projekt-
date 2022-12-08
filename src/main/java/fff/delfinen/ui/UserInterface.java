@@ -2,10 +2,8 @@ package fff.delfinen.ui;
 import fff.delfinen.Controller;
 import fff.delfinen.Member;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
+
 public class UserInterface {
 
     public static Member member = new Member();
@@ -14,7 +12,7 @@ public class UserInterface {
     public CashierMenu cashierMenu;
 
     //TODO: Kun static virker - ellers fejl i coachMenu hjælp someone
-    public static Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
+    static Scanner scanner = new Scanner(System.in).useLocale(Locale.ENGLISH);
     public Controller controller = new Controller();
 
     public void start() {
