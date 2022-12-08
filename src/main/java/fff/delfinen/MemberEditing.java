@@ -291,8 +291,8 @@ public class MemberEditing {
             System.out.println("Member not saved - returning to previous menu");
             chairmanMenu.viewChairmanMenu();
         }
+
+
     }
-
-
 
 }

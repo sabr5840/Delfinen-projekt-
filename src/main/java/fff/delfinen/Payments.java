@@ -1,6 +1,13 @@
 package fff.delfinen;
+import Comparator.FlexibleComparator;
 import fff.delfinen.ui.CashierMenu;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import static fff.delfinen.ui.UserInterface.member;
 import static fff.delfinen.ui.UserInterface.scanner;
 
 public class Payments {
@@ -101,9 +108,6 @@ public class Payments {
         System.out.println(expectedPaymentTotal());
     }
 
-    public void viewPaymentStatusByMembership(CashierMenu cashierMenu) {
-        cashierMenu.userInterface.cashierMenu.sortMemberPastDue(cashierMenu.userInterface);
-    }
 
     public void viewPaymentStatusAllMembers() {
         for (Member member : controller.getMembers()) {
@@ -142,7 +146,54 @@ public class Payments {
                 System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname());
             }
         }
+    }
 
+    public void sortMemberPastDue(CashierMenu userInterface) {
+        Scanner scanner = new Scanner(System.in);
+        int userinput = 0;
+        boolean inputError;
+        String sortedInput = "";
+
+        System.out.println("Choose how you could like to sort members\n");
+        System.out.println("1) sort member list by active/passive membership");
+        System.out.println("2) sort member list by junior/senior member");
+        System.out.println("3) sort member list by exerciser or competitive swimmer");
+
+        ArrayList<Member> sortedList = controller.getMembers();
+
+        try {
+            userinput = scanner.nextInt();
+            scanner.nextLine();
+            switch (userinput) {
+                case 1 -> {
+                    sortedList.sort(new FlexibleComparator(sortedInput));
+                    System.out.println("Active/passive membership status list\n");
+                    for (Member member : sortedList)
+                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
+                }
+                case 2 -> {
+                    sortedList.sort(new FlexibleComparator(sortedInput));
+                    System.out.println("junior/senior member status list\n");
+                    for (Member member : sortedList)
+                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
+                }
+                case 3 -> {
+                    sortedList.sort(new FlexibleComparator(sortedInput));
+                    System.out.println("Exerciser or competitive swimmer list\n");
+                    for (Member member : sortedList)
+                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
+                }
+
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong inpu\n");
+            System.out.println("Type 6, to return til menu");
+            inputError = true;
+            scanner.nextLine();
+        }
 
     }
+
+
 }

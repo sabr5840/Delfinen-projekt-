@@ -39,7 +39,7 @@ public class CashierMenu {
             if (cashierChoice == 1) {
                 payments.viewPaymentStatusAllMembers();
             } else if (cashierChoice == 2) {
-                payments.viewPaymentStatusByMembership(this);
+                payments.sortMemberPastDue(this);
 
             } else if (cashierChoice == 3) {
                 payments.viewMemberPastDue();
@@ -101,7 +101,8 @@ public class CashierMenu {
             }
 
         } catch (InputMismatchException e) {
-            System.out.println("Wrong input ");
+            System.out.println("Wrong inpu\n");
+            System.out.println("Type 6, to return til menu");
             inputError = true;
             scanner.nextLine();
         }

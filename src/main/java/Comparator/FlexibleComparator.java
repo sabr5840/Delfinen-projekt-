@@ -6,8 +6,7 @@ import java.util.Comparator;
 
 public class FlexibleComparator implements Comparator<Member> {
     private String sortedInput;
-
-    public FlexibleComparator(String sortInput) {
+    public FlexibleComparator(String sortedInput) {
         this.sortedInput = sortedInput;
     }
 
