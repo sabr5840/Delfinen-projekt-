@@ -66,30 +66,30 @@ public class CashierMenu {
 
     public void sortMemberPastDue(UserInterface userInterface) {
 
-        int userinput = 0;
+        int userInput = 0;
         boolean inputError;
         String sortedInput = "";
 
-        System.out.println("Choose how you could like to sort members\n");
-        System.out.println("1) sort member list by active/passive membership");
-        System.out.println("2) sort member list by junior/senior member");
-        System.out.println("3) sort member list by exerciser or competitive swimmer");
+        System.out.println("Choose how you would like to sort members\n");
+        System.out.println("1) Sort member list by active/passive membership");
+        System.out.println("2) Sort member list by junior/senior member");
+        System.out.println("3) Sort member list by exerciser or competitive swimmer");
 
         ArrayList<Member> sortedList = controller.getMembers();
 
         try {
-            userinput = scanner.nextInt();
+            userInput = scanner.nextInt();
             scanner.nextLine();
             for (Member member : sortedList) {
-                switch (userinput) {
+                switch (userInput) {
                     case 1 -> {
                         Collections.sort(sortedList, new FlexibleComparator(sortedInput));
-                        System.out.println("Active/passive membership status list\n");
+                        System.out.println("Active/Passive membership status list\n");
                         System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
                     }
                     case 2 -> {
                         Collections.sort(sortedList, new FlexibleComparator(sortedInput));
-                        System.out.println("junior/senior member status list\n");
+                        System.out.println("Junior/Senior member status list\n");
                         System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
                     }
                     case 3 -> {
@@ -102,7 +102,7 @@ public class CashierMenu {
             }
 
         } catch (InputMismatchException e) {
-            System.out.println("Wrong inpu\n");
+            System.out.println("Wrong input\n");
             System.out.println("Type 6, to return til menu");
             inputError = true;
             scanner.nextLine();

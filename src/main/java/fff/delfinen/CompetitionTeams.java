@@ -61,7 +61,7 @@ public class CompetitionTeams {
         String fullName = scanner.nextLine();
         Member CompetitionTeams = chairmanMenu.controller.memberSearch(fullName);
 
-        System.out.println("type wich discipline you wish to add to the member");
+        System.out.println("Type which discipline you wish to add to the member");
         String discipline = scanner.nextLine().toLowerCase();
         if (discipline == crawl) {
             member.setDiscipline(crawl);
@@ -79,7 +79,7 @@ public class CompetitionTeams {
     }
 
     public void viewCompetitionTeams() {
-        System.out.println("which team do you wish to see");
+        System.out.println("Which team do you wish to see");
         System.out.println("e.g crawl, backcrawl, breaststroke or butterfly");
 
         String input;
