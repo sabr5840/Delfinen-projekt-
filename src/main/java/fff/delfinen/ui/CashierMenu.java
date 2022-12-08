@@ -65,7 +65,7 @@ public class CashierMenu {
 
     public void sortMemberPastDue(UserInterface userInterface) {
         Scanner scanner = new Scanner(System.in);
-        int userinput = 0;
+        int userInput = 0;
         boolean inputError;
         String sortedInput = "";
 
@@ -77,10 +77,10 @@ public class CashierMenu {
         ArrayList<Member> sortedList = controller.getMembers();
 
         try {
-            userinput = scanner.nextInt();
+            userInput = scanner.nextInt();
             scanner.nextLine();
             for (Member member : sortedList) {
-                switch (userinput) {
+                switch (userInput) {
                     case 1 -> {
                         Collections.sort(sortedList, new FlexibleComparator(sortedInput));
                         System.out.println("Active/passive membership status list\n");
