@@ -8,7 +8,7 @@ import java.util.Locale;
 import java.util.Scanner;
 public class UserInterface {
 
-    public Member member = new Member();
+    public static Member member = new Member();
     private ChairmanMenu chairmanMenu;
     private CoachMenu coachMenu;
     public CashierMenu cashierMenu;
@@ -20,7 +20,7 @@ public class UserInterface {
     public void start() {
         coachMenu = new CoachMenu(this, controller);
         chairmanMenu = new ChairmanMenu(controller, this);
-        cashierMenu = new CashierMenu(controller,this);
+        cashierMenu = new CashierMenu(controller, this);
         controller.loadData();
         startMenu();
     }
@@ -52,6 +52,8 @@ public class UserInterface {
         }
     }
 }
+
+
 
 
 
