@@ -29,7 +29,7 @@ public class ChairmanMenu {
                             6) Return to main menu
                             7) Quit program
                             """);
-            chairmanChoice = userInterface.cashierMenu.readInt();
+            chairmanChoice = userInterface.readInt();
             if (chairmanChoice == 1) {
                 memberEditing.registerMember(userInterface, this);
             } else if (chairmanChoice == 2) {
@@ -37,7 +37,7 @@ public class ChairmanMenu {
             } else if (chairmanChoice == 3) {
                 memberEditing.deleteMember(this);
             } else if (chairmanChoice == 4) {
-                // TODO find ud af hvordan man søger efter medlem ud fra både efternavn + fornavn
+                memberEditing.searchMember(this);
             } else if (chairmanChoice == 5) {
                 memberEditing.viewMembers(this);
             } else if (chairmanChoice == 6) {

@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
 
 import static fff.delfinen.ui.UserInterface.scanner;
 
@@ -23,18 +22,16 @@ public class MemberEditing {
         }
     }
 
-    private void searchMember(ChairmanMenu chairmanMenu){
+    public void searchMember(ChairmanMenu chairmanMenu){
         System.out.println("Search for a specific member by their full name: \n ");
-
+        scanner.nextLine();
         String fullName = scanner.nextLine();
         Member editMember = chairmanMenu.controller.memberSearch(fullName);
-
-        System.out.println();
     }
 
     public void deleteMember(ChairmanMenu chairmanMenu) {
-        System.out.println("Search for the member you want to remove from the system:");
-
+        System.out.println("Search for the member you want to remove from the system\n");
+        scanner.nextLine();
        System.out.println("Type in name for desired member");
         String fullName = scanner.nextLine();
 
@@ -72,7 +69,7 @@ public class MemberEditing {
 
     public void editMember(ChairmanMenu chairmanMenu) {
         System.out.println("Member to edit");
-
+        scanner.nextLine();
         System.out.println("Type in full name for desired member to edit ");
         String fullName = scanner.nextLine();
         Member editMember = chairmanMenu.controller.memberSearch(fullName);
@@ -278,7 +275,6 @@ public class MemberEditing {
                 "Phone number: " + phoneNo + "\n" +
                 "E-mail: " + eMail + "\n" +
                 "Passive or active membership; " + passive + "\n" +
-                //TODO junior or senior
                 "Exercise or competition-swimmer: " + exercise + "\n" +
                 "Subscription status: " + Paid);
         System.out.println("\nSave the new member? 'yes'/'no' ");

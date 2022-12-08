@@ -34,7 +34,7 @@ public class CashierMenu {
                     7) Quit program
                     """);
 
-            cashierChoice = userInterface.cashierMenu.readInt();
+            cashierChoice = userInterface.readInt();
             if (cashierChoice == 1) {
                 payments.viewPaymentStatusAllMembers();
             } else if (cashierChoice == 2) {
@@ -99,8 +99,5 @@ public class CashierMenu {
             System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isPaid());
         }
     }
-    public int readInt() {
-        int input = UserInterface.scanner.nextInt();
-        return input;
-    }
+
 }
