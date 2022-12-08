@@ -12,7 +12,6 @@ public class ChairmanMenu {
         this.userInterface = userInterface;
     }
 
-
     public void viewChairmanMenu() {
         int chairmanChoice;
         boolean isRunning = true;
