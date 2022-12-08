@@ -169,7 +169,8 @@ public class MemberEditing {
                     junior = true;
                     userInterface.member.setJunior(true);
                     System.out.println("Member registered as junior");
-                } else if(false) {
+                } else if(ChronoUnit.YEARS.between(birthDate, todaysDate) >18 || ChronoUnit.YEARS.between(birthDate, todaysDate) == 18) {
+                    junior= false;
                     userInterface.member.setJunior(false);
                     System.out.println("Member registered as senior");
                 }
