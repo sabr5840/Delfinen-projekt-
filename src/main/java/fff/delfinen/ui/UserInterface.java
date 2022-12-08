@@ -19,7 +19,7 @@ public class UserInterface {
 
     public void start() {
         coachMenu = new CoachMenu(this, controller);
-        chairmanMenu = new ChairmanMenu(controller, this);
+        chairmanMenu = new ChairmanMenu();
         cashierMenu = new CashierMenu(controller, this);
         controller.loadData();
         startMenu();

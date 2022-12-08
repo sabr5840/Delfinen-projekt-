@@ -13,11 +13,10 @@ public class ChairmanMenu {
     }
 
     public void viewChairmanMenu() {
-        int chairmanChoice;
-
+        int chairmanChoice = 0;
+        boolean isRunning = true;
+        boolean writingError;
         do {
-            boolean isRunning;
-            boolean writingError;
             System.out.println("Chairman menu"+
             "\n----------------------------------------------");
             System.out.println(

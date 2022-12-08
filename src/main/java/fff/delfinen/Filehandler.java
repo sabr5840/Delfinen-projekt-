@@ -59,8 +59,6 @@ public class Filehandler {
     private Member splitLines(String line) {
         String[] splits = line.split(";");
 
-
-        //Takes wrong information when creating member - Tutor
         String firstName = splits[0];
         String lastName = splits[1];
         LocalDate birthDate = LocalDate.parse(splits[2]);

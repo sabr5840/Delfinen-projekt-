@@ -38,8 +38,6 @@ public class Member {
     public Member() {
     }
 
-
-
     //Getter
     public String getFirstname() {
         return firstname;
@@ -134,23 +132,6 @@ public class Member {
 
     public void setExercise(boolean exercise) {
         this.exercise = exercise;
-    }
-
-    public String toString() {
-        return "Member{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", birthDate=" + birthDate +
-                ", address='" + address + '\'' +
-                ", postalCode=" + postalCode +
-                ", city='" + city + '\'' +
-                ", phoneNo=" + phoneNo +
-                ", eMail='" + eMail + '\'' +
-                ", passive=" + passive +
-                ", junior=" + junior +
-                ", exercise=" + exercise +
-                ", Paid=" + Paid +
-                '}';
     }
 }
 
