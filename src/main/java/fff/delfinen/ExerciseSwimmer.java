@@ -3,7 +3,6 @@ import fff.delfinen.ui.CoachMenu;
 import java.util.Scanner;
 
 public class ExerciseSwimmer {
-public CompetitiveSwimmer competitiveSwimmer;
 
 public void viewExerciseTeams(CoachMenu coachMenu) {
 
