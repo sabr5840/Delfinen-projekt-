@@ -6,7 +6,8 @@ import fff.delfinen.Payments;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
-import java.util.Scanner;
+
+import static fff.delfinen.ui.UserInterface.scanner;
 
 public class CashierMenu {
 
@@ -35,7 +36,7 @@ public class CashierMenu {
                     6) Return to main menu
                     7) Quit program
                     """);
-            cashierChoice = UserInterface.scanner.nextInt();
+            cashierChoice = scanner.nextInt();
             if (cashierChoice == 1) {
                 payments.viewPaymentStatusAllMembers();
             } else if (cashierChoice == 2) {
@@ -64,7 +65,7 @@ public class CashierMenu {
     }
 
     public void sortMemberPastDue(UserInterface userInterface) {
-        Scanner scanner = new Scanner(System.in);
+
         int userinput = 0;
         boolean inputError;
         String sortedInput = "";
