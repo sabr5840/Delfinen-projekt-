@@ -1,24 +1,26 @@
 package fff.delfinen.ui;
+
+import fff.delfinen.CompetitionTeams;
 import fff.delfinen.Controller;
 import fff.delfinen.MemberEditing;
+import fff.delfinen.CompetitionTeams;
 
 public class ChairmanMenu {
     public Controller controller;
     public UserInterface userInterface;
     private final MemberEditing memberEditing = new MemberEditing();
 
-    public ChairmanMenu(Controller controller, UserInterface userInterface) {
+    public ChairmanMenu() {
         this.controller = controller;
         this.userInterface = userInterface;
     }
-
     public void viewChairmanMenu() {
         int chairmanChoice = 0;
         boolean isRunning = true;
         boolean writingError;
         do {
-            System.out.println("Chairman menu"+
-            "\n----------------------------------------------");
+            System.out.println("Chairman menu" +
+                    "\n----------------------------------------------");
             System.out.println(
                     """
                             1) Registration of new member
