@@ -7,25 +7,17 @@ import fff.delfinen.ui.ChairmanMenu;
 import fff.delfinen.ui.CoachMenu;
 import fff.delfinen.ui.UserInterface;
 
+import static fff.delfinen.ui.UserInterface.member;
 import static fff.delfinen.ui.UserInterface.scanner;
 
+public class CompetitionTeams {
 
-public class CompetitionTeams extends Member {
+    private final ChairmanMenu chairmanMenu = new ChairmanMenu(new Controller(), new UserInterface());
 
-    private final ChairmanMenu chairmanMenu = new ChairmanMenu();
-
-    String crawl;
-    String backcrawl;
-    String breaststroke;
-    String butterfly;
-
-    public CompetitionTeams(String firstname, String lastname, LocalDate birthDate, String address, int postalCode, String city, int phoneNo, String eMail, boolean passive, boolean junior, boolean exercise, boolean Paid, String crawl, String backcrawl, String breaststroke, String butterfly) {
-        super(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, Paid);
-        this.crawl = crawl;
-        this.backcrawl = backcrawl;
-        this.breaststroke = breaststroke;
-        this.butterfly = butterfly;
-    }
+    String crawl = "crawl";
+    String backcrawl = "backcrawl";
+    String breaststroke = "breaststroke";
+    String butterfly = "butterfly";
 
     public CompetitionTeams() {
     }
@@ -72,13 +64,17 @@ public class CompetitionTeams extends Member {
         System.out.println("type wich discipline you wish to add to the member");
         String discipline = scanner.nextLine().toLowerCase();
         if (discipline == crawl) {
-            setCrawl(crawl);
+            member.setDiscipline(crawl);
+            System.out.println("Discipline is set to crawl");
         } else if (discipline == backcrawl) {
-            setBackcrawl(backcrawl);
+            member.setDiscipline(backcrawl);
+            System.out.println("Discipline is set to backcrawl");
         } else if (discipline == breaststroke) {
-            setBreaststroke(breaststroke);
+            member.setDiscipline(breaststroke);
+            System.out.println("Discipline is set to breaststroke");
         } else if (discipline == butterfly) {
-            setButterfly(butterfly);
+            member.setDiscipline(butterfly);
+            System.out.println("Discipline is set to butterfly");
         }
     }
 
@@ -90,13 +86,13 @@ public class CompetitionTeams extends Member {
         input = scanner.nextLine().toLowerCase();
         switch (input) {
             case "crawl":
-                System.out.println(getCrawl());
+                System.out.println(member.getDiscipline());
             case "backcrawl":
-                System.out.println(getBackcrawl());
+                System.out.println(member.getDiscipline());
             case "breaststroke":
-                System.out.println(getBreaststroke());
+                System.out.println(member.getDiscipline());
             case "butterfly":
-                System.out.println(getButterfly());
+                System.out.println(member.getDiscipline());
         }
     }
 }
