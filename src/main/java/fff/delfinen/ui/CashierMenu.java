@@ -84,12 +84,12 @@ public class CashierMenu {
                 switch (userInput) {
                     case 1 -> {
                         Collections.sort(sortedList, new FlexibleComparator(sortedInput));
-                        System.out.println("Active/passive membership status list\n");
+                        System.out.println("Active/Passive membership status list\n");
                         System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
                     }
                     case 2 -> {
                         Collections.sort(sortedList, new FlexibleComparator(sortedInput));
-                        System.out.println("junior/senior member status list\n");
+                        System.out.println("Junior/Senior member status list\n");
                         System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
                     }
                     case 3 -> {
@@ -102,7 +102,7 @@ public class CashierMenu {
             }
 
         } catch (InputMismatchException e) {
-            System.out.println("Wrong inpu\n");
+            System.out.println("Wrong input\n");
             System.out.println("Type 6, to return til menu");
             inputError = true;
             scanner.nextLine();
