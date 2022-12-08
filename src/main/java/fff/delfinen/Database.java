@@ -53,9 +53,6 @@ public class Database {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-
-        //isChanged = true;
     }
 
 }
