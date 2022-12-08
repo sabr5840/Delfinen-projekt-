@@ -8,8 +8,6 @@ import fff.delfinen.ui.CoachMenu;
 import fff.delfinen.ui.UserInterface;
 
 import static fff.delfinen.ui.UserInterface.scanner;
-
-
 public class CompetitionTeams extends Member {
 
     ChairmanMenu chairmanMenu = new ChairmanMenu();
