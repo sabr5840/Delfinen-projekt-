@@ -169,19 +169,19 @@ public class Payments {
                     sortedList.sort(new FlexibleComparator(sortedInput));
                     System.out.println("Active/passive membership status list\n");
                     for (Member member : sortedList)
-                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
+                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid() + "\n");
                 }
                 case 2 -> {
                     sortedList.sort(new FlexibleComparator(sortedInput));
                     System.out.println("junior/senior member status list\n");
                     for (Member member : sortedList)
-                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
+                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid() + "\n");
                 }
                 case 3 -> {
                     sortedList.sort(new FlexibleComparator(sortedInput));
                     System.out.println("Exerciser or competitive swimmer list\n");
                     for (Member member : sortedList)
-                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid());
+                        System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status: " + member.isPaid() + "\n");
                 }
 
             }
