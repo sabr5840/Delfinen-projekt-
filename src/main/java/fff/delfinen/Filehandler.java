@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Filehandler {
     private final String path = "Data/Members.csv";
 
@@ -71,11 +72,11 @@ public class Filehandler {
         String email = splits[7];
         boolean passive = Boolean.parseBoolean(splits[8]);
         boolean junior = Boolean.parseBoolean(splits[9]);
-        boolean excercise = Boolean.parseBoolean(splits[10]);
-        boolean isPaid = Boolean.parseBoolean(splits[11]);
+        boolean exercise = Boolean.parseBoolean(splits[10]);
+        boolean hasPaid = Boolean.parseBoolean(splits[11]);
 
 
-        return new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, excercise, isPaid);
+        return new Member(firstName, lastName, birthDate, address, postalCode, city, phoneNo, email, passive, junior, exercise, hasPaid);
 
     }
 }

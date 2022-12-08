@@ -1,13 +1,10 @@
 package fff.delfinen;
 
-import fff.delfinen.ui.UserInterface;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
 public class Member {
-    //Fields of attributes
+
     private String firstname;
     private String lastname;
     private LocalDate birthDate;
@@ -19,13 +16,11 @@ public class Member {
     private boolean passive;
     private boolean junior;
     private boolean exercise;
-    private boolean paid;
+    private boolean Paid;
 
-
-    //Constructor for attributes
     public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
                   String city, int phoneNo, String eMail, boolean passive, boolean junior,
-                  boolean exercise, boolean paid){
+                  boolean exercise, boolean Paid){
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthDate = birthDate;
@@ -37,13 +32,14 @@ public class Member {
         this.passive = passive;
         this.junior = junior;
         this.exercise = exercise;
-        this.paid = paid;
+        this.Paid = Paid;
 
     }
-
     public Member() {
-
     }
+
+
+
     //Getter
     public String getFirstname() {
         return firstname;
@@ -51,7 +47,6 @@ public class Member {
     public String getLastname(){
         return lastname;
     }
-
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -89,7 +84,7 @@ public class Member {
     }
 
     public boolean isPaid(){
-        return paid;
+        return Paid;
     }
 
     //Setter
@@ -125,8 +120,8 @@ public class Member {
         this.eMail = eMail;
     }
 
-    public void setHasPaid(boolean paid){
-        this.paid = paid;
+    public void setPaid(boolean paid){
+        this.Paid = paid;
     }
 
     public void setPassive(boolean passive) {
@@ -154,7 +149,12 @@ public class Member {
                 ", passive=" + passive +
                 ", junior=" + junior +
                 ", exercise=" + exercise +
-                ", paid=" + paid +
+                ", Paid=" + Paid +
                 '}';
     }
 }
+
+
+
+
+

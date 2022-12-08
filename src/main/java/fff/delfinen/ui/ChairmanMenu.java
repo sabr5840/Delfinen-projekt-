@@ -1,51 +1,46 @@
 package fff.delfinen.ui;
-
 import fff.delfinen.Controller;
-import fff.delfinen.Member;
-
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
-
+import fff.delfinen.MemberEditing;
 
 public class ChairmanMenu {
-    private Controller controller;
-    private UserInterface userInterface;
+    public Controller controller;
+    public UserInterface userInterface;
+    private final MemberEditing memberEditing = new MemberEditing();
 
     public ChairmanMenu(Controller controller, UserInterface userInterface) {
         this.controller = controller;
         this.userInterface = userInterface;
     }
 
-    // Menu for chairman
+
     public void viewChairmanMenu() {
         int chairmanChoice;
         boolean isRunning = true;
         boolean writingError;
         do {
-            System.out.println("Chairman menu");
-            System.out.println("1) Registration of new member\n" +
-                    "2) Edit member information\n" +
-                    "3) Delete member\n" +
-                    "4) Search for member\n" +
-                    "5) View all members\n" +
-                    "6) Return to main menu\n" +
-                    "7) Quit program\n");
-
-            chairmanChoice = userInterface.scanner.nextInt();
-            userInterface.scanner.nextLine();
+            System.out.println("Chairman menu"+
+            "\n----------------------------------------------");
+            System.out.println(
+                    """
+                            1) Registration of new member
+                            2) Edit member information
+                            3) Delete member
+                            4) Search for member
+                            5) View all members
+                            6) Return to main menu
+                            7) Quit program
+                            """);
+            chairmanChoice = userInterface.cashierMenu.readInt();
             if (chairmanChoice == 1) {
-                registerMember(userInterface);
+                memberEditing.registerMember(userInterface, this);
             } else if (chairmanChoice == 2) {
-                editMember(userInterface);
+                memberEditing.editMember(this);
             } else if (chairmanChoice == 3) {
-                deleteMember();
+                memberEditing.deleteMember(this);
             } else if (chairmanChoice == 4) {
-                searchMember(userInterface);
+                // TODO find ud af hvordan man søger efter medlem ud fra både efternavn + fornavn
             } else if (chairmanChoice == 5) {
-                viewMembers(userInterface);
+                memberEditing.viewMembers(this);
             } else if (chairmanChoice == 6) {
                 userInterface.startMenu();
             }
@@ -54,300 +49,5 @@ public class ChairmanMenu {
         System.out.println("Exiting programme");
         System.exit(0);
     }
-
-    private void viewMembers(UserInterface userInterface) {
-        System.out.println("List of members:" + "\n");
-        for (Member member : controller.getMembers()) {
-            System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname() + "\n" + "Date, month and year of birth: "
-                    + member.getBirthDate() + "\n" + "Address: " + member.getAddress() + " " + member.getPostalCode() + " " + member.getCity() + "\n"
-                    + "Phone number: " + member.getPhoneNo() + "\n" + "Email address: " + member.geteMail() +
-                    "\n" + "Membership typer: " + member.isPassive() + ", " + member.isJunior() + ", " + member.isExercise() + "\n" + "Has paid the subscription: " + member.isPaid() + "\n");
-        }
-    }
-
-    private void searchMember(UserInterface userInterface){
-        System.out.println("Search for a specific member by their fullname \n ");
-
-        String fullName = userInterface.scanner.nextLine();
-        Member editMember = controller.memberSearch(fullName);
-
-        System.out.println();
-    }
-
-
-    private void deleteMember() {
-        System.out.println("Search for the member you want to remove from the system:");
-
-        System.out.println("Type in name for desired member ");
-        String fullName = userInterface.scanner.nextLine();
-
-        System.out.println("Are you sure, you want to delete the member? (true/false)");
-        boolean delete = userInterface.scanner.nextBoolean();
-        if (delete) {
-
-            boolean isMemberDeleted = controller.deleteMember(fullName);
-            if (isMemberDeleted) {
-                System.out.println("Member deleted from system");
-            } else {
-                System.out.println("Error, member not deleted");
-            }
-
-        } else {
-            System.out.println("Delete member cancelled");
-        }
-    }
-
     // TODO opdatere liste i databasen - når vi sletter skal vi gemme listen i databasen
-
-    private void editMember(UserInterface userInterface) {
-        System.out.println("Member to edit");
-
-        System.out.println("Type in fullname for desired member to edit ");
-        String fullName = userInterface.scanner.nextLine();
-        Member editMember = controller.memberSearch(fullName);
-
-        System.out.println("Type new first name or press `enter`to keep present name");
-        String firstName = userInterface.scanner.nextLine();
-        if (!firstName.isEmpty()) {
-            editMember.setFirstname(firstName);
-        }
-        System.out.println("Type new last name or press `enter`to keep present last name");
-        String lastName = userInterface.scanner.nextLine();
-        if (!lastName.isEmpty()) {
-            editMember.setLastname(lastName);
-        }
-
-        System.out.println("Type new address or press `enter`to keep present address");
-        String address = userInterface.scanner.nextLine();
-        if (!address.isEmpty()) {
-            editMember.setAddress(address);
-        }
-
-        boolean wiritingError;
-        do {
-            try {
-                System.out.println("Type new postal code or press `enter`to keep present postal code");
-                String postalCode = userInterface.scanner.nextLine();
-                if (!postalCode.isEmpty()) {
-                    editMember.setPostalCode(Integer.parseInt(postalCode));
-                }
-                wiritingError = false;
-            } catch (NumberFormatException e) {
-                System.out.println("Error occurred - try again");
-                wiritingError = true;
-            }
-        } while (wiritingError);
-
-
-        System.out.println("Type new city or press `enter`to keep present city");
-        String city = userInterface.scanner.nextLine();
-        if (!city.isEmpty()) {
-            editMember.setCity(city);
-        }
-
-        boolean writingError1 = false;
-        do {
-            try {
-                System.out.println("Type new phone number or press `enter`to keep present phone number");
-                String phoneNo = userInterface.scanner.nextLine();
-                if (!phoneNo.isEmpty()) {
-                    editMember.setPhoneNo(Integer.parseInt(phoneNo));
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error occurred - try again.");
-                writingError1 = true;
-            }
-        } while (writingError1);
-
-
-        System.out.println("Type new email or press `enter`to keep present email");
-        String eMail = userInterface.scanner.nextLine();
-        if (!eMail.isEmpty()) {
-            editMember.setAddress(eMail);
-        }
-
-        do {
-            try {
-                System.out.println("Type new Membership status (Passive or active) or `enter`to keep present status");
-                String passive = userInterface.scanner.nextLine();
-                if (!passive.isEmpty()) {
-                   editMember.setPassive(Boolean.parseBoolean(passive));
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error occurred - try again.");
-                writingError1 = true;
-            }
-        } while (writingError1);
-
-        do {
-            try {
-                System.out.println("Type new Membership status (competition swimmer or exerciser) or `enter`to keep present status");
-                String exercise = userInterface.scanner.nextLine();
-                if (!exercise.isEmpty()) {
-                    editMember.setExercise(Boolean.parseBoolean(exercise));
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error occurred - try again.");
-                writingError1 = true;
-            }
-        } while (writingError1);
-
-        System.out.println("New member information changed to \n"  );
-
-    }
-
-
-    private void registerMember(UserInterface userInterface) {
-        boolean writingError = false;
-        System.out.println("Register new member here");
-
-        System.out.println("First name:");
-        String firstname = userInterface.scanner.nextLine();
-
-        System.out.println("Last name:");
-        String lastname = userInterface.scanner.nextLine();
-
-        LocalDate birthDate = null;
-        boolean dateInputError;
-        boolean junior = true;
-        String input;
-        do {
-            try {
-                System.out.println("Date of birth ('ddMMyyyy'):");
-                birthDate = LocalDate.parse(userInterface.scanner.nextLine(), DateTimeFormatter.ofPattern("ddMMyyyy"));
-                LocalDate todaysDate = LocalDate.now();
-                dateInputError = false;
-                if (ChronoUnit.YEARS.between(birthDate, todaysDate) < 18) {
-                    junior = true;
-                    userInterface.member.setJunior(true);
-                    System.out.println("Member registered as junior");
-                } else if (ChronoUnit.YEARS.between(birthDate, todaysDate) > 18) {
-                    junior = false;
-                    userInterface.member.setJunior(false);
-                    System.out.println("Member registered as senior");
-                }
-            } catch (DateTimeParseException | NumberFormatException e) {
-                System.out.println("Date of birth must be in correct format 'ddMMyyyy'");
-                dateInputError = true;
-            }
-        } while (dateInputError);
-
-        System.out.println("Type in address:");
-        String address = userInterface.scanner.nextLine();
-
-        int postalCode = 0;
-        do {
-            try {
-                System.out.println("Type in postal code:");
-                postalCode = Integer.parseInt(userInterface.scanner.nextLine());
-                if (postalCode > 0) {
-                    userInterface.member.setPostalCode((postalCode));
-                    writingError = false;
-                }
-
-            } catch (NumberFormatException e) {
-                System.out.println("Error ocurred - try again");
-                writingError = true;
-            }
-        } while (writingError);
-
-        System.out.println("Type in city:");
-        String city = userInterface.scanner.nextLine();
-
-
-        int phoneNo = 0;
-        do {
-            try {
-                System.out.println("Type in phonenumber:");
-                phoneNo = Integer.parseInt(userInterface.scanner.nextLine());
-                writingError = false;
-            } catch (NumberFormatException e) {
-                System.out.println("Fail");
-                writingError = true;
-            }
-        } while (writingError);
-
-        System.out.println("Type in Mail-adress:");
-        String eMail = userInterface.scanner.nextLine();
-
-        System.out.println("Type in active 'a' or passive 'p' member status:");
-        boolean passive = true;
-        char passiveOrActive;
-        do {
-            passiveOrActive = userInterface.scanner.nextLine().charAt(0);
-            if (passiveOrActive == 'p') {
-                passive = false;
-                break;
-            } else if (passiveOrActive == 'a') {
-                passive = true;
-                break;
-            } else
-                System.out.println("Input error - try again");
-        } while (passiveOrActive != 'p' || passiveOrActive != 'a');
-
-        System.out.println("Type in competition swimmer 'c' or exerciser 'e' member status:");
-        boolean exercise = true;
-        char memberType;
-
-        do {
-            try {
-                memberType = userInterface.scanner.nextLine().charAt(0);
-
-                if (memberType == 'c') {
-                    exercise = false;
-                    break;
-                } else if (memberType == 'e') {
-                    exercise = true;
-                    break;
-                } else
-                    System.out.println("Typing error - try again");
-            } catch (NumberFormatException e) {
-                System.out.println("Error occurred - try again");
-                writingError = true;
-            }
-        }
-        while (writingError);
-
-        System.out.println("Has paid the subscription (y/n):");
-        boolean paid = true;
-        char paidStatus;
-        do {
-            paidStatus = userInterface.scanner.nextLine().charAt(0);
-            if (paidStatus == 'n') {
-                paid = false;
-                break;
-            } else if (paidStatus == 'y') {
-                paid = true;
-                break;
-            } else
-                System.out.println("Typing error - try again");
-            writingError = true;
-        } while (writingError);
-
-        System.out.println(" ");
-        System.out.println("We have registered this information about the new member:\n" +
-                "Full name: " + firstname + " " + lastname + "\n" +
-                "Birth date: " + birthDate + "\n" +
-                "Address: \n" + address + "\n" +
-                postalCode + " " + city + "\n" +
-                "Phone number: " + phoneNo + "\n" +
-                "E-mail: " + eMail + "\n" +
-                "Passive or active membership; " + passive + "\n" +
-                //TODO junior or senior
-                "Exercise or competetion-swimmer: " + exercise + "\n" +
-                "Subscription status: " + paid);
-        System.out.println("Do you wish to save the new member? 'yes'/'no' ");
-        String yesNo = userInterface.scanner.nextLine().toLowerCase();
-        if (yesNo.equals("yes")) {
-            System.out.println("New member saved in database");
-            try {
-                userInterface.controller.addMember(firstname, lastname, birthDate, address, postalCode, city, phoneNo, eMail, passive, junior, exercise, paid);
-            } catch (FileNotFoundException e) {
-                System.out.println("ERROR: Could not save to file");
-            }
-        } else if (yesNo.equals("no")) {
-            System.out.println("Member not saved, returning to previous menu");
-            viewChairmanMenu();
-        }
-    }
 }

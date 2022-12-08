@@ -1,43 +1,53 @@
 package fff.delfinen.ui;
-
+import fff.delfinen.Controller;
 import fff.delfinen.Member;
-
+import fff.delfinen.Payments;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class CashierMenu {
 
-    // Menu for cashier
-    void cashierMenu(UserInterface userInterface) {
+    public Controller controller;
+    public UserInterface userInterface;
+    private final Payments payments = new Payments();
+
+    public CashierMenu(Controller controller, UserInterface userInterface) {
+        this.controller = controller;
+        this.userInterface = userInterface;
+    }
+
+    void cashierMenu() {
         int cashierChoice;
         do {
             boolean isRunning;
             boolean writingError;
-            System.out.println("Cashier menu");
-            System.out.println(
-                    "1) View payment status for all members\n" +
-                    "2) View payment status by membership-type\n" +
-                    "3) View members who are past due" + "\n" +
-                    "4) Edit payment status\n" +
-                    "5) Payment overview\n" +
-                    "6) Return to main men\n" +
-                    "7) Quit program" + "\n");
+            System.out.println("\nCashier menu" +
+            "\n----------------------------------------------");
+            System.out.println("""
+                    1) View payment status for all members
+                    2) View payment status by membership-type
+                    3) View members who are past due
+                    4) Edit payment status
+                    5) Payment overview
+                    6) Return to main menu
+                    7) Quit program
+                    """);
 
-            cashierChoice = userInterface.scanner.nextInt();
+            cashierChoice = userInterface.cashierMenu.readInt();
             if (cashierChoice == 1) {
-                viewPaymentStatusAllMembers(userInterface);
+                payments.viewPaymentStatusAllMembers();
             } else if (cashierChoice == 2) {
-                viewPaymentStatusByMembership(userInterface);
+                payments.viewPaymentStatusByMembership(this);
 
             } else if (cashierChoice == 3) {
                 //TODO view only past-due members
 
             } else if (cashierChoice == 4) {
-                editPaymentStatus(userInterface);
+                payments.editPaymentStatus(this);
 
             } else if (cashierChoice == 5) {
-                // TODO: Flyt til payments
-//                System.out.println("Payments in total " + "\n" + getPaymentsInTotal() + "\n");
-//                System.out.println(expectedPaymentTotal());
+                payments.paymentOverview(this);
 
             } else if (cashierChoice == 6) {
                 userInterface.startMenu();
@@ -46,43 +56,51 @@ public class CashierMenu {
         } while (cashierChoice != 7);
         quitProgramme();
     }
-
     private void quitProgramme() {
         System.out.println("Exiting programme");
         System.exit(0);
     }
+    public void sortMemberPastDue(UserInterface userInterface) {
+        Scanner scanner = new Scanner(System.in);
 
-    private void editPaymentStatus(UserInterface userInterface) {
-        System.out.println("Type name of member to edit payment status");
-        String fullName = userInterface.scanner.next();
-        Member editPayment = userInterface.controller.memberSearch(fullName);
+        int input = 0;
+        boolean inputError;
+        String sortInput = "";
 
-        boolean writingError = false;
-        do {
+        while (input != 9) {
+            System.out.println("2. sort member list by active/passive membership");
+            System.out.println("3. sort member list by junior/senior member");
+            System.out.println("4. sort member list by exerciser or competitive swimmer");
+            do {
                 try {
-                    System.out.println("Type in new subscription status");
-                    String hasPaid = userInterface.scanner.nextLine();
-                    if (!hasPaid.isEmpty()) {
-                        editPayment.setHasPaid(Boolean.parseBoolean(hasPaid));
+                    input = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (input) {
+                        case 1 -> sortInput = "passive";
+                        case 2 -> sortInput = "junior";
+                        case 3 -> sortInput = "exercise";
                     }
-
-                } catch (NumberFormatException e) {
-                    System.out.println("Error occurred - try again.");
-                    writingError = true;
+                    ArrayList<Member> sortedList = userInterface.controller.sort(sortInput);
+                    printSorted(sortedList);
+                    inputError = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("Something went wrong - try again");
+                    inputError = true;
+                    scanner.nextLine();
                 }
-            } while (writingError == true);
-        }
-
-
-    private static void viewPaymentStatusAllMembers(UserInterface userInterface) {
-        for (Member member : userInterface.controller.getMembers()) {
-            System.out.println("Name: " + member.getFirstname() + "\n" + "Lastname: " + member.getLastname() + "\n" + "has paid the subscription: " + member.isPaid() + "\n");
+            } while (inputError);
         }
     }
-
-
-    private static void viewPaymentStatusByMembership(UserInterface userInterface) {
-        userInterface.sortMemberPastDue();
+    private void printSorted(ArrayList<Member> sortedMembers) {
+        // TODO skal have kigget på, hvordan den printer det rigtige ud
+        for (Member member : sortedMembers) {
+            System.out.println("Active/passive membership status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isPaid());
+            System.out.println("junior/senior member status" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isPaid());
+            System.out.println("exerciser or competitive swimmer" + member.isPassive() + "\n" + "Full name\n" + member.getFirstname() + " " + member.getLastname() + "\n" + "Subscription status\n" + member.isPaid());
+        }
     }
-
+    public int readInt() {
+        int input = UserInterface.scanner.nextInt();
+        return input;
+    }
 }
