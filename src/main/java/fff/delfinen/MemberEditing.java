@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import fff.delfinen.CompetitionTeams;
 
 import static fff.delfinen.ui.UserInterface.scanner;
 
@@ -167,7 +168,7 @@ public class MemberEditing {
                     junior = true;
                     userInterface.member.setJunior(true);
                     System.out.println("Member registered as junior");
-                } else if( junior == false) {
+                } else if (junior == false) {
                     userInterface.member.setJunior(false);
                     System.out.println("Member registered as senior");
                 }

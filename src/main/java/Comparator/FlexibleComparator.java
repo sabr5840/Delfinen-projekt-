@@ -5,18 +5,15 @@ import fff.delfinen.Member;
 import java.util.Comparator;
 
 public class FlexibleComparator implements Comparator<Member> {
-    private String sortInput;
+    private String sortedInput;
 
     public FlexibleComparator(String sortInput) {
-        this.sortInput = sortInput;
+        this.sortedInput = sortedInput;
     }
 
     @Override
     public int compare(Member o1, Member o2) {
-        switch (sortInput) {
-            case "lastName" -> {
-                return o1.getLastname().compareTo(o2.getLastname());
-            }
+        switch (sortedInput) {
             case "passive" -> {
                 return Boolean.compare(o1.isPassive(), o2.isPassive());
             }
@@ -25,9 +22,6 @@ public class FlexibleComparator implements Comparator<Member> {
             }
             case "exercise" -> {
                 return Boolean.compare(o1.isExercise(), o2.isExercise());
-            }
-            case "hasPaid" -> {
-                return Boolean.compare(o1.isPaid(), o2.isPaid());
             }
         }
         return 0;

@@ -134,4 +134,15 @@ public class Payments {
             System.out.println("Member not found");
         }
         }
+
+    public void viewMemberPastDue(){
+        System.out.println("Members past due \n");
+        for (Member member : Database.members){
+            if (!member.isPaid()){
+                System.out.println("Full name: " + member.getFirstname() + " " + member.getLastname());
+            }
+        }
+
+
+    }
 }

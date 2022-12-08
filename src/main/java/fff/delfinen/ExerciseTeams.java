@@ -18,12 +18,12 @@ public void viewExerciseTeams(CoachMenu coachMenu) {
                 case "junior", "jr":
                     for (Member member : coachMenu.userInterface.controller.getMembers()) {
                         if (member.isJunior())
-                            System.out.println(member.getFirstname() + " " + member.getLastname());//vi vil vælge hvilken værdi der printes));
+                            System.out.println(member.getFirstname() + " " + member.getLastname());
                         System.out.println(" ");
                     }
                 case "sr", "senior":
                     for (Member member : coachMenu.userInterface.controller.getMembers()) {
-                        if (!member.isJunior()) {
+                        if (member.isJunior() == false) {
                             System.out.println(member.getFirstname() + " " + member.getLastname());
                             System.out.println(" ");
                         }

@@ -14,29 +14,30 @@ public class CoachMenu {
         this.controller = controller;
         this.userInterface = userInterface;
     }
+
     public void coachMenu() {
         int coachChoice;
         do {
             boolean isRunning;
             boolean writingError;
             System.out.println("Coach menu" +
-            "\n----------------------------------------------");
+                    "\n----------------------------------------------");
             System.out.println(
                     """
                             1) View exercise teams
+                            2) Add member to competition team
                             2) View competition teams
-                            3) Top 5 swimmers
-                            4) Back to main menu
-                            5) Quit program""");
+                            3) Back to main menu
+                            4) Quit program""");
 
             coachChoice = UserInterface.scanner.nextInt();
 
             if (coachChoice == 1) {
                 exerciseTeams.viewExerciseTeams(this);
             } else if (coachChoice == 2) {
-
+                competitionTeams.setCompetitionTeams();
             } else if (coachChoice == 3) {
-
+                competitionTeams.viewCompetitionTeams();
             } else if (coachChoice == 4) {
                 userInterface.startMenu();
             }

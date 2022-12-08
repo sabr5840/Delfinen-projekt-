@@ -7,7 +7,7 @@ public class ChairmanMenu {
     public UserInterface userInterface;
     private final MemberEditing memberEditing = new MemberEditing();
 
-    public ChairmanMenu(Controller controller, UserInterface userInterface) {
+    public ChairmanMenu() {
         this.controller = controller;
         this.userInterface = userInterface;
     }
@@ -29,6 +29,7 @@ public class ChairmanMenu {
                             6) Return to main menu
                             7) Quit program
                             """);
+            chairmanChoice = UserInterface.scanner.nextInt();
             if (chairmanChoice == 1) {
                 memberEditing.registerMember(userInterface, this);
             } else if (chairmanChoice == 2) {
