@@ -13,7 +13,7 @@ public class ChairmanMenu {
     }
 
     public void viewChairmanMenu() {
-        int chairmanChoice;
+        int chairmanChoice = 0;
         boolean isRunning = true;
         boolean writingError;
         do {
@@ -29,7 +29,6 @@ public class ChairmanMenu {
                             6) Return to main menu
                             7) Quit program
                             """);
-            chairmanChoice = userInterface.readInt();
             if (chairmanChoice == 1) {
                 memberEditing.registerMember(userInterface, this);
             } else if (chairmanChoice == 2) {
