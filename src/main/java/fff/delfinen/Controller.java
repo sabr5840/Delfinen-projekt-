@@ -33,8 +33,8 @@ public class Controller {
     public boolean deleteMember(String fullName){
         return database.deleteMember(fullName);
     }
-    public ArrayList<Member>sort (String sortInput){
-        Comparator comparator = new FlexibleComparator(sortInput);
+    public ArrayList<Member>sortedList (String sortedInput){
+        Comparator comparator = new FlexibleComparator(sortedInput);
         database.getMembers().sort(comparator);
         return database.getMembers();
     }

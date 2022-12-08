@@ -291,4 +291,7 @@ public class MemberEditing {
             chairmanMenu.viewChairmanMenu();
         }
     }
+
+
+
 }

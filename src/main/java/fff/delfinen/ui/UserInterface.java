@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     public static Member member = new Member();
-    private ChairmanMenu chairmanMenu;
+    public ChairmanMenu chairmanMenu;
     private CoachMenu coachMenu;
     public CashierMenu cashierMenu;
 
