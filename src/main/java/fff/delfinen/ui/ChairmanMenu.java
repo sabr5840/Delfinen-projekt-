@@ -7,7 +7,7 @@ public class ChairmanMenu {
     public UserInterface userInterface;
     private final MemberEditing memberEditing = new MemberEditing();
 
-    public ChairmanMenu(Controller controller, UserInterface userInterface) {
+    public ChairmanMenu() {
         this.controller = controller;
         this.userInterface = userInterface;
     }
