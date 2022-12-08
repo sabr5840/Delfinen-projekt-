@@ -169,7 +169,7 @@ public class MemberEditing {
                     junior = true;
                     userInterface.member.setJunior(true);
                     System.out.println("Member registered as junior");
-                } else if( junior == false) {
+                } else if(false) {
                     userInterface.member.setJunior(false);
                     System.out.println("Member registered as senior");
                 }
