@@ -17,10 +17,20 @@ public class Member {
     private boolean junior;
     private boolean exercise;
     private boolean Paid;
+    private String discipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
 
     public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
                   String city, int phoneNo, String eMail, boolean passive, boolean junior,
-                  boolean exercise, boolean Paid){
+                  boolean exercise, boolean Paid, String discipline) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthDate = birthDate;
@@ -33,8 +43,9 @@ public class Member {
         this.junior = junior;
         this.exercise = exercise;
         this.Paid = Paid;
-
+        this.discipline = discipline;
     }
+
     public Member() {
     }
 
@@ -42,9 +53,11 @@ public class Member {
     public String getFirstname() {
         return firstname;
     }
-    public String getLastname(){
+
+    public String getLastname() {
         return lastname;
     }
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -81,7 +94,7 @@ public class Member {
         return exercise;
     }
 
-    public boolean isPaid(){
+    public boolean isPaid() {
         return Paid;
     }
 
@@ -118,7 +131,7 @@ public class Member {
         this.eMail = eMail;
     }
 
-    public void setPaid(boolean paid){
+    public void setPaid(boolean paid) {
         this.Paid = paid;
     }
 

@@ -1,13 +1,14 @@
 package fff.delfinen.ui;
 import fff.delfinen.Controller;
 import fff.delfinen.MemberEditing;
+import java.util.Scanner;
 
 public class ChairmanMenu {
     public Controller controller;
     public UserInterface userInterface;
     private final MemberEditing memberEditing = new MemberEditing();
 
-    public ChairmanMenu() {
+    public ChairmanMenu(Controller controller, UserInterface userInterface) {
         this.controller = controller;
         this.userInterface = userInterface;
     }
@@ -48,5 +49,4 @@ public class ChairmanMenu {
         System.out.println("Exiting programme");
         System.exit(0);
     }
-    // TODO opdatere liste i databasen - når vi sletter skal vi gemme listen i databasen
 }

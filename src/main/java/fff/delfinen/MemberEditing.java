@@ -1,14 +1,17 @@
 package fff.delfinen;
 import fff.delfinen.ui.ChairmanMenu;
 import fff.delfinen.ui.UserInterface;
+
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+
 import fff.delfinen.CompetitionTeams;
 
 import static fff.delfinen.ui.UserInterface.scanner;
+
 
 public class MemberEditing {
     Member member = new Member();
@@ -23,7 +26,7 @@ public class MemberEditing {
         }
     }
 
-    public void searchMember(ChairmanMenu chairmanMenu){
+    public void searchMember(ChairmanMenu chairmanMenu) {
         System.out.println("Search for a specific member by their full name: \n ");
         scanner.nextLine();
         String fullName = scanner.nextLine();
@@ -33,7 +36,7 @@ public class MemberEditing {
     public void deleteMember(ChairmanMenu chairmanMenu) {
         System.out.println("Search for the member you want to remove from the system\n");
         scanner.nextLine();
-       System.out.println("Type in name for desired member");
+        System.out.println("Type in name for desired member");
         String fullName = scanner.nextLine();
 
         System.out.println("Are you sure, you want to delete the member? (true/false)");
@@ -50,20 +53,20 @@ public class MemberEditing {
         }
     }
 
-    public int VaildNumber (){
+    public int VaildNumber() {
         int results = -1;
         boolean writingError = true;
-        do{
+        do {
             try {
                 results = Integer.parseInt(scanner.nextLine());
-                if (results > 0){
+                if (results > 0) {
                     writingError = false;
                 }
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("error, try again");
                 writingError = true;
             }
-        }while (writingError);
+        } while (writingError);
         return results;
 
     }

@@ -3,6 +3,7 @@ package fff.delfinen.ui;
 import fff.delfinen.CompetitionTeams;
 import fff.delfinen.Controller;
 import fff.delfinen.ExerciseTeams;
+import java.util.Locale;
 
 public class CoachMenu {
     public Controller controller;
