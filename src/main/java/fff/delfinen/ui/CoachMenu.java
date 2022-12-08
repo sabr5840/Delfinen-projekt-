@@ -1,12 +1,12 @@
 package fff.delfinen.ui;
 
 import fff.delfinen.Controller;
-import fff.delfinen.ExerciseSwimmer;
+import fff.delfinen.ExerciseTeams;
 
 public class CoachMenu {
     public Controller controller;
     public UserInterface userInterface;
-    private final ExerciseSwimmer exerciseSwimmer = new ExerciseSwimmer();
+    private final ExerciseTeams exerciseTeams = new ExerciseTeams();
 
     public CoachMenu(UserInterface userInterface, Controller controller) {
         this.controller = controller;
@@ -30,7 +30,7 @@ public class CoachMenu {
             coachChoice = UserInterface.scanner.nextInt();
 
             if (coachChoice == 1) {
-                exerciseSwimmer.viewExerciseTeams(this);
+                exerciseTeams.viewExerciseTeams(this);
             } else if (coachChoice == 2) {
 
             } else if (coachChoice == 3) {
