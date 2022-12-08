@@ -1,6 +1,5 @@
 package fff.delfinen.ui;
 
-import fff.delfinen.CompetitiveSwimmer;
 import fff.delfinen.Controller;
 import fff.delfinen.ExerciseSwimmer;
 
@@ -8,7 +7,7 @@ public class CoachMenu {
     public Controller controller;
     public UserInterface userInterface;
     private final ExerciseSwimmer exerciseSwimmer = new ExerciseSwimmer();
-    public CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer();
+
 
     public CoachMenu(UserInterface userInterface, Controller controller) {
         this.controller = controller;
@@ -22,7 +21,6 @@ public class CoachMenu {
             boolean writingError;
             System.out.println("Coach menu" +
             "\n----------------------------------------------");
-            //TODO stævne, placering, tid
             System.out.println(
                     """
                             1) View exercise teams
@@ -38,13 +36,13 @@ public class CoachMenu {
             if (coachChoice == 1) {
                 exerciseSwimmer.viewExerciseTeams(this);
             } else if (coachChoice == 2) {
-                exerciseSwimmer.competitiveSwimmer.viewCompetitionTeams(this);
+
             } else if (coachChoice == 3) {
-                exerciseSwimmer.competitiveSwimmer.registerMembersSwimmingDiscipline();
+
             } else if (coachChoice == 4) {
                 //TODO enkelte svømmers bedste træningstid og dato løbende registreres + konkurrencesvømmer registreres stævne, placeing og tid
             } else if (coachChoice == 5) {
-                competitiveSwimmer.statistics();
+
             } else if (coachChoice == 6) {
                 userInterface.startMenu();
             }
