@@ -90,13 +90,13 @@ public class CompetitionTeams extends Member {
         input = scanner.nextLine().toLowerCase();
         switch (input) {
             case "crawl":
-                System.out.println(" ");
+                System.out.println(getCrawl());
             case "backcrawl":
-                System.out.println(" ");
+                System.out.println(getBackcrawl());
             case "breaststroke":
-                System.out.println(" ");
+                System.out.println(getBreaststroke());
             case "butterfly":
-                System.out.println(" ");
+                System.out.println(getButterfly());
         }
     }
 }
