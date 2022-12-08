@@ -8,11 +8,9 @@ public class CoachMenu {
     public UserInterface userInterface;
     private final ExerciseSwimmer exerciseSwimmer = new ExerciseSwimmer();
 
-
     public CoachMenu(UserInterface userInterface, Controller controller) {
         this.controller = controller;
         this.userInterface = userInterface;
-
     }
     public void coachMenu() {
         int coachChoice;
@@ -25,11 +23,9 @@ public class CoachMenu {
                     """
                             1) View exercise teams
                             2) View competition teams
-                            3) Register members swimming discipline
-                            4) Register result score
-                            5) View statistics
-                            6) Back to main menu
-                            7) Quit program""");
+                            3) Top 5 swimmers
+                            4) Back to main menu
+                            5) Quit program""");
 
             coachChoice = UserInterface.scanner.nextInt();
 
@@ -40,13 +36,9 @@ public class CoachMenu {
             } else if (coachChoice == 3) {
 
             } else if (coachChoice == 4) {
-                //TODO enkelte svømmers bedste træningstid og dato løbende registreres + konkurrencesvømmer registreres stævne, placeing og tid
-            } else if (coachChoice == 5) {
-
-            } else if (coachChoice == 6) {
                 userInterface.startMenu();
             }
-        } while (coachChoice == 7);
+        } while (coachChoice == 5);
         System.exit(0);
     }
 }
