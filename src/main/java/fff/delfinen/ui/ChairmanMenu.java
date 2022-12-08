@@ -13,10 +13,6 @@ public class ChairmanMenu {
         this.userInterface = userInterface;
     }
 
-    public ChairmanMenu() {
-
-    }
-
     public void viewChairmanMenu() {
         int chairmanChoice = 0;
         boolean isRunning = true;
