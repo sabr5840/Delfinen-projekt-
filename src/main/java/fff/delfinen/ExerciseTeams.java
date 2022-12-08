@@ -2,7 +2,7 @@ package fff.delfinen;
 import fff.delfinen.ui.CoachMenu;
 import java.util.Scanner;
 
-public class ExerciseSwimmer {
+public class ExerciseTeams {
 public void viewExerciseTeams(CoachMenu coachMenu) {
 
         System.out.println("Choose between junior or senior swimmers");
