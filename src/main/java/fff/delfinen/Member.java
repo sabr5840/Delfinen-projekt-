@@ -30,7 +30,7 @@ public class Member {
 
     public Member(String firstname, String lastname, LocalDate birthDate, String address, int postalCode,
                   String city, int phoneNo, String eMail, boolean passive, boolean junior,
-                  boolean exercise, boolean Paid) {
+                  boolean exercise, boolean Paid, String discipline) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthDate = birthDate;
@@ -43,7 +43,7 @@ public class Member {
         this.junior = junior;
         this.exercise = exercise;
         this.Paid = Paid;
-
+        this.discipline = discipline;
     }
 
     public Member() {

@@ -1,5 +1,4 @@
 package fff.delfinen;
-
 import fff.delfinen.ui.ChairmanMenu;
 import fff.delfinen.ui.UserInterface;
 
@@ -122,7 +121,7 @@ public class MemberEditing {
                 System.out.println("Type new Membership status (Passive or active) or 'enter' to keep present status");
                 String passive = scanner.nextLine();
                 if (!passive.isEmpty()) {
-                    editMember.setPassive(Boolean.parseBoolean(passive));
+                   editMember.setPassive(Boolean.parseBoolean(passive));
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Something went wrong - try again.");
@@ -170,7 +169,7 @@ public class MemberEditing {
                     junior = true;
                     userInterface.member.setJunior(true);
                     System.out.println("Member registered as junior");
-                } else if (junior == false) {
+                } else if( junior == false) {
                     userInterface.member.setJunior(false);
                     System.out.println("Member registered as senior");
                 }
@@ -293,5 +292,8 @@ public class MemberEditing {
             System.out.println("Member not saved - returning to previous menu");
             chairmanMenu.viewChairmanMenu();
         }
+
+
     }
+
 }
